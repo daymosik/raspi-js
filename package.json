@@ -1,0 +1,18 @@
+{
+  "name": "raspi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "motor.js",
+  "dependencies": {
+    "johnny-five": "^0.10.3"
+  },
+  "devDependencies": {
+    "johnny-five": "^0.10.3",
+    "nodebots-interchange": "^1.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
