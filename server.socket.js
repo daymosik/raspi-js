@@ -1,9 +1,16 @@
 const server = require('http').createServer();
-const io = require('socket.io')(server);
+let io = require('socket.io');
+
+server.listen(8080);
+io = io.listen(server);
 
 io.on('connection', (client) => {
-  client.on('event', (data) => {});
-  client.on('disconnect', () => {});
-});
 
-server.listen(3001);
+  console.log('Client connected.');
+
+  client.on('event', (data) => {});
+  
+  client.on('disconnect', () => {
+  	console.log('Client disconnected.');
+  });
+});

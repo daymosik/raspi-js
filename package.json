@@ -11,10 +11,12 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.0",
     "johnny-five": "^0.10.3",
     "nodebots-interchange": "^1.1.2",
     "react": "^15.3.2",
+    "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.2",
     "socket.io": "^1.5.1"
   },
@@ -32,6 +34,10 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "concurrently": "^3.1.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
   }
 }
