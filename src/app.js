@@ -11,6 +11,10 @@ socket.on('connect', socket => {
   console.log('Connected!');
 });
 
+socket.emit('command.move', {
+	command: 'goForward'
+});
+
 class Wrapper extends React.Component {
   render() {
     return (

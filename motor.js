@@ -14,10 +14,36 @@ const MOTORS_PINS = [{
 const SERVO_PIN = 11;
 const SENSOR_PIN = 3;
 
+const MOTORS_SPEED = 180;
 const MOTORS_TURN_SPEED = 180;
 
 const five = require('johnny-five');
 const board = new five.Board();
+
+const turnLeft = () => {
+  motors[0].forward(MOTORS_TURN_SPEED);
+  motors[1].reverse(MOTORS_TURN_SPEED);
+};
+
+const turnRight = () => {
+  motors[1].forward(MOTORS_TURN_SPEED);
+  motors[0].reverse(MOTORS_TURN_SPEED);
+};
+
+const goForward = () => {
+  motors.forward(MOTORS_SPEED);
+};
+
+const goBack = () => {
+  motors.reverse(MOTORS_SPEED);
+};
+
+const motorsFn = {
+  turnLeft,
+  turnRight,
+  goForward,
+  goBack
+};
 
 let motors, servo, sensor;
 
@@ -28,26 +54,11 @@ board.on('ready', () => {
   // Motors
   motors = new five.Motors(MOTORS_PINS);
 
-  const turnLeft = () => {
-    motors[0].forward(MOTORS_TURN_SPEED);
-    motors[1].reverse(MOTORS_TURN_SPEED);
-  };
-
-  const turnRight = () => {
-    motors[1].forward(MOTORS_TURN_SPEED);
-    motors[0].reverse(MOTORS_TURN_SPEED);
-  };
-
-  const motorsFn = {
-    turnLeft,
-    turnRight
-  };
-
   motors[0].on('start', () => {
     // onRoad = true;
     console.log('start', Date.now());
 
-    // board.wait(1000, () => motors.stop());
+    board.wait(1000, () => motors.stop());
   });
 
   motors[0].on('stop', () => {
@@ -104,3 +115,5 @@ board.on('ready', () => {
   });
 
 });
+
+export default motorsFn;

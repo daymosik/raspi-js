@@ -84,6 +84,10 @@
 			console.log('Connected!');
 	});
 
+	socket.emit('command.move', {
+			command: 'goForward'
+	});
+
 	var Wrapper = function (_React$Component) {
 			_inherits(Wrapper, _React$Component);
 
