@@ -1,3 +1,5 @@
+import io from '../server.socket.js';
+
 const MOTORS_PINS = [{
   pins: {
     pwm: 5,
@@ -83,6 +85,12 @@ board.on('ready', () => {
     //   motors.stop();
     //   lookForNextDirection();
     // }
+
+    const cm = parseInt(this.cm);
+
+    io.emit('sensor.data', {
+      cm
+    });
   });
 
   // sensor.on("change", function() {

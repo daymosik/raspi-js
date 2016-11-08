@@ -1,4 +1,4 @@
-import motorsFn from './motor';
+import motorsFn from './johny/motor';
 
 const server = require('http').createServer();
 let io = require('socket.io');
@@ -20,3 +20,5 @@ io.on('connection', client => {
   	motorsFn[data.command]();
   });
 });
+
+export default io;
