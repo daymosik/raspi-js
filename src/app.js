@@ -10,18 +10,16 @@ class Wrapper extends React.Component {
   render() {
     const styles = {
       container: {
-        paddingTop: '50px'
+        paddingTop: '20px'
       }
     };
 
     return (
       <div style={styles.container} className="container">
         <div className="row">
-          <div className="col-sm-6 text-center">
-            <Arrows />
-          </div>
-          <div className="col-sm-6 text-center">
+          <div className="col-sm-6 col-md-4 col-lg-3 text-center">
             <Distance />
+            <Arrows />
           </div>
         </div>
       </div>

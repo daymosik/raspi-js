@@ -13,8 +13,8 @@ io.on('connection', client => {
   client.on('disconnect', () => console.log('Client disconnected.'));
 
   // Johny
-  client.on('command.moveMotor', data => motorsFn[data.command]());
-  client.on('command.moveServo', data => servoFn[data.command]());
+  client.on('command.moveMotor', data => motorsFn[data.command](data.speed));
+  client.on('command.moveServo', data => servoFn[data.command](data.speed));
 
   console.log('Client connected.');
 });

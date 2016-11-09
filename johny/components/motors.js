@@ -32,32 +32,21 @@ const motorsFn = {
   },
   goForward: speed => motors.forward(speed || MOTORS_SPEED),
   goBack: speed => motors.reverse(speed || MOTORS_SPEED),
-  stop: () => {
-    motors.stop();
-  }
+  stop: () => motors.stop()
 };
 
 board.on('ready', () => {
 
-  // Motors
   motors = new five.Motors(MOTORS_PINS);
 
   motors[0].on('start', () => {
-    // onRoad = true;
     console.log('start', Date.now());
 
     board.wait(500, () => motors.stop());
   });
 
-  motors[0].on('stop', () => {
-    // onRoad = false;
-    console.log('stop', Date.now());
-  });
+  motors[0].on('stop', () => console.log('stop', Date.now()));
 
-  // motors.start(150);
-
-  // Inject the `motor` hardware into
-  // the Repl instance's context;
   // allows direct command line access
   board.repl.inject({
     motors,
