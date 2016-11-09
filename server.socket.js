@@ -1,4 +1,5 @@
-import { motorsFn, servoFn } from './johny/motor';
+import motorsFn from './johny/components/motors';
+import servoFn from './johny/components/servo';
 
 const server = require('http').createServer();
 let io = require('socket.io');

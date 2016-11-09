@@ -1,10 +1,6 @@
 import React from 'react';
 import socket from '../socket'
 
-const MOVE_COMMANDS = [
-  'turnLeft', 'turnRight', 'goForward', 'goBack'
-];
-
 class Arrows extends React.Component {
   render() {
     const styles = {
@@ -43,8 +39,8 @@ class Arrows extends React.Component {
               </button>
             </div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.moveMotor('stop')} className="btn btn-warning">
-                <i className="glyphicon glyphicon-pause"></i>
+              <button onClick={() => this.moveMotor('goBack')} className="btn btn-info">
+                <i className="glyphicon glyphicon-arrow-down"></i>
               </button>
             </div>
             <div className="col-xs-4 text-center">
@@ -60,8 +56,8 @@ class Arrows extends React.Component {
               </button>
             </div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.moveMotor('goBack')} className="btn btn-info">
-                <i className="glyphicon glyphicon-arrow-down"></i>
+              <button onClick={() => (this.moveMotor('stop'),this.moveServo('lookStraight'))} className="btn btn-warning">
+                <i className="glyphicon glyphicon-pause"></i>
               </button>
             </div>
             <div className="col-xs-4">
