@@ -1,4 +1,4 @@
-import motorsFn from './johny/motor';
+import { motorsFn, servoFn } from './johny/motor';
 
 const server = require('http').createServer();
 let io = require('socket.io');
@@ -8,17 +8,14 @@ io = io.listen(server);
 
 io.on('connection', client => {
 
-  console.log('Client connected.');
-
   client.on('event', data => {});
-  
-  client.on('disconnect', () => {
-  	console.log('Client disconnected.');
-  });
+  client.on('disconnect', () => console.log('Client disconnected.'));
 
-  client.on('command.move', data => {
-  	motorsFn[data.command]();
-  });
+  // Johny
+  client.on('command.moveMotor', data => motorsFn[data.command]());
+  client.on('command.moveServo', data => servoFn[data.command]());
+
+  console.log('Client connected.');
 });
 
 export default io;

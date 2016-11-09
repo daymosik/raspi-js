@@ -18,6 +18,9 @@ class Arrows extends React.Component {
       insideRow: {
         height: 200 / 3,
         paddingTop: 15
+      },
+      iconMirror: {
+        transform: 'matrix(-1, 0, 0, 1, 0, 0)'
       }
     };
 
@@ -27,7 +30,7 @@ class Arrows extends React.Component {
           <div style={styles.insideRow} className="row">
             <div className="col-xs-4"></div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.emitMove('goForward')} className="btn btn-info">
+              <button onClick={() => this.moveMotor('goForward')} className="btn btn-info">
                 <i className="glyphicon glyphicon-arrow-up"></i>
               </button>
             </div>
@@ -35,37 +38,51 @@ class Arrows extends React.Component {
           </div>
           <div style={styles.insideRow} className="row">
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.emitMove('turnLeft')} className="btn btn-info">
+              <button onClick={() => this.moveMotor('turnLeft')} className="btn btn-info">
                 <i className="glyphicon glyphicon-arrow-left"></i>
               </button>
             </div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.emitMove('stop')} className="btn btn-warning">
+              <button onClick={() => this.moveMotor('stop')} className="btn btn-warning">
                 <i className="glyphicon glyphicon-pause"></i>
               </button>
             </div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.emitMove('turnRight')} className="btn btn-info">
+              <button onClick={() => this.moveMotor('turnRight')} className="btn btn-info">
                 <i className="glyphicon glyphicon-arrow-right"></i>
               </button>
             </div>
           </div>
           <div style={styles.insideRow} className="row">
-            <div className="col-xs-4"></div>
+            <div className="col-xs-4">
+              <button onClick={() => this.moveServo('lookLeft')} className="btn btn-info">
+                <i style={styles.iconMirror} className="glyphicon glyphicon-share-alt"></i>
+              </button>
+            </div>
             <div className="col-xs-4 text-center">
-              <button onClick={() => this.emitMove('goBack')} className="btn btn-info">
+              <button onClick={() => this.moveMotor('goBack')} className="btn btn-info">
                 <i className="glyphicon glyphicon-arrow-down"></i>
               </button>
             </div>
-            <div className="col-xs-4"></div>
+            <div className="col-xs-4">
+              <button onClick={() => this.moveServo('lookRight')} className="btn btn-info">
+                <i className="glyphicon glyphicon-share-alt"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 
-  emitMove(command) {
-    socket.emit('command.move', {
+  moveMotor(command) {
+    socket.emit('command.moveMotor', {
+      command
+    });
+  }
+
+  moveServo(command) {
+    socket.emit('command.moveServo', {
       command
     });
   }

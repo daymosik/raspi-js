@@ -22,7 +22,10 @@ const MOTORS_TURN_SPEED = 180;
 const five = require('johnny-five');
 const board = new five.Board();
 
-const motorsFn = {
+
+let motors, servo, sensor;
+
+export const motorsFn = {
   turnLeft: () => {
     motors[0].forward(MOTORS_TURN_SPEED);
     motors[1].reverse(MOTORS_TURN_SPEED);
@@ -33,10 +36,18 @@ const motorsFn = {
   },
   goForward: () => motors.forward(MOTORS_SPEED),
   goBack: () => motors.reverse(MOTORS_SPEED),
-  stop: () => motors.stop()
+  stop: () => {
+    motors.stop();
+    // Temporary
+    servo.center();
+  }
 };
 
-let motors, servo, sensor;
+export const servoFn = {
+  lookLeft: () => servo.to(160),
+  lookRight: () => servo.to(20),
+  lookStraight: () => servo.center()
+};
 
 let onRoad = false;
 
@@ -108,9 +119,8 @@ board.on('ready', () => {
     motors,
     motorsFn,
     servo,
+    servoFn,
     sensor
   });
 
 });
-
-export default motorsFn;
