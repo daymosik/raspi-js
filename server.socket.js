@@ -1,5 +1,7 @@
 import motorsFn from './johny/components/motors';
 import servoFn from './johny/components/servo';
+// import Exploration from './johny/functions/exploration';
+import exploration from './johny/raspi.js';
 
 const server = require('http').createServer();
 let io = require('socket.io');

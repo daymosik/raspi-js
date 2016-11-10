@@ -2,10 +2,26 @@ import io from '../server.socket.js';
 import board from './components/board.js';
 import motorsFn from './components/motors.js';
 import servoFn from './components/servo.js';
-import sensor from './components/sensor.js';
+import sensorFn from './components/sensor.js';
+import Exploration from './functions/exploration.js';
 
-let onRoad = false;
+let exploration;
 
 board.on('ready', () => {
 
+  exploration = new Exploration();
+
+  io.on('connection', client => {
+    client.on('command.toggleExploration', () => exploration.toggleExploration());
+  });
+
+  // exploration.startExploring();
+
+  // allows direct command line access
+  board.repl.inject({
+    exploration
+  });
+
 });
+
+export default exploration;

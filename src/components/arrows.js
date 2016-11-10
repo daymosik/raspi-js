@@ -1,5 +1,5 @@
 import React from 'react';
-import socket from '../socket'
+import socket from '../socket';
 
 class Arrows extends React.Component {
   render() {
@@ -31,7 +31,7 @@ class Arrows extends React.Component {
               <i className="glyphicon glyphicon-share-alt"></i>
             </button>
           </div>
-          <div style={styles.insideRow} className="row">
+          <div className="row">
             <button onClick={() => this.moveMotor('turnLeft')} style={styles.btn}
               className="btn btn-info col-xs-4">
               <i className="glyphicon glyphicon-arrow-left"></i>
@@ -45,7 +45,7 @@ class Arrows extends React.Component {
               <i className="glyphicon glyphicon-arrow-right"></i>
             </button>
           </div>
-          <div style={styles.insideRow} className="row">
+          <div className="row">
             <button onClick={() => this.moveServo('lookLeft')} style={styles.btn} 
               className="btn btn-info col-xs-4">
               <i className="glyphicon glyphicon-chevron-left"></i>
@@ -57,6 +57,12 @@ class Arrows extends React.Component {
             <button onClick={() => this.moveServo('lookRight')} style={styles.btn}
               className="btn btn-info col-xs-4">
               <i className="glyphicon glyphicon glyphicon-chevron-right"></i>
+            </button>
+          </div>
+          <div className="row">
+            <button onClick={() => this.toggleExploration()} style={styles.btn}
+              className="btn btn-info col-xs-12">
+              Exploration
             </button>
           </div>
         </div>
@@ -74,6 +80,10 @@ class Arrows extends React.Component {
     socket.emit('command.moveServo', {
       command
     });
+  }
+
+  toggleExploration() {
+    socket.emit('command.toggleExploration', {});
   }
 
   constructor(props) {

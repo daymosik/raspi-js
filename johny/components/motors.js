@@ -15,24 +15,50 @@ const MOTORS_PINS = [{
     cdir: 9
   }
 }];
-
+const MOTORS_AUTO_STOP_TIME = 500;
 const MOTORS_SPEED = 180;
 const MOTORS_TURN_SPEED = 180;
 
 let motors;
 
 const motorsFn = {
+  autoStopTime: MOTORS_AUTO_STOP_TIME,
+  working: false,
   turnLeft: speed => {
+    motorsFn.setWorking();
     motors[0].forward(speed || MOTORS_TURN_SPEED);
     motors[1].reverse(speed || MOTORS_TURN_SPEED);
+    motorsFn.unsetWorking();
   },
   turnRight: speed => {
+    motorsFn.setWorking();
     motors[1].forward(speed || MOTORS_TURN_SPEED);
     motors[0].reverse(speed || MOTORS_TURN_SPEED);
+    motorsFn.unsetWorking();
   },
-  goForward: speed => motors.forward(speed || MOTORS_SPEED),
-  goBack: speed => motors.reverse(speed || MOTORS_SPEED),
-  stop: () => motors.stop()
+  goForward: speed => {
+    motorsFn.setWorking();
+    motors.forward(speed || MOTORS_SPEED);
+    motorsFn.unsetWorking();
+  },
+  goBack: speed => {
+    motorsFn.setWorking();
+    motors.reverse(speed || MOTORS_SPEED);
+    motorsFn.unsetWorking();
+  },
+  stop: () => {
+    motors.stop()
+    motorsFn.unsetWorking();
+  },
+  setWorking: () => {
+    motorsFn.working = true;
+  },
+  unsetWorking: () => {
+    setTimeout(() => {
+      motorsFn.working = false;
+    }, MOTORS_AUTO_STOP_TIME);
+  },
+  isWorking: () => motorsFn.working
 };
 
 board.on('ready', () => {
@@ -40,14 +66,13 @@ board.on('ready', () => {
   motors = new five.Motors(MOTORS_PINS);
 
   motors[0].on('start', () => {
-    console.log('start', Date.now());
+    // console.log('start', Date.now());
 
-    board.wait(500, () => motors.stop());
+    board.wait(MOTORS_AUTO_STOP_TIME, () => motors.stop());
   });
 
-  motors[0].on('stop', () => console.log('stop', Date.now()));
+  // motors[0].on('stop', () => console.log('stop', Date.now()));
 
-  // allows direct command line access
   board.repl.inject({
     motors,
     motorsFn
