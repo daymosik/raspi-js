@@ -18,6 +18,7 @@ const MOTORS_PINS = [{
 const MOTORS_AUTO_STOP_TIME = 500;
 const MOTORS_SPEED = 180;
 const MOTORS_TURN_SPEED = 180;
+const MOTORS_SWIPE_SPEED = 150;
 
 let motors;
 
@@ -34,6 +35,18 @@ const motorsFn = {
     motorsFn.setWorking();
     motors[1].forward(speed || MOTORS_TURN_SPEED);
     motors[0].reverse(speed || MOTORS_TURN_SPEED);
+    motorsFn.unsetWorking();
+  },
+  swipeLeft: () => {
+    motorsFn.setWorking();
+    motors[0].forward(MOTORS_SWIPE_SPEED);
+    motors[1].reverse(MOTORS_SWIPE_SPEED);
+    motorsFn.unsetWorking();
+  },
+  swipeRight: () => {
+    motorsFn.setWorking();
+    motors[1].forward(MOTORS_SWIPE_SPEED);
+    motors[0].reverse(MOTORS_SWIPE_SPEED);
     motorsFn.unsetWorking();
   },
   goForward: speed => {

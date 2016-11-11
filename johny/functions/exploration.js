@@ -7,12 +7,13 @@ import sensorFn from '../components/sensor.js';
 
 function Exploration() {
 
-  const SAFE_DISTANCE = 40;
-  const LOOK_TIMEOUT = 2000;
+  const VERY_SAFE_DISTANCE = 100;
+  const SAFE_DISTANCE = 30;
+  const DANGER_DISTANCE = 10;
+  const LOOK_TIMEOUT = 1000;
 
   let exploring = false;
-  let isLooking = false;
-  let isReversing = false;
+  let lookAroundIndicator = undefined;
 
   const sensorDistances = [{
     direction: 'straight',
@@ -21,11 +22,11 @@ function Exploration() {
   }, {
     direction: 'left',
     distance: null,
-    command: 'turnLeft'
+    command: 'swipeLeft'
   }, {
     direction: 'right',
     distance: null,
-    command: 'turnRight'
+    command: 'swipeRight'
   }];
 
   this.startExploring = () => {
@@ -46,24 +47,23 @@ function Exploration() {
       : this.startExploring()
   );
 
-  function startMoving(command) {
-    isLooking = false;
-    
-    if (command) {
+  function startMoving(command) {    
+    if (command && !isAllVerySafeDistance()) {
       board.info('Exploration', `Start moving with command - ${command}`, { command });
 
-      board.info('Exploration', `Reversing`);
-      isReversing = true;
-      motorsFn.goBack(100);
+      if (isAnyDangerDistance()) {
+        board.info('Exploration', `Reversing`);
+        motorsFn.goBack(100);  
+      }
       board.wait(getAutoStopTime(), () => {
         board.info('Exploration', command);
-        isReversing = false;
         motorsFn[command]();
         board.wait(getAutoStopTime(), lookAround);
       });
     } else {
       board.info('Exploration', 'START moving');
       motorsFn.goForward(140);
+      board.wait(getAutoStopTime(), lookAround);
     }  
   }
 
@@ -73,24 +73,42 @@ function Exploration() {
   }
 
   function lookAround() {
-    isLooking = true;
-    // Look straight
-    servoFn.lookStraight();
-    board.wait(LOOK_TIMEOUT, () => {
-      setDistance('straight');
-      // Look left
-      servoFn.lookLeft();
+    lookAroundIndicator = !lookAroundIndicator;
+    if (lookAroundIndicator && exploring) {
+      // Look straight
+      servoFn.lookStraight();
       board.wait(LOOK_TIMEOUT, () => {
-        setDistance('left');
-        // Look right
-        servoFn.lookRight();
+        setDistance('straight');
+        // Look left
+        servoFn.lookLeft();
         board.wait(LOOK_TIMEOUT, () => {
-          setDistance('right');
-          // Decide where to go
-          decideMove();
+          setDistance('left');
+          // Look right
+          servoFn.lookRight();
+          board.wait(LOOK_TIMEOUT, () => {
+            setDistance('right');
+            // Decide where to go
+            decideMove();
+          });
         });
       });
-    });
+    } else if (!lookAroundIndicator && exploring) {
+      board.wait(LOOK_TIMEOUT, () => {
+        setDistance('right');
+        // Look straight
+        servoFn.lookStraight();
+        board.wait(LOOK_TIMEOUT, () => {
+          setDistance('straight');
+          // Look left
+          servoFn.lookLeft();
+          board.wait(LOOK_TIMEOUT, () => {
+            setDistance('left');
+            // Decide where to go
+            decideMove();
+          });
+        });
+      });
+    }
   }
 
   function decideMove() {
@@ -103,6 +121,18 @@ function Exploration() {
     return (distance || getDistance()) > SAFE_DISTANCE;
   }
 
+  function isVerySafeDistance(distance) {
+    return (distance || getDistance()) > VERY_SAFE_DISTANCE;
+  }
+
+  function isAnyDangerDistance() {
+    return R.find(R.propSatisfies(dist => dist < DANGER_DISTANCE, 'distance'), sensorDistances);
+  }
+
+  function isAllVerySafeDistance() {
+    return R.all(R.propSatisfies(dist => dist > VERY_SAFE_DISTANCE, 'distance'), sensorDistances);
+  }
+
   function getDistance() {
     return sensorFn.sensor.cm;
   }
@@ -112,8 +142,9 @@ function Exploration() {
   }
 
   function setDistance(direction, distance) {
-    const dist = R.find(R.whereEq({ direction }), sensorDistances);
+    const dist = R.find(R.whereEq({ direction }), sensorDistances);    
     dist.distance = distance || getDistance();
+    board.info('Exploration', `Distance set for ${direction}: ${dist.distance}`);
   }
 
 }
