@@ -28,7 +28,7 @@ Powered with NodeJS, Express server and socket.io.
 
 ### Raspberry Pi ###
 
-* **Johnny-Five** - javascript robotic platform for controlling ardunino via **socket.io** from node server
+* **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI with **Webpack** and **Express** server for user communication with RaspiJS via **socket.io**
 * **ES6 Syntax** with babel preprocessor
 * **Mocha + chai + sinon** server side testing
@@ -57,12 +57,13 @@ interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 
 ### Running scripts ###
 
-Run RaspiJS app in development mode (NodeJS server, socket.io server, Express server, Webpack watch server, Arduino board connection)
+Run RaspiJS app in development mode  
+(NodeJS server, socket.io server, Express server, Webpack watch server, Arduino connection)
 ```
 npm run dev
 ```
 
-Run backend testss
+Run backend tests
 ```
 npm run test
 ```
