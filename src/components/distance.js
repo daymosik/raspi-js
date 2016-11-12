@@ -19,12 +19,20 @@ class Distance extends React.Component {
           <ProgressBar style={styles.progressBar} bsStyle={this.state.style} 
             now={this.state.cm} label={this.state.label} srOnly />
         </div>
+        <div className="col-xs-12">
+          <ProgressBar style={styles.progressBar} bsStyle={this.state.style} 
+            now={this.state.cm} label={this.state.label} srOnly />
+        </div>
       </div>
     );
   }
 
   componentDidMount() {
     socket.on('sensor.data', data => this.setDistance(data.cm));
+    socket.on('sensorBottom.data', data => {
+      console.log(data);
+      this.setBottomDistance(data.cm);
+    });
   }
 
   componentWillUnmount() {
@@ -32,6 +40,14 @@ class Distance extends React.Component {
   }
 
   setDistance(cm) {
+    this.setState({
+      cm: cm,
+      style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
+      label: `${cm}cm`
+    });
+  }
+
+  setBottomDistance(cm) {
     this.setState({
       cm: cm,
       style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
