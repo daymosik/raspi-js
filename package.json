@@ -13,6 +13,7 @@
     "babel-register": "^6.18.0",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "j5-songs": "0.0.9",
     "johnny-five": "^0.10.3",
     "nodebots-interchange": "^1.1.2",
     "ramda": "^0.22.1",

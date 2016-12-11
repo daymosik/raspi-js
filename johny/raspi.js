@@ -5,6 +5,7 @@ import servoFn from './components/servo.js';
 // import sensorFn from './components/sensor.js';
 // import Exploration from './functions/exploration.js';
 import ledRGBFn from './components/led-rgb.js';
+import buzzerFn from './components/buzzer.js';
 
 let exploration;
 
