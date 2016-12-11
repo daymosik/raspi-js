@@ -18,6 +18,8 @@ board.on('ready', () => {
     isAnode: true
   });
 
+  ledRGBFn.ledRGB.off();
+
   board.repl.inject({
     ledRGBFn
   });

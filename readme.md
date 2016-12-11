@@ -9,6 +9,7 @@ Powered with NodeJS, Express server and socket.io.
 
 * Remote controll from gui
 * Exploration mode
+* Play songs on buzzer :)
 
 ## Hardware specification ##
 
@@ -23,6 +24,9 @@ Powered with NodeJS, Express server and socket.io.
 * Ultrasonic sensor HC-SR04
 * L298N H-bridge Dual Motor Controller + 4 x DC dual axis TT gear motor
 * TowerPro SG90 Servo
+* 5161AS Seven Segment LED Display with 74HC595 Shift Register
+* RGB Common cathode LED
+* Buzzer
 
 ## Software specification ##
 

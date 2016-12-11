@@ -6,6 +6,7 @@ import servoFn from './components/servo.js';
 // import Exploration from './functions/exploration.js';
 import ledRGBFn from './components/led-rgb.js';
 import buzzerFn from './components/buzzer.js';
+import sevenLedFn from './components/seven-segment-led.js';
 
 let exploration;
 
@@ -17,7 +18,7 @@ board.on('ready', () => {
   //   client.on('command.toggleExploration', () => exploration.toggleExploration());
   // });
 
-  ledRGBFn.ledRGB.color('blue');
+  // ledRGBFn.ledRGB.color('blue');
 
   // exploration.startExploring();
 
