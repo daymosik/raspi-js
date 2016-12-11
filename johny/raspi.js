@@ -2,21 +2,21 @@ import io from '../server.socket.js';
 import board from './components/board.js';
 import motorsFn from './components/motors.js';
 import servoFn from './components/servo.js';
-import sensorFn from './components/sensor.js';
-import Exploration from './functions/exploration.js';
-// import ledRGBFn from './components/led-rgb.js';
+// import sensorFn from './components/sensor.js';
+// import Exploration from './functions/exploration.js';
+import ledRGBFn from './components/led-rgb.js';
 
 let exploration;
 
 board.on('ready', () => {
 
-  exploration = new Exploration();
+  // exploration = new Exploration();
 
-  io.on('connection', client => {
-    client.on('command.toggleExploration', () => exploration.toggleExploration());
-  });
+  // io.on('connection', client => {
+  //   client.on('command.toggleExploration', () => exploration.toggleExploration());
+  // });
 
-  // ledRGBFn.ledRGB.color('#72a33f');
+  ledRGBFn.ledRGB.color('blue');
 
   // exploration.startExploring();
 

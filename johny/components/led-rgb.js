@@ -3,8 +3,8 @@ import board from './board.js';
 
 const LED_RGB_PINS = {
   red: 4,
-  green: 12,
-  blue: 13
+  green: 5,
+  blue: 6
 };
 
 const ledRGBFn = {

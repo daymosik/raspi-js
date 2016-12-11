@@ -18,8 +18,8 @@ Powered with NodeJS, Express server and socket.io.
 
 ### Arduino ###
 
-* Arduino Uno R3 + LiPo Battery (2200mAH, 11,1V)
-* Sensor Shield V4.0
+* Arduino Mega 2560 + LiPo Battery (2200mAH, 11,1V)
+* Arduino Mega Sensor Shield V2.0
 * Ultrasonic sensor HC-SR04
 * L298N H-bridge Dual Motor Controller + 4 x DC dual axis TT gear motor
 * TowerPro SG90 Servo
@@ -54,6 +54,8 @@ Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to ardui
 ```
 interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
+
+TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
 
 ### Running scripts ###
 

@@ -4,15 +4,15 @@ import io from '../../server.socket.js';
 
 const MOTORS_PINS = [{
   pins: {
-    pwm: 5,
-    dir: 7,
-    cdir: 8
+    pwm: 3,
+    dir: 35,
+    cdir: 34
   }
 }, {
   pins: {
-    pwm: 6,
-    dir: 10,
-    cdir: 9
+    pwm: 2,
+    dir: 36,
+    cdir: 37
   }
 }];
 const MOTORS_AUTO_STOP_TIME = 500;
@@ -27,26 +27,26 @@ const motorsFn = {
   working: false,
   turnLeft: speed => {
     motorsFn.setWorking();
-    motors[0].forward(speed || MOTORS_TURN_SPEED);
-    motors[1].reverse(speed || MOTORS_TURN_SPEED);
-    motorsFn.unsetWorking();
-  },
-  turnRight: speed => {
-    motorsFn.setWorking();
     motors[1].forward(speed || MOTORS_TURN_SPEED);
     motors[0].reverse(speed || MOTORS_TURN_SPEED);
     motorsFn.unsetWorking();
   },
+  turnRight: speed => {
+    motorsFn.setWorking();
+    motors[0].forward(speed || MOTORS_TURN_SPEED);
+    motors[1].reverse(speed || MOTORS_TURN_SPEED);
+    motorsFn.unsetWorking();
+  },
   swipeLeft: () => {
     motorsFn.setWorking();
-    motors[0].forward(MOTORS_SWIPE_SPEED);
-    motors[1].reverse(MOTORS_SWIPE_SPEED);
+    motors[1].forward(MOTORS_SWIPE_SPEED);
+    motors[0].reverse(MOTORS_SWIPE_SPEED);
     motorsFn.unsetWorking();
   },
   swipeRight: () => {
     motorsFn.setWorking();
-    motors[1].forward(MOTORS_SWIPE_SPEED);
-    motors[0].reverse(MOTORS_SWIPE_SPEED);
+    motors[0].forward(MOTORS_SWIPE_SPEED);
+    motors[1].reverse(MOTORS_SWIPE_SPEED);
     motorsFn.unsetWorking();
   },
   goForward: speed => {
