@@ -30,8 +30,7 @@ class Arrows extends React.Component {
               className="btn btn-info col">
               <i className="fa fa-share-alt"></i>
             </button>
-          </div>
-          <div className="row">
+            <div className="w-100"></div>
             <button onClick={() => this.moveMotor('turnLeft')} style={styles.btn}
               className="btn btn-info col">
               <i className="fa fa-arrow-left"></i>
@@ -44,8 +43,7 @@ class Arrows extends React.Component {
               className="btn btn-info col">
               <i className="fa fa-arrow-right"></i>
             </button>
-          </div>
-          <div className="row">
+            <div className="w-100"></div>
             <button onClick={() => this.moveServo('lookLeft')} style={styles.btn} 
               className="btn btn-info col">
               <i className="fa fa-chevron-left"></i>
@@ -58,8 +56,7 @@ class Arrows extends React.Component {
               className="btn btn-info col">
               <i className="glyphicon fa fa-chevron-right"></i>
             </button>
-          </div>
-          <div className="row">
+            <div className="w-100"></div>
             <button onClick={() => this.toggleExploration()} style={styles.btn}
               className="btn btn-info col">
               Exploration

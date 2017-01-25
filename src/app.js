@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 import Arrows from './components/arrows';
 import Distance from './components/distance';
 import RGB from './components/rgb';
+import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
 require('font-awesome/css/font-awesome.css');
 
@@ -20,11 +21,11 @@ class Wrapper extends React.Component {
     return (
       <div style={styles.container} className="container">
         <div className="row">
-          <div className="col-sm-6 col-md-4 text-center">
+          <div className="col-sm col-md-4 text-center">
             <Distance />
             <Arrows />
           </div>
-          <div className="col-sm-6 col-md-4 text-center">
+          <div className="col-sm col-md-4 text-center">
             <RGB />
           </div>
         </div>

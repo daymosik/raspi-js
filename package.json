@@ -52,6 +52,8 @@
     "karma-sinon": "^1.0.5",
     "mocha": "^3.1.2",
     "mock-firmata": "0.0.7",
+    "node-sass": "^4.3.0",
+    "sass-loader": "^4.1.1",
     "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",

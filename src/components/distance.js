@@ -21,8 +21,7 @@ class Distance extends React.Component {
               <Progress style={styles.progressBar} className={this.state.style} 
                 value={this.state.cm} label={this.state.label} />
             </div>
-          </div>
-          <div className="row">
+            <div className="w-100"></div>
             <div className="col">
               <Progress style={styles.progressBar} className={this.state.style} 
                 value={this.state.cm} label={this.state.label} />
