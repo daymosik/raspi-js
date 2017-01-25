@@ -8,7 +8,8 @@ const LED_RGB_PINS = {
 };
 
 const ledRGBFn = {
-  ledRGB: undefined
+  ledRGB: undefined,
+  changeRGBColor: color => ledRGBFn.ledRGB.color(color)
 };
 
 board.on('ready', () => {

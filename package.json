@@ -19,6 +19,7 @@
     "ramda": "^0.22.1",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.6",
+    "react-color": "^2.11.1",
     "react-dom": "^15.3.2",
     "socket.io": "^1.5.1"
   },

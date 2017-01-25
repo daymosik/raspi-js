@@ -5,6 +5,7 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 import { Button } from 'react-bootstrap';
 import Arrows from './components/arrows';
 import Distance from './components/distance';
+import RGB from './components/rgb';
 
 class Wrapper extends React.Component {
   render() {
@@ -20,6 +21,9 @@ class Wrapper extends React.Component {
           <div className="col-sm-6 col-md-4 col-lg-3 text-center">
             <Distance />
             <Arrows />
+          </div>
+          <div className="col-sm-6 col-md-4 col-lg-3 text-center">
+            <RGB />
           </div>
         </div>
       </div>
