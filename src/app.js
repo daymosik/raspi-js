@@ -6,7 +6,7 @@ import { Button } from 'reactstrap';
 import Arrows from './components/arrows';
 import Distance from './components/distance';
 import RGB from './components/rgb';
-import style from './assets/styles/main.scss'
+// import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
 require('font-awesome/css/font-awesome.css');
 

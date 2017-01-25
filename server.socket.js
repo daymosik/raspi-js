@@ -1,7 +1,7 @@
 import motorsFn from './johny/components/motors';
-import servoFn from './johny/components/servo';
+// import servoFn from './johny/components/servo';
 // import Exploration from './johny/functions/exploration';
-import exploration from './johny/raspi.js';
+// import exploration from './johny/raspi.js';
 import ledRGBFn from './johny/components/led-rgb'
 
 const server = require('http').createServer();
@@ -17,7 +17,7 @@ io.on('connection', client => {
 
   // Johny
   client.on('command.moveMotor', data => motorsFn[data.command](data.speed));
-  client.on('command.moveServo', data => servoFn[data.command](data.speed));
+  // client.on('command.moveServo', data => servoFn[data.command](data.speed));
   client.on('command.changeRGBColor', data => ledRGBFn.changeRGBColor(data.color));
 
   console.log('Client connected.');

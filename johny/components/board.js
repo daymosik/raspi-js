@@ -1,5 +1,21 @@
 import five from 'johnny-five';
 
-const board = new five.Board();
+const ports = [
+  { id: 'A', port: '/dev/ttyUSB0' },
+  { id: 'B', port: '/dev/ttyACM0' }
+];
 
-export default board;
+const boardsFn = {
+  boards: new five.Boards(ports),
+  mega: undefined,
+  uno: undefined
+};
+
+boardsFn.boards.on('ready', function() {
+
+  boardsFn.mega = this[0];
+  boardsFn.uno = this[1];
+  
+});
+
+export default boardsFn;

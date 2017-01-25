@@ -1,20 +1,36 @@
 import five from 'johnny-five';
-import board from './board.js';
+import boardsFn from './board.js';
 import io from '../../server.socket.js';
 
-const MOTORS_PINS = [{
+// const MOTORS_PINS_MEGA = [{
+//   pins: {
+//     pwm: 3,
+//     dir: 35,
+//     cdir: 34
+//   }
+// }, {
+//   pins: {
+//     pwm: 2,
+//     dir: 36,
+//     cdir: 37
+//   }
+// }];
+
+const MOTORS_PINS_UNO = [{
   pins: {
-    pwm: 3,
-    dir: 35,
-    cdir: 34
+    pwm: 6,
+    dir: 8,
+    cdir: 7
   }
 }, {
   pins: {
-    pwm: 2,
-    dir: 36,
-    cdir: 37
+    pwm: 5,
+    dir: 9,
+    cdir: 10
   }
 }];
+
+
 const MOTORS_AUTO_STOP_TIME = 500;
 const MOTORS_SPEED = 180;
 const MOTORS_TURN_SPEED = 180;
@@ -74,19 +90,25 @@ const motorsFn = {
   isWorking: () => motorsFn.working
 };
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', function() {
 
-  motors = new five.Motors(MOTORS_PINS);
+  motors = new five.Motors([{
+    pins: MOTORS_PINS_UNO[0].pins,
+    board: boardsFn.uno
+  }, {
+    pins: MOTORS_PINS_UNO[1].pins,
+    board: boardsFn.uno
+  }]);
 
   motors[0].on('start', () => {
     // console.log('start', Date.now());
 
-    board.wait(MOTORS_AUTO_STOP_TIME, () => motors.stop());
+    boardsFn.boards[0].wait(MOTORS_AUTO_STOP_TIME, () => motors.stop());
   });
 
   // motors[0].on('stop', () => console.log('stop', Date.now()));
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     motors,
     motorsFn
   });

@@ -1,6 +1,6 @@
 import five from 'johnny-five';
 import songs from 'j5-songs';
-import board from './board.js';
+import boardsFn from './board.js';
 
 const BUZZER_PIN = 7;
 
@@ -8,10 +8,11 @@ const buzzerFn = {
   buzzer: undefined
 };
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', function() {
 
   buzzerFn.buzzer = five.Piezo({
-    pin: BUZZER_PIN
+    pin: BUZZER_PIN,
+    board: boardsFn.mega
   });
 
   buzzerFn.play = song => (
@@ -20,7 +21,7 @@ board.on('ready', () => {
 
   buzzerFn.stop = () => buzzerFn.buzzer.off();
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     buzzerFn
   });
 
