@@ -1,6 +1,6 @@
 import React from 'react';
 import socket from '../socket'
-import { ProgressBar } from 'react-bootstrap';
+import { Progress } from 'reactstrap';
 
 class Distance extends React.Component {
   render() {
@@ -15,13 +15,19 @@ class Distance extends React.Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12">
-          <ProgressBar style={styles.progressBar} bsStyle={this.state.style} 
-            now={this.state.cm} label={this.state.label} srOnly />
-        </div>
-        <div className="col-xs-12">
-          <ProgressBar style={styles.progressBar} bsStyle={this.state.style} 
-            now={this.state.cm} label={this.state.label} srOnly />
+        <div className="col">
+          <div className="row">
+            <div className="col">
+              <Progress style={styles.progressBar} className={this.state.style} 
+                value={this.state.cm} label={this.state.label} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <Progress style={styles.progressBar} className={this.state.style} 
+                value={this.state.cm} label={this.state.label} />
+            </div>
+          </div>
         </div>
       </div>
     );

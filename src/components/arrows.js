@@ -16,52 +16,52 @@ class Arrows extends React.Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12">
+        <div className="col">
           <div className="row">
             <button onClick={() => this.moveMotor('turnLeft', 140)} style={styles.btn} 
-              className="btn btn-info col-xs-4">
-              <i style={styles.iconMirror} className="glyphicon glyphicon-share-alt"></i>
+              className="btn btn-info col">
+              <i style={styles.iconMirror} className="fa fa-share-alt"></i>
             </button>
             <button onClick={() => this.moveMotor('goForward')} style={styles.btn}
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-arrow-up"></i>
+              className="btn btn-info col">
+              <i className="fa fa-arrow-up"></i>
             </button>
             <button onClick={() => this.moveMotor('turnRight', 140)} style={styles.btn}
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-share-alt"></i>
+              className="btn btn-info col">
+              <i className="fa fa-share-alt"></i>
             </button>
           </div>
           <div className="row">
             <button onClick={() => this.moveMotor('turnLeft')} style={styles.btn}
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-arrow-left"></i>
+              className="btn btn-info col">
+              <i className="fa fa-arrow-left"></i>
             </button>
             <button onClick={() => this.moveMotor('goBack')} style={styles.btn} 
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-arrow-down"></i>
+              className="btn btn-info col">
+              <i className="fa fa-arrow-down"></i>
             </button>
             <button onClick={() => this.moveMotor('turnRight')} style={styles.btn} 
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-arrow-right"></i>
+              className="btn btn-info col">
+              <i className="fa fa-arrow-right"></i>
             </button>
           </div>
           <div className="row">
             <button onClick={() => this.moveServo('lookLeft')} style={styles.btn} 
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon-chevron-left"></i>
+              className="btn btn-info col">
+              <i className="fa fa-chevron-left"></i>
             </button>
             <button onClick={() => (this.moveMotor('stop'),this.moveServo('lookStraight'))} 
-              style={styles.btn} className="btn btn-warning col-xs-4">
-              <i className="glyphicon glyphicon-pause"></i>
+              style={styles.btn} className="btn btn-warning col">
+              <i className="fa fa-pause"></i>
             </button>
             <button onClick={() => this.moveServo('lookRight')} style={styles.btn}
-              className="btn btn-info col-xs-4">
-              <i className="glyphicon glyphicon glyphicon-chevron-right"></i>
+              className="btn btn-info col">
+              <i className="glyphicon fa fa-chevron-right"></i>
             </button>
           </div>
           <div className="row">
             <button onClick={() => this.toggleExploration()} style={styles.btn}
-              className="btn btn-info col-xs-12">
+              className="btn btn-info col">
               Exploration
             </button>
           </div>

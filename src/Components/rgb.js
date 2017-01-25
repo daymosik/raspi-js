@@ -13,7 +13,7 @@ class RGB extends React.Component {
 
     return (
       <div className="row">
-        <div className="col-xs-12">
+        <div className="col">
           <CirclePicker
             width="100%"
             circleSize="36"
