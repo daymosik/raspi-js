@@ -6,17 +6,21 @@ class RGB extends React.Component {
   render() {
     const styles = {
       circlePicker: {
+        // marginBottom: '20px'
         // width: '100%',
         // height: '60px'
+      },
+      row: {
+        marginBottom: '20px'
       }
     };
 
     return (
-      <div className="row">
+      <div className="row" style={styles.row}>
         <div className="col">
           <CirclePicker
             width="100%"
-            circleSize="36"
+            circleSize="41"
             onChangeComplete={ this.handleChangeComplete }
             style={styles.circlePicker} />
         </div>

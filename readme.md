@@ -10,6 +10,7 @@ Powered with NodeJS, Express server and socket.io.
 * Remote controll from gui
 * Exploration mode
 * Play songs on buzzer :)
+* It speaks!
 
 ## Hardware specification ##
 
@@ -62,6 +63,7 @@ interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
 
 TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
+TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite
 
 ### Running scripts ###
 

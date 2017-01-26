@@ -4,6 +4,9 @@ import socket from '../socket';
 class Arrows extends React.Component {
   render() {
     const styles = {
+      row: {
+        marginBottom: '20px'
+      },
       btn: {
         height: '100%',
         height: '100px',
@@ -15,7 +18,7 @@ class Arrows extends React.Component {
     };
 
     return (
-      <div className="row">
+      <div className="row" style={styles.row}>
         <div className="col">
           <div className="row">
             <button onClick={() => this.moveMotor('turnLeft', 140)} style={styles.btn} 

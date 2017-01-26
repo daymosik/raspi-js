@@ -3,9 +3,11 @@ import motorsFn from './johny/components/motors';
 // import Exploration from './johny/functions/exploration';
 // import exploration from './johny/raspi.js';
 import ledRGBFn from './johny/components/led-rgb'
+import Speech from './johny/functions/speech';
 
 const server = require('http').createServer();
 let io = require('socket.io');
+const speach = new Speech();
 
 server.listen(8080);
 io = io.listen(server);
@@ -19,6 +21,7 @@ io.on('connection', client => {
   client.on('command.moveMotor', data => motorsFn[data.command](data.speed));
   // client.on('command.moveServo', data => servoFn[data.command](data.speed));
   client.on('command.changeRGBColor', data => ledRGBFn.changeRGBColor(data.color));
+  client.on('command.speak', data => speach.speak(data.text));
 
   console.log('Client connected.');
 });

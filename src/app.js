@@ -7,6 +7,7 @@ import Arrows from './components/arrows';
 import Distance from './components/distance';
 import NavbarComponent from './components/navbar';
 import RGB from './components/rgb';
+import Speech from './components/speech';
 // import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
 require('font-awesome/css/font-awesome.css');
@@ -30,6 +31,7 @@ class Wrapper extends React.Component {
             </div>
             <div className="col-sm col-lg-4 text-center">
               <RGB />
+              <Speech />
             </div>
           </div>
         </div>
