@@ -1,5 +1,5 @@
 import five from 'johnny-five';
-import board from './board.js';
+import boardsFn from './board.js';
 
 const SEVEN_LED_SEGMENT_PINS = {
   data: 31,
@@ -13,10 +13,11 @@ const sevenLedFn = {
 
 let ledInterval = undefined;
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', function() {
 
   sevenLedFn.led = five.ShiftRegister({
-    pins: SEVEN_LED_SEGMENT_PINS
+    pins: SEVEN_LED_SEGMENT_PINS,
+    board: boardsFn.mega
   });
 
   sevenLedFn.led.clear();
@@ -50,7 +51,7 @@ board.on('ready', () => {
     sevenLedFn.led.clear();
   }
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     sevenLedFn
   });
 

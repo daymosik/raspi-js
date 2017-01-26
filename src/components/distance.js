@@ -19,12 +19,11 @@ class Distance extends React.Component {
           <div className="row">
             <div className="col">
               <Progress style={styles.progressBar} className={this.state.style} 
-                value={this.state.cm} label={this.state.label} />
+                value={this.state.left.cm} label={this.state.left.label} />
             </div>
-            <div className="w-100"></div>
             <div className="col">
               <Progress style={styles.progressBar} className={this.state.style} 
-                value={this.state.cm} label={this.state.label} />
+                value={this.state.right.cm} label={this.state.right.label} />
             </div>
           </div>
         </div>
@@ -33,11 +32,8 @@ class Distance extends React.Component {
   }
 
   componentDidMount() {
-    socket.on('sensor.data', data => this.setDistance(data.cm));
-    socket.on('sensorBottom.data', data => {
-      console.log(data);
-      this.setBottomDistance(data.cm);
-    });
+    socket.on('leftSensor.data', data => this.setDistance(data.cm));
+    socket.on('rightSensor.data', data => this.setBottomDistance(data.cm));
   }
 
   componentWillUnmount() {
@@ -46,24 +42,39 @@ class Distance extends React.Component {
 
   setDistance(cm) {
     this.setState({
-      cm: cm,
-      style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
-      label: `${cm}cm`
+      left: {
+        cm: cm,
+        style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
+        label: `${cm}cm`
+      }
     });
   }
 
   setBottomDistance(cm) {
     this.setState({
-      cm: cm,
-      style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
-      label: `${cm}cm`
+      right: {
+        cm: cm,
+        style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
+        label: `${cm}cm`
+      }
     });
   }
 
   constructor(props) {
     super(props);
 
-    this.state = { cm: 0, style: 'danger', label: '' };
+    this.state = {
+      left: {
+        cm: 0,
+        style: 'danger',
+        label: ''
+      },
+      right: {
+        cm: 0,
+        style: 'danger',
+        label: ''
+      }
+    };
   }
 };
 

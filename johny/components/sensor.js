@@ -1,36 +1,47 @@
 import five from 'johnny-five';
-import board from './board.js';
+import boardsFn from './board.js';
 import io from '../../server.socket.js';
+
+const SENSORS = {
+  left: {
+    pin: 3
+  },
+  right: {
+    pin: 2
+  }
+};
 
 const SENSOR_PIN = 3;
 const BOTTOM_SENSOR_PIN = 2;
 
 const sensorFn = {
-  sensor: undefined,
-  bottomSensor: undefined
+  leftSensor: undefined,
+  rightSensor: undefined
 };
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', function() {
 
-  sensorFn.sensor = five.Proximity({
+  sensorFn.leftSensor = five.Proximity({
     controller: "HCSR04",
-    pin: SENSOR_PIN
+    pin: SENSORS.left.pin,
+    board: boardsFn.uno
   });
 
-  sensorFn.bottomSensor = five.Proximity({
+  sensorFn.rightSensor = five.Proximity({
     controller: "HCSR04",
-    pin: BOTTOM_SENSOR_PIN
+    pin: SENSORS.right.pin,
+    board: boardsFn.uno
   });
 
-  sensorFn.sensor.on('data', function() {
-    io.emit('sensor.data', { cm: parseInt(this.cm) });
+  sensorFn.leftSensor.on('data', function() {
+    io.emit('leftSensor.data', { cm: parseInt(this.cm) });
   });
 
-  sensorFn.bottomSensor.on('data', function() {
-    io.emit('bottomSensor.data', { cm: parseInt(this.cm) });
+  sensorFn.rightSensor.on('data', function() {
+    io.emit('rightSensor.data', { cm: parseInt(this.cm) });
   });
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     sensorFn
   });
 

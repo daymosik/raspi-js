@@ -1,5 +1,5 @@
 import five from 'johnny-five';
-import board from './board.js';
+import boardsFn from './board.js';
 
 const LED_RGB_PINS = {
   red: 4,
@@ -12,16 +12,17 @@ const ledRGBFn = {
   changeRGBColor: color => ledRGBFn.ledRGB.color(color)
 };
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', function() {
 
   ledRGBFn.ledRGB = five.Led.RGB({
     pins: LED_RGB_PINS,
-    isAnode: true
+    isAnode: true,
+    board: boardsFn.mega
   });
 
   ledRGBFn.ledRGB.off();
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     ledRGBFn
   });
 
