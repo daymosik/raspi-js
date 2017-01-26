@@ -19,8 +19,9 @@ Powered with NodeJS, Express server and socket.io.
 
 ### Arduino ###
 
-* Arduino Mega 2560 + LiPo Battery (2200mAH, 11,1V)
-* Arduino Mega Sensor Shield V2.0
+* Arduino Mega 2560 + Sensor Shield V2.0
+* Arduino Uno R3 + Sensor Shield V4.0
+* LiPo Battery (2200mAH, 11,1V)
 * Ultrasonic sensor HC-SR04
 * L298N H-bridge Dual Motor Controller + 4 x DC dual axis TT gear motor
 * TowerPro SG90 Servo
@@ -35,6 +36,7 @@ Powered with NodeJS, Express server and socket.io.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI with **Webpack** and **Express** server for user communication with RaspiJS via **socket.io**
 * **ES6 Syntax** with babel preprocessor
+* **Bootstrap 4**
 * **Mocha + chai + sinon** server side testing
 * **Karma + PhantomJS + mocha + chai + sinon** frontend side testing
 * **Node v7.0.0**
