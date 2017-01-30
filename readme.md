@@ -11,12 +11,14 @@ Powered with NodeJS, Express server and socket.io.
 * Exploration mode
 * Play songs on buzzer :)
 * It speaks!
+* AirPlay server
 
 ## Hardware specification ##
 
 ### Raspberry Pi ###
 
 * Raspberry Pi 3 Model B + Lithium Battery Board (3800mAH, 5.1V)
+* USB Sound Card
 
 ### Arduino ###
 
@@ -61,25 +63,34 @@ Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to ardui
 ```
 interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
-
 TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
+
+For AirPlay install [shairport](https://github.com/abrasive/shairport)
+
 TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite
 
 ### Running scripts ###
 
-Run RaspiJS app in development mode  
-(NodeJS server, socket.io server, Express server, Webpack watch server, Arduino connection)
+Run RaspiJS app
+(NodeJS server, socket.io server, Express server, Arduino connection, Sharepoint)
 ```
-npm run dev
-```
-
-Run backend tests
-```
-npm run test
+make run
 ```
 
-Run frontend tests
+Run app in development mode
+(+ Webpack watch server)
 ```
-npm run test-frontend
+make watch
 ```
+
+Build GUI
+```
+make build
+```
+
+Run tests
+```
+make test
+```
+
 
