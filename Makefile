@@ -1,6 +1,6 @@
 NPM_BIN = node_modules/.bin/
 
-run: server airplay 
+run: server airplay
 
 build:
 	webpack
@@ -24,4 +24,3 @@ test-backend:
 
 test-frontend:
 	$(NPM_BIN)karma start karma.conf.js
-

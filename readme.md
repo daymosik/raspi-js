@@ -12,6 +12,7 @@ Powered with NodeJS, Express server and socket.io.
 * Play songs on buzzer :)
 * It speaks!
 * AirPlay server
+* View from USB Camera through GUI
 
 ## Hardware specification ##
 
@@ -19,6 +20,7 @@ Powered with NodeJS, Express server and socket.io.
 
 * Raspberry Pi 3 Model B + Lithium Battery Board (3800mAH, 5.1V)
 * USB Sound Card
+* USB Camera
 
 ### Arduino ###
 
@@ -43,7 +45,8 @@ Powered with NodeJS, Express server and socket.io.
 * **Mocha + chai + sinon** server side testing
 * **Karma + PhantomJS + mocha + chai + sinon** frontend side testing
 * **Node v7.0.0**
-* **npm** package manager - managing packages and running scripts
+* **npm** package manager
+* **Makefile** for running scripts
 * Raspbian Jessie
 
 ## Installation ##
@@ -66,6 +69,11 @@ interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
 
 For AirPlay install [shairport](https://github.com/abrasive/shairport)
+
+Install motion for USB webcamera:
+```
+sudo apt-get install motion
+```
 
 TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite
 

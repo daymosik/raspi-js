@@ -9,7 +9,7 @@ const server = require('http').createServer();
 let io = require('socket.io');
 const speach = new Speech();
 
-server.listen(8080);
+server.listen(8090);
 io = io.listen(server);
 
 io.on('connection', client => {
