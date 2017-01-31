@@ -1,11 +1,11 @@
 NPM_BIN = node_modules/.bin/
 
-run: server airplay
+run: server
 
 build:
 	webpack
 
-watch: server airplay webpack-watch
+watch: server webpack-watch
 	# $(NPM_BIN)concurrently --kill-others "node ./server.js" "webpack -w" "shairport -a 'RaspiJS'"
 
 webpack-watch:

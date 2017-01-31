@@ -9,6 +9,7 @@ import NavbarComponent from './components/navbar';
 import RGB from './components/rgb';
 import Speech from './components/speech';
 import Camera from './components/camera';
+import annyang from './components/speech-recognition';
 // import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
 require('font-awesome/css/font-awesome.css');
