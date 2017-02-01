@@ -6,28 +6,34 @@ import sensorFn from '../components/sensor.js';
 
 function ExplorationNoServo() {
 
-  const VERY_SAFE_DISTANCE = 100;
+  const VERY_SAFE_DISTANCE = 80;
   const SAFE_DISTANCE = 30;
   const DANGER_DISTANCE = 10;
   const LOOK_TIMEOUT = 1000;
 
   let exploring = false;
-  let lookAroundIndicator = undefined;
+  let lastCommand = null;
 
   const sensorDistances = [{
     direction: 'left',
     distance: null,
-    command: 'swipeLeft'
+    commands: {
+      safe: 'swipeLeft',
+      danger: 'turnLeft'
+    }
   }, {
     direction: 'right',
     distance: null,
-    command: 'swipeRight'
+    commands: {
+      safe: 'swipeRight',
+      danger: 'turnRight'
+    }
   }];
 
   this.startExploring = () => {
     boardsFn.boards[0].info('Exploration', 'Going into to the great journey!');
     exploring = true;
-    lookAround();
+    decideMove();
   }
 
   this.stopExploring = () => {
@@ -42,18 +48,18 @@ function ExplorationNoServo() {
       : this.startExploring()
   );
 
-  function startMoving(command) {    
-    if (command && !isAllSafeDistance(VERY_SAFE_DISTANCE)) {
+  function startMoving(command) {
+    if (command) {
       boardsFn.boards[0].info('Exploration', `Start moving with command - ${command}`, { command });
       boardsFn.boards[0].wait(getAutoStopTime(), () => {
         boardsFn.boards[0].info('Exploration', command);
         motorsFn[command]();
-        boardsFn.boards[0].wait(getAutoStopTime(), lookAround);
+        boardsFn.boards[0].wait(getAutoStopTime(), decideMove);
       });
     } else {
       boardsFn.boards[0].info('Exploration', 'START moving');
       motorsFn.goForward(140);
-      boardsFn.boards[0].wait(getAutoStopTime(), lookAround);
+      boardsFn.boards[0].wait(getAutoStopTime(), decideMove);
     }  
   }
 
@@ -62,18 +68,19 @@ function ExplorationNoServo() {
     motorsFn.stop();
   }
 
-  function lookAround() {
-    boardsFn.boards[0].wait(LOOK_TIMEOUT, () => decideMove());
-  }
+  // function lookAround() {
+  //   boardsFn.boards[0].wait(LOOK_TIMEOUT, () => decideMove());
+  // }
 
   function decideMove() {
     setDistances();
-    startMoving(isAllDangerDistance() 
-      ? 'goBack' 
-      : isAllSafeDistance() 
-      ? 'goForward' 
-      : getTheMostDangerousDistance().command 
-    );
+    const command = 
+      isAllDangerDistance() ? 'goBack' :
+      isAnyDangerDistance() ? getTheMostDangerousDistance().commands.danger :
+      isAllSafeDistance(VERY_SAFE_DISTANCE) && lastCommand !== 'goBack' ? 'goForward' :
+      getTheMostDangerousDistance().commands.safe;
+    lastCommand = command;
+    return exploring ? startMoving(command) : null;
   }
 
   // Helper functions
@@ -86,11 +93,11 @@ function ExplorationNoServo() {
   }
 
   function isAnyDangerDistance() {
-    return R.find(R.propSatisfies(dist => dist < DANGER_DISTANCE, 'distance'), sensorDistances);
+    return R.find(R.propSatisfies(dist => dist <= DANGER_DISTANCE, 'distance'), sensorDistances);
   }
 
   function isAllDangerDistance(dangerDistance) {
-    return R.find(R.propSatisfies(dist => dist <= (dangerDistance || DANGER_DISTANCE), 'distance'), sensorDistances); 
+    return R.all(R.propSatisfies(dist => dist <= (dangerDistance || DANGER_DISTANCE), 'distance'), sensorDistances); 
   }
 
   function isAllSafeDistance(safeDistance) {

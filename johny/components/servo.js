@@ -1,5 +1,5 @@
 import five from 'johnny-five';
-import board from './board.js';
+import boardsFn from './board.js';
 
 const SERVO_PIN = 11;
 
@@ -11,7 +11,7 @@ const servoFn = {
   lookStraight: () => servo.center()
 };
 
-board.on('ready', () => {
+boardsFn.boards.on('ready', () => {
 
   servo = new five.Servo({
     pin: SERVO_PIN,
@@ -19,7 +19,7 @@ board.on('ready', () => {
     range: [0, 180]
   });
 
-  board.repl.inject({
+  boardsFn.boards.repl.inject({
     servo,
     servoFn,
   });

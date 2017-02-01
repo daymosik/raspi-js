@@ -1,6 +1,6 @@
 import R from 'ramda';
 
-import board from '../components/board.js';
+import boardsFn from '../components/board.js';
 import motorsFn from '../components/motors.js';
 import servoFn from '../components/servo.js';
 import sensorFn from '../components/sensor.js';
@@ -30,13 +30,13 @@ function Exploration() {
   }];
 
   this.startExploring = () => {
-    board.info('Exploration', 'Going into to the great journey!');
+    boardsFn.boards[0].info('Exploration', 'Going into to the great journey!');
     exploring = true;
     lookAround();
   }
 
   this.stopExploring = () => {
-    board.info('Exploration', '...');
+    boardsFn.boards[0].info('Exploration', '...');
     exploring = false;
     motorsFn.stop();
   }
@@ -49,26 +49,26 @@ function Exploration() {
 
   function startMoving(command) {    
     if (command && !isAllVerySafeDistance()) {
-      board.info('Exploration', `Start moving with command - ${command}`, { command });
+      boardsFn.boards[0].info('Exploration', `Start moving with command - ${command}`, { command });
 
       if (isAnyDangerDistance()) {
-        board.info('Exploration', `Reversing`);
+        boardsFn.boards[0].info('Exploration', `Reversing`);
         motorsFn.goBack(100);  
       }
-      board.wait(getAutoStopTime(), () => {
-        board.info('Exploration', command);
+      boardsFn.boards[0].wait(getAutoStopTime(), () => {
+        boardsFn.boards[0].info('Exploration', command);
         motorsFn[command]();
-        board.wait(getAutoStopTime(), lookAround);
+        boardsFn.boards[0].wait(getAutoStopTime(), lookAround);
       });
     } else {
-      board.info('Exploration', 'START moving');
+      boardsFn.boards[0].info('Exploration', 'START moving');
       motorsFn.goForward(140);
-      board.wait(getAutoStopTime(), lookAround);
+      boardsFn.boards[0].wait(getAutoStopTime(), lookAround);
     }  
   }
 
   function stopMoving() {
-    board.info('Exploration', 'STOP moving');
+    boardsFn.boards[0].info('Exploration', 'STOP moving');
     motorsFn.stop();
   }
 
@@ -77,15 +77,15 @@ function Exploration() {
     if (lookAroundIndicator && exploring) {
       // Look straight
       servoFn.lookStraight();
-      board.wait(LOOK_TIMEOUT, () => {
+      boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
         setDistance('straight');
         // Look left
         servoFn.lookLeft();
-        board.wait(LOOK_TIMEOUT, () => {
+        boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
           setDistance('left');
           // Look right
           servoFn.lookRight();
-          board.wait(LOOK_TIMEOUT, () => {
+          boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
             setDistance('right');
             // Decide where to go
             decideMove();
@@ -93,15 +93,15 @@ function Exploration() {
         });
       });
     } else if (!lookAroundIndicator && exploring) {
-      board.wait(LOOK_TIMEOUT, () => {
+      boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
         setDistance('right');
         // Look straight
         servoFn.lookStraight();
-        board.wait(LOOK_TIMEOUT, () => {
+        boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
           setDistance('straight');
           // Look left
           servoFn.lookLeft();
-          board.wait(LOOK_TIMEOUT, () => {
+          boardsFn.boards[0].wait(LOOK_TIMEOUT, () => {
             setDistance('left');
             // Decide where to go
             decideMove();
@@ -144,7 +144,7 @@ function Exploration() {
   function setDistance(direction, distance) {
     const dist = R.find(R.whereEq({ direction }), sensorDistances);    
     dist.distance = distance || getDistance();
-    board.info('Exploration', `Distance set for ${direction}: ${dist.distance}`);
+    boardsFn.boards[0].info('Exploration', `Distance set for ${direction}: ${dist.distance}`);
   }
 
 }
