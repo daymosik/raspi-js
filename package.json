@@ -18,6 +18,7 @@
     "j5-songs": "0.0.9",
     "johnny-five": "^0.10.3",
     "nodebots-interchange": "^1.1.2",
+    "play-sound": "^1.1.1",
     "ramda": "^0.22.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.4.2",

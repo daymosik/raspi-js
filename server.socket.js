@@ -4,10 +4,12 @@ import motorsFn from './johny/components/motors';
 // import exploration from './johny/raspi.js';
 import ledRGBFn from './johny/components/led-rgb'
 import Speech from './johny/functions/speech';
+import Player from './johny/functions/play';
 
 const server = require('http').createServer();
 let io = require('socket.io');
 const speach = new Speech();
+const player = new Player();
 
 server.listen(8090);
 io = io.listen(server);
@@ -22,6 +24,7 @@ io.on('connection', client => {
   // client.on('command.moveServo', data => servoFn[data.command](data.speed));
   client.on('command.changeRGBColor', data => ledRGBFn.changeRGBColor(data.color));
   client.on('command.speak', data => speach.speak(data.text));
+  client.on('command.playRandomSound', () => player.playRandomSound());
 
   console.log('Client connected.');
 });

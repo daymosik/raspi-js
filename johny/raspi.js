@@ -10,12 +10,18 @@ import sevenLedFn from './components/seven-segment-led.js';
 // import Exploration from './functions/exploration.js';
 import ExplorationNoServo from './functions/exploration-no-servo.js';
 import Speech from './functions/speech.js';
+import Player from './functions/play.js';
 
-let exploration, exploration2, speech;
+let exploration, exploration2, speech, player;
 
 boardsFn.boards.on('ready', function() {
 
   speech = new Speech();
+  player = new Player();
+
+  setTimeout(() => {
+    player.playRandomSound();
+  }, 10000);
 
   // exploration = new Exploration();
 
@@ -33,7 +39,8 @@ boardsFn.boards.on('ready', function() {
   // allows direct command line access
   boardsFn.boards.repl.inject({
     exploration,
-    speech
+    speech,
+    player
   });
 
 });

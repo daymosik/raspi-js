@@ -8,6 +8,7 @@ import Distance from './components/distance';
 import NavbarComponent from './components/navbar';
 import RGB from './components/rgb';
 import Speech from './components/speech';
+import Player from './components/player';
 import Camera from './components/camera';
 import annyang from './components/speech-recognition';
 // import style from './assets/styles/main.scss'
@@ -39,6 +40,7 @@ class Wrapper extends React.Component {
             <div className="col-sm col-lg-4 text-center">
               <RGB />
               <Speech />
+              <Player />
             </div>
           </div>
         </div>

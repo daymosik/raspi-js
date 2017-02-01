@@ -6,7 +6,8 @@ const commands = {
   'jak się masz': () => speak('Good, thanks'),
   'światło :name': name => socket.emit('command.changeRGBColor', {
     color: name === 'czerwone' ? 'red' : 'white'
-  })
+  }),
+  'powiedz coś': () => socket.emit('command.playRandomSound')
 };
 
 function speak(text) {
