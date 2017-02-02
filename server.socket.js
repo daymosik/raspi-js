@@ -23,6 +23,8 @@ io.on('connection', client => {
   client.on('command.moveMotor', data => motorsFn[data.command](data.speed));
   // client.on('command.moveServo', data => servoFn[data.command](data.speed));
   client.on('command.changeRGBColor', data => ledRGBFn.changeRGBColor(data.color));
+  client.on('command.turnOffRGB', () => ledRGBFn.ledRGB.off());
+
   client.on('command.speak', data => speach.speak(data.text));
   client.on('command.playRandomSound', () => player.playRandomSound());
 

@@ -10,10 +10,12 @@ import RGB from './components/rgb';
 import Speech from './components/speech';
 import Player from './components/player';
 import Camera from './components/camera';
-import annyang from './components/speech-recognition';
+import SpeechRecognition from './components/speech-recognition';
 // import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
 require('font-awesome/css/font-awesome.css');
+
+const speechRecognition = new SpeechRecognition();
 
 class Wrapper extends React.Component {
   render() {

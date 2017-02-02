@@ -17,6 +17,7 @@
     "font-awesome": "^4.7.0",
     "j5-songs": "0.0.9",
     "johnny-five": "^0.10.3",
+    "jsonp": "^0.2.1",
     "nodebots-interchange": "^1.1.2",
     "play-sound": "^1.1.1",
     "ramda": "^0.22.1",
