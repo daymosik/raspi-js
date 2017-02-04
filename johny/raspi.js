@@ -6,18 +6,21 @@ import sensorFn from './components/sensor.js';
 import ledRGBFn from './components/led-rgb.js';
 import buzzerFn from './components/buzzer.js';
 import sevenLedFn from './components/seven-segment-led.js';
-
 // import Exploration from './functions/exploration.js';
 import ExplorationNoServo from './functions/exploration-no-servo.js';
 import Speech from './functions/speech.js';
 import Player from './functions/play.js';
+import Translate from './functions/translate.js';
 
-let exploration, exploration2, speech, player;
+let exploration, exploration2, speech, player, translate;
 
 boardsFn.boards.on('ready', function() {
 
   speech = new Speech();
   player = new Player();
+
+  translate = new Translate();
+  translate.getTranslation('Jak się masz?');
 
   setTimeout(() => {
     player.playRandomSound();

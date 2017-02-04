@@ -5,6 +5,8 @@ const ports = [
   { id: 'B', port: '/dev/ttyACM0' }
 ];
 
+// const ports = ['A', 'B'];
+
 const boardsFn = {
   boards: new five.Boards(ports),
   mega: undefined,
@@ -15,7 +17,7 @@ boardsFn.boards.on('ready', function() {
 
   boardsFn.mega = this[0];
   boardsFn.uno = this[1];
-  
+
 });
 
 export default boardsFn;

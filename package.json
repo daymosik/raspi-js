@@ -15,6 +15,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "express": "^4.14.0",
     "font-awesome": "^4.7.0",
+    "google-translate-api": "^2.2.2",
     "j5-songs": "0.0.9",
     "johnny-five": "^0.10.3",
     "jsonp": "^0.2.1",

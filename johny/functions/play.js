@@ -9,7 +9,7 @@ function Player() {
   this.Player = new player();
   this.sounds = [];
 
-  fs.readdir(MAIN_FOLDER, (err, folders) => R.forEach(folder => {
+  fs.readdir(MAIN_FOLDER, (err, folders) => folders && R.forEach(folder => {
     fs.readdir(`${MAIN_FOLDER}${folder}/`, (err, files) => {
       this.sounds = R.concat(this.sounds, R.map(file => `${MAIN_FOLDER}${folder}/${file}`, files));
     });

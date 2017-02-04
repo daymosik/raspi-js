@@ -3,13 +3,13 @@ NPM_BIN = node_modules/.bin/
 run: server
 
 build:
-	webpack
+	$(NPM_BIN)webpack
 
 watch: server webpack-watch
 	# $(NPM_BIN)concurrently --kill-others "node ./server.js" "webpack -w" "shairport -a 'RaspiJS'"
 
 webpack-watch:
-	webpack -w
+	$(NPM_BIN)webpack -w
 
 airplay:
 	shairport -a 'RaspiJS'
