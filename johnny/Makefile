@@ -6,6 +6,9 @@ run: build server
 build:
 	tslint -p . && tsc
 
+watch:
+	tsc -w
+
 airplay:
 	shairport -a 'RaspiJS'
 

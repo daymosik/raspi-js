@@ -14,6 +14,7 @@ import NavbarComponent from './components/navbar'
 import Player from './components/player'
 import RGB from './components/rgb'
 import Speech from './components/speech'
+import YamahaRemote from './components/yamaha-remote'
 // functions
 import SpeechRecognition from './functions/speech-recognition'
 
@@ -45,6 +46,9 @@ class Wrapper extends React.Component<{}, {}> {
               <RGB/>
               <Speech/>
               <Player/>
+            </div>
+            <div className="col-sm col-lg-4 text-center">
+              <YamahaRemote/>
             </div>
           </div>
         </div>
