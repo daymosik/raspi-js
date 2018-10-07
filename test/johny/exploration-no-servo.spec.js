@@ -5,10 +5,10 @@ const assert = chai.assert;
 
 import five from 'johnny-five';
 
-import boardsFn from '../../johny/components/board.js';
-import motorsFn from '../../johny/components/motors.js';
-import sensorFn from '../../johny/components/sensor.js';
-import ExplorationNoServo from '../../johny/functions/exploration-no-servo.js';
+import boardsFn from '../../johny/src/components/board.js';
+import motorsFn from '../../johny/src/components/motors.js';
+import sensorFn from '../../johny/src/components/sensor.js';
+import ExplorationNoServo from '../../johny/src/functions/exploration-no-servo.js';
 
 const DANGER_DISTANCE = 10;
 const SAFE_DISTANCE = 30;

@@ -1,6 +1,6 @@
 import five from 'johnny-five';
 import boardsFn from './board.js';
-import io from '../../server.socket.js';
+import io from '../server.socket.js';
 
 const SENSORS = {
   left: {

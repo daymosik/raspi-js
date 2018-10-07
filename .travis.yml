@@ -3,7 +3,8 @@ node_js:
  - "node"
 install:
  - "npm install -g firebase-tools"
- - "yarn install"
+ - "cd app && yarn install"
+ - "cd .."
 script:
  - "./build.sh"
 after_success:

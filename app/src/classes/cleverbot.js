@@ -1,5 +1,4 @@
 import jsonp from 'jsonp';
-import R from 'ramda';
 
 const CLEVERBOT_KEY = '60854c7dfb3e58867809a4ccc4c61cd0';
 const CLEVERBOT_URL = 'https://www.cleverbot.com/getreply';

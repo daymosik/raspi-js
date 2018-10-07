@@ -1,4 +1,4 @@
-import io from '../server.socket.js';
+import io from './server.socket.js';
 import boardsFn from './components/board.js';
 import motorsFn from './components/motors.js';
 // import servoFn from './components/servo.js';

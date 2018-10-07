@@ -18,8 +18,8 @@ class NavbarComponent extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="faded" className="bg-inverse" toggleable>
-          <NavbarToggler right onClick={this.toggle} />
+        <Navbar color="faded" className="bg-inverse" expand>
+          <NavbarToggler right="true" onClick={this.toggle} />
           <NavbarBrand href="/">raspiJS</NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

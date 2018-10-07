@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import R from 'ramda';
 import player from 'play-sound';
 
-const MAIN_FOLDER = './data/wav/';
+const MAIN_FOLDER = '../data/wav/';
 
 function Player() {
 

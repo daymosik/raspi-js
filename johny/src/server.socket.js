@@ -1,10 +1,10 @@
-import motorsFn from './johny/components/motors';
+import motorsFn from './components/motors';
 // import servoFn from './johny/components/servo';
 // import Exploration from './johny/functions/exploration';
 // import exploration from './johny/raspi.js';
-import ledRGBFn from './johny/components/led-rgb'
-import Speech from './johny/functions/speech';
-import Player from './johny/functions/play';
+import ledRGBFn from './components/led-rgb'
+import Speech from './functions/speech';
+import Player from './functions/play';
 
 const server = require('http').createServer();
 let io = require('socket.io');
