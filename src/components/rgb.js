@@ -20,7 +20,7 @@ class RGB extends React.Component {
         <div className="col">
           <CirclePicker
             width="100%"
-            circleSize="41"
+            circleSize={41}
             onChangeComplete={ this.handleChangeComplete }
             style={styles.circlePicker} />
         </div>

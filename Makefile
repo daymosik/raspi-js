@@ -1,15 +1,16 @@
-NPM_BIN = node_modules/.bin/
+SHELL=/bin/bash
+export PATH := node_modules/.bin:$(PATH)
 
 run: server
 
 build:
-	$(NPM_BIN)webpack
+	webpack
 
 watch: server webpack-watch
-	# $(NPM_BIN)concurrently --kill-others "node ./server.js" "webpack -w" "shairport -a 'RaspiJS'"
+	# concurrently --kill-others "node ./server.js" "webpack -w" "shairport -a 'RaspiJS'"
 
 webpack-watch:
-	$(NPM_BIN)webpack -w
+	webpack -w
 
 airplay:
 	shairport -a 'RaspiJS'
@@ -20,7 +21,7 @@ server:
 test: test-frontend test-backend
 
 test-backend:
-	$(NPM_BIN)mocha ./test/johny/*.spec.js --reporter spec --compilers js:babel-core/register
+	mocha ./test/johny/*.spec.js --reporter spec --compilers js:babel-core/register
 
 test-frontend:
-	$(NPM_BIN)karma start karma.conf.js
+	karma start karma.conf.js

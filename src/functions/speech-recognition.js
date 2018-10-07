@@ -1,6 +1,6 @@
 import annyang from 'annyang';
 import socket from '../socket';
-import Cleverbot from '../Classes/cleverbot';
+import Cleverbot from '../classes/cleverbot';
 
 function SpeechRecognition() {
 

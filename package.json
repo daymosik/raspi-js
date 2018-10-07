@@ -13,7 +13,6 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "bootstrap": "^4.0.0-alpha.6",
-    "express": "^4.14.0",
     "font-awesome": "^4.7.0",
     "google-translate-api": "^2.2.2",
     "j5-songs": "0.0.9",
@@ -31,9 +30,8 @@
     "socket.io": "^1.5.1"
   },
   "scripts": {
+    "build": "webpack",
     "webpack-watch": "webpack -w",
-    "express-server": "node ./server",
-    "dev": "concurrently --kill-others \"npm run webpack-watch\" \"npm run express-server\"",
     "test": "node_modules/.bin/mocha test/johny/*.spec.js --reporter spec --compilers js:babel-core/register",
     "test-frontend": "node_modules/.bin/karma start karma.conf.js"
   },
@@ -63,9 +61,5 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
-  },
-  "engines": {
-    "node": "~7.0.0",
-    "npm": "~3.10.9"
   }
 }

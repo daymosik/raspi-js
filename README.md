@@ -1,6 +1,8 @@
 RaspiJS 
 ====
 
+[![Build Status](https://travis-ci.org/daymosik/raspi-js.svg?branch=master)](https://travis-ci.org/daymosik/raspi-js)
+
 A Raspberry PI and Arduino based smart robot.  
 Built with Johnny-Five, React, Webpack.  
 Powered with NodeJS, Express server and socket.io.  
