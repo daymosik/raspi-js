@@ -5,7 +5,7 @@ build:
 	webpack
 
 watch: server webpack-watch
-	# concurrently --kill-others "node ./server.js" "webpack -w" "shairport -a 'RaspiJS'"
+	# concurrently --kill-others "node ./server.ts" "webpack -w" "shairport -a 'RaspiJS'"
 
 webpack-watch:
 	webpack -w

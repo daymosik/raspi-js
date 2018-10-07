@@ -1,10 +1,13 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-run: server
+run: build server
+
+build:
+	tslint -p . && tsc
 
 airplay:
 	shairport -a 'RaspiJS'
 
 server:
-	node src/server.js
+	node dist/server.js

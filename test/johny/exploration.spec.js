@@ -5,11 +5,11 @@
 
 // import five from 'johnny-five';
 
-// import boardsFn from '../../johny/components/board.js';
-// import motorsFn from '../../johny/components/motors.js';
-// import servoFn from '../../johny/components/servo.js';
-// import sensorFn from '../../johny/components/sensor.js';
-// import Exploration from '../../johny/functions/exploration.js';
+// import boardsFn from '../../johny/components/board.ts';
+// import motorsFn from '../../johny/components/motors.ts';
+// import servoFn from '../../johny/components/servo.ts';
+// import sensorFn from '../../johny/components/sensor.ts';
+// import Exploration from '../../johny/functions/exploration.ts';
 
 // let exploration;
 
