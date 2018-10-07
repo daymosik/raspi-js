@@ -1,17 +1,20 @@
+const path = require('path')
+
 module.exports = {
-  entry: './src/app.js',
+  mode: 'development',
+  entry: './src/app.tsx',
   output: {
-    path: '../public',
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, '..', 'public'),
+    filename: 'bundle.js',
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader',
-      query: {
-        presets: ['react']
-      }
+    rules: [{
+      test: /\.tsx?$/,
+      enforce: 'pre',
+      loader: 'tslint-loader'
+    }, {
+      test: /\.tsx?$/,
+      loader: 'ts-loader'
     }, {
       test: /\.css$/,
       loader: "style-loader!css-loader"
@@ -23,23 +26,22 @@ module.exports = {
       loader: "file-loader"
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/font-woff'
+      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=application/octet-stream'
+      loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file'
+      loader: 'file-loader'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url?limit=10000&mimetype=image/svg+xml'
-    },
-     {
+      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+    }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.json']
+    extensions: ['.js', '.ts', '.tsx', '.json']
   }
 };

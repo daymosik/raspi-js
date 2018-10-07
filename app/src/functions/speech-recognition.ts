@@ -1,10 +1,10 @@
-import annyang from 'annyang';
-import socket from '../socket';
-import Cleverbot from '../classes/cleverbot';
+import * as annyang from 'annyang'
+import Cleverbot from '../classes/cleverbot'
+import socket from '../socket'
 
 function SpeechRecognition() {
 
-  const cleverbot = new Cleverbot();
+  const cleverbot = new Cleverbot()
 
   // cleverbot.getResponse('How can You help me?');
 
@@ -14,8 +14,8 @@ function SpeechRecognition() {
     'jak się masz': () => speak('Good, thanks. And how are You?'),
     'powiedz coś': () => socket.emit('command.playRandomSound'),
     // rgb
-    'światło :name': name => socket.emit('command.changeRGBColor', {
-      color: name === 'czerwone' ? 'red' : name
+    'światło :name': (name) => socket.emit('command.changeRGBColor', {
+      color: name === 'czerwone' ? 'red' : name,
     }),
     'wyłącz światło': () => socket.emit('command.turnOffRGB'),
     // moving
@@ -23,21 +23,21 @@ function SpeechRecognition() {
     'jedź do tyłu': () => socket.emit('command.moveMotor', { command: 'goBack' }),
     'skręć w lewo': () => socket.emit('command.moveMotor', { command: 'turnLeft' }),
     'skręć w prawo': () => socket.emit('command.moveMotor', { command: 'turnRight' }),
-  };
+  }
 
   function speak(text) {
-    socket.emit('command.speak', { text });
+    socket.emit('command.speak', { text })
   }
 
   // Add our commands to annyang
-  annyang.addCommands(commands);
-  annyang.setLanguage('pl');
+  annyang.addCommands(commands)
+  annyang.setLanguage('pl')
 
   // Start listening.
-  annyang.start();
+  annyang.start()
 
-  annyang.debug();
+  annyang.debug()
 
 }
 
-export default SpeechRecognition;
+export default SpeechRecognition
