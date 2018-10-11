@@ -1,7 +1,14 @@
+import AuthService from '@services/auth'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { NavigationPath } from '../app'
-import AuthService from '../services/auth'
+
+export enum NavigationPath {
+  Home = '/',
+  Login = '/login',
+  Arrows = '/arrows',
+  Speech = '/speech',
+  Remotes = '/remotes',
+}
 
 export interface NavbarComponentState {
   isOpen: boolean

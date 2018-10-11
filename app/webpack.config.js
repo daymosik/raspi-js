@@ -44,7 +44,14 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['.js', '.ts', '.tsx', '.json']
+    extensions: ['.js', '.ts', '.tsx', '.json'],
+    alias: {
+      '@components': path.join(__dirname, 'src/components'),
+      '@modules': path.join(__dirname, 'src/modules'),
+      '@services': path.join(__dirname, 'src/services'),
+      '@functions': path.join(__dirname, 'src/functions'),
+      '@classes': path.join(__dirname, 'src/classes'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),

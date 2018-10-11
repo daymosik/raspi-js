@@ -1,7 +1,7 @@
+import { NavigationPath } from '@components/navbar'
+import AuthService from '@services/auth'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { NavigationPath } from '../app'
-import AuthService from '../services/auth'
 
 export interface FormInputPasswordProps {
   value: string,

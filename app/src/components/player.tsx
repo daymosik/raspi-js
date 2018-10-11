@@ -1,6 +1,6 @@
+import socket from '@services/socket'
 import * as React from 'react'
 import { Button } from 'reactstrap'
-import socket from '../socket'
 
 export default class Player extends React.Component {
   public render() {

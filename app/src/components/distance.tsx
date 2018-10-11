@@ -1,6 +1,6 @@
+import socket from '@services/socket'
 import * as React from 'react'
 import { Progress } from 'reactstrap'
-import socket from '../socket'
 
 export interface DistanceObject {
   cm: number

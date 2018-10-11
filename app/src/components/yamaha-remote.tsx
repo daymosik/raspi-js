@@ -1,5 +1,5 @@
+import socket from '@services/socket'
 import * as React from 'react'
-import socket from '../socket'
 
 export default class YamahaRemote extends React.Component<{}, {}> {
   public render() {

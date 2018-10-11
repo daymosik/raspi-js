@@ -1,125 +1,76 @@
+import socket from '@services/socket'
 import * as React from 'react'
-import socket from '../socket'
+
+const styles = {
+  row: {
+    marginBottom: '20px',
+  },
+  btn: {
+    height: '100px',
+    fontSize: '30px',
+  },
+  iconMirror: {
+    transform: 'matrix(-1, 0, 0, 1, 0, 0)',
+  },
+}
+
+export interface ArrowButtonProps {
+  onClick: () => void
+}
+
+export const ArrowButton: React.SFC<ArrowButtonProps> = (props) => (
+  <button onClick={props.onClick} style={styles.btn} className="btn btn-info col">
+    {props.children}
+  </button>
+)
 
 export default class Arrows extends React.Component<{}, {}> {
   public render() {
-    const styles = {
-      row: {
-        marginBottom: '20px',
-      },
-      btn: {
-        height: '100px',
-        fontSize: '30px',
-      },
-      iconMirror: {
-        transform: 'matrix(-1, 0, 0, 1, 0, 0)',
-      },
-    }
-
     return (
       <div className="row" style={styles.row}>
         <div className="col">
           <div className="row">
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('turnLeft', 140)
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('turnLeft', 140)}>
               <i style={styles.iconMirror} className="fa fa-share-alt"/>
-            </button>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('goForward')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            </ArrowButton>
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('goForward')}>
               <i className="fa fa-arrow-up"/>
-            </button>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('turnRight', 140)
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            </ArrowButton>
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('turnRight', 140)}>
               <i className="fa fa-share-alt"/>
-            </button>
+            </ArrowButton>
             <div className="w-100"/>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('turnLeft')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('turnLeft')}>
               <i className="fa fa-arrow-left"/>
-            </button>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('goBack')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            </ArrowButton>
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('goBack')}>
               <i className="fa fa-arrow-down"/>
-            </button>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveMotor('turnRight')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            </ArrowButton>
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveMotor('turnRight')}>
               <i className="fa fa-arrow-right"/>
-            </button>
+            </ArrowButton>
             <div className="w-100"/>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveServo('lookLeft')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            <ArrowButton onClick={() => this.moveServo('lookLeft')}>
               <i className="fa fa-chevron-left"/>
-            </button>
-            <button
-              onClick={this.stop}
-              style={styles.btn}
-              className="btn btn-warning col"
-            >
+            </ArrowButton>
+            <button onClick={this.stop} style={styles.btn} className="btn btn-warning col">
               <i className="fa fa-pause"/>
             </button>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.moveServo('lookRight')
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.moveServo('lookRight')}>
               <i className="glyphicon fa fa-chevron-right"/>
-            </button>
+            </ArrowButton>
             <div className="w-100"/>
-            <button
-              onClick={
-                // tslint:disable-next-line jsx-no-lambda
-                () => this.toggleExploration()
-              }
-              style={styles.btn}
-              className="btn btn-info col"
-            >
+            {/*tslint:disable-next-line jsx-no-lambda*/}
+            <ArrowButton onClick={() => this.toggleExploration()}>
               Exploration
-            </button>
+            </ArrowButton>
           </div>
         </div>
       </div>

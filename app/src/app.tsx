@@ -1,29 +1,26 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import firebase = require('firebase/app')
-import 'firebase/auth'
 // styles
 // import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
-
+import Arrows from '@components/arrows'
+import Camera from '@components/camera'
+import Distance from '@components/distance'
+import NavbarComponent, { NavigationPath } from '@components/navbar'
+import Player from '@components/player'
+import PrivateRoute from '@components/private-route'
+import RGB from '@components/rgb'
+import Speech from '@components/speech'
+import YamahaRemote from '@components/yamaha-remote'
+// import './functions/speech-recognition'
+import LoginView from '@modules/login'
+import AuthService from '@services/auth'
+import 'bootstrap/dist/css/bootstrap.css'
+import firebase = require('firebase/app')
+import 'firebase/auth'
 import 'font-awesome/css/font-awesome.css'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import { Button } from 'reactstrap'
-// components
-import Arrows from './components/arrows'
-import Camera from './components/camera'
-import Distance from './components/distance'
-import NavbarComponent from './components/navbar'
-import Player from './components/player'
-import PrivateRoute from './components/private-route'
-import RGB from './components/rgb'
-import Speech from './components/speech'
-import YamahaRemote from './components/yamaha-remote'
-// functions
-// import './functions/speech-recognition'
-import LoginView from './modules/login'
-import AuthService from './services/auth'
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -42,14 +39,6 @@ firebase.auth().onAuthStateChanged((user: firebase.User) => {
     window.location.href = '/#'
   }
 })
-
-export enum NavigationPath {
-  Home = '/',
-  Login = '/login',
-  Arrows = '/arrows',
-  Speech = '/speech',
-  Remotes = '/remotes',
-}
 
 const SpeechView = () => (
   <div>

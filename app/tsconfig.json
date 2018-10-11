@@ -8,6 +8,14 @@
     "module": "commonjs",
     "sourceMap": true,
     "strictNullChecks": true,
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [ "src/components/*" ],
+      "@modules/*": [ "src/modules/*" ],
+      "@services/*": [ "src/services/*" ],
+      "@functions/*": [ "src/functions/*" ],
+      "@classes/*": [ "src/classes/*" ]
+    }
   }
 }

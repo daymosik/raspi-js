@@ -1,6 +1,6 @@
+import Cleverbot from '@classes/cleverbot'
+import socket from '@services/socket'
 import * as annyang from 'annyang'
-import Cleverbot from '../classes/cleverbot'
-import socket from '../socket'
 
 function SpeechRecognition() {
 

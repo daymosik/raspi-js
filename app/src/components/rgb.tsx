@@ -1,6 +1,6 @@
+import socket from '@services/socket'
 import * as React from 'react'
 import { CirclePicker } from 'react-color'
-import socket from '../socket'
 
 export default class RGB extends React.Component {
   public render() {

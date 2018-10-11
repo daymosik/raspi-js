@@ -1,11 +1,14 @@
+[![Build Status](https://travis-ci.org/daymosik/raspi-js.svg?branch=master)](https://travis-ci.org/daymosik/raspi-js)
+[![codebeat badge](https://codebeat.co/badges/e6723bd6-9439-4147-bc3d-12e1baabb89b)](https://codebeat.co/projects/github-com-daymosik-raspi-js-master)
+
 RaspiJS 
 ====
 
-[![Build Status](https://travis-ci.org/daymosik/raspi-js.svg?branch=master)](https://travis-ci.org/daymosik/raspi-js)
+![alt text](https://raw.githubusercontent.com/daymosik/raspi-js/master/app/src/assets/images/logo-vertical.png)
 
 A Raspberry PI and Arduino based smart robot.  
-Built with Johnny-Five, React, Webpack.  
-Powered with NodeJS, Express server and socket.io.  
+Built with Johnny-Five, React, Webpack and Typescript.  
+Powered with NodeJS, socket.io and firebase.  
 
 ## Raspi's actual abilities ##
 
@@ -41,13 +44,12 @@ Powered with NodeJS, Express server and socket.io.
 ### Raspberry Pi ###
 
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
-* **ReactJS** GUI with **Webpack** and **Express** server for user communication with RaspiJS via **socket.io**
-* **ES6 Syntax** with babel preprocessor
+* **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
+* **Travis CI** automated deploys to firebase hosting
+* **Typescript** with tslint
 * **Bootstrap 4**
-* **Mocha + chai + sinon** server side testing
-* **Karma + PhantomJS + mocha + chai + sinon** frontend side testing
-* **Node v7.0.0**
-* **npm** package manager
+* **Node v10.0.0**
+* **yarn** package manager
 * **Makefile** for running scripts
 * Raspbian Jessie
 
@@ -79,10 +81,23 @@ sudo apt-get install motion
 
 TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite
 
+### Firebase ###
+
+For firebase API and deployment create .env file in root catalog with following
+
+```
+FIREBASE_API_KEY=your-api-key
+FIREBASE_AUTH_DOMAIN=your-domain.firebaseapp.com
+FIREBASE_DATABASE_URL=https://your-domain.firebaseio.com
+FIREBASE_PROJECT_ID=your-domain
+FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+```
+
 ### Running scripts ###
 
 Run RaspiJS app
-(NodeJS server, socket.io server, Express server, Arduino connection, Sharepoint)
+(NodeJS server, socket.io server, Arduino connection, Sharepoint)
 ```
 make run
 ```
@@ -90,17 +105,11 @@ make run
 Run app in development mode
 (+ Webpack watch server)
 ```
-make watch
+make build-w
 ```
 
 Build GUI
 ```
 make build
 ```
-
-Run tests
-```
-make test
-```
-
 

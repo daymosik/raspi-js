@@ -1,8 +1,7 @@
+import { NavigationPath } from '@components/navbar'
+import AuthService from '@services/auth'
 import * as React from 'react'
 import { Redirect, Route } from 'react-router-dom'
-
-import { NavigationPath } from '../app'
-import AuthService from '../services/auth'
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

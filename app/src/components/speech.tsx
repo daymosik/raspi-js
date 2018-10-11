@@ -1,6 +1,6 @@
+import socket from '@services/socket'
 import * as React from 'react'
 import { Button, Form, FormGroup, Input } from 'reactstrap'
-import socket from '../socket'
 
 export interface SpeechState {
   text: string
