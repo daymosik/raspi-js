@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'font-awesome/css/font-awesome.css'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { Button } from 'reactstrap'
 // components
 import Arrows from './components/arrows'
@@ -20,6 +21,28 @@ import SpeechRecognition from './functions/speech-recognition'
 
 const speechRecognition = new SpeechRecognition()
 
+export enum NavigationPath {
+  Home = '/',
+  Arrows = '/arrows',
+  Speech = '/speech',
+  Remotes = '/remotes',
+}
+
+const SpeechView = () => (
+  <div>
+    <RGB/>
+    <Speech/>
+    <Player/>
+  </div>
+)
+
+const ArrowsView = () => (
+  <div>
+    <Distance/>
+    <Arrows/>
+  </div>
+)
+
 class Wrapper extends React.Component<{}, {}> {
   public render() {
     const styles = {
@@ -29,30 +52,19 @@ class Wrapper extends React.Component<{}, {}> {
     }
 
     return (
-      <div>
-        <NavbarComponent/>
-        <div style={styles.container} className="container">
-          <div className="row">
-            <div className="col">
-              <Camera/>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm col-lg-4 text-center">
-              <Distance/>
-              <Arrows/>
-            </div>
-            <div className="col-sm col-lg-4 text-center">
-              <RGB/>
-              <Speech/>
-              <Player/>
-            </div>
-            <div className="col-sm col-lg-4 text-center">
-              <YamahaRemote/>
-            </div>
+      <HashRouter basename="/">
+        <div className="wrapper">
+          <NavbarComponent/>
+          <div style={styles.container} className="container">
+            <Switch>
+              <Route exact={true} path={NavigationPath.Home} component={Camera}/>
+              <Route path={NavigationPath.Arrows} component={ArrowsView}/>
+              <Route path={NavigationPath.Speech} component={SpeechView}/>
+              <Route path={NavigationPath.Remotes} component={YamahaRemote}/>
+            </Switch>
           </div>
         </div>
-      </div>
+      </HashRouter>
     )
   }
 }

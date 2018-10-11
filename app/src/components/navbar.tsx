@@ -1,9 +1,67 @@
 import * as React from 'react'
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap'
+import { Link } from 'react-router-dom'
+import { NavigationPath } from '../app'
 
 export interface NavbarComponentState {
   isOpen: boolean
 }
+
+export interface NavigationButtonProps {
+  onClick: () => void
+}
+
+export const NavigationButton: React.SFC<NavigationButtonProps> = (props) => (
+  <button
+    className="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    onClick={props.onClick}
+  >
+    <span className="navbar-toggler-icon"/>
+  </button>
+)
+
+interface NavigationListItemProps {
+  name: string
+  path?: string
+  onClick?: () => void
+}
+
+const NavigationListItem: React.SFC<NavigationListItemProps> = (props) => (
+  <li className="nav-item">
+    {props.path && <Link className="nav-link" to={props.path}>{props.name}</Link>}
+    {props.onClick && <a className="nav-link" onClick={props.onClick}>{props.name}</a>}
+  </li>
+)
+
+export interface NavigationMenuProps {
+  mobileMenuOpen: boolean
+  hideMobileMenu: () => void
+}
+
+export const NavigationMenu: React.SFC<NavigationMenuProps> = (props) => (
+  <div
+    className={`collapse navbar-collapse pull-right ${props.mobileMenuOpen ? 'show' : ''}`}
+    id="navbarSupportedContent"
+    onClick={props.hideMobileMenu}
+  >
+    <ul className="navbar-nav mr-auto">
+      <NavigationListItem path={NavigationPath.Home} name={'Home'}/>
+      <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'}/>
+      <NavigationListItem path={NavigationPath.Speech} name={'Speech'}/>
+      <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'}/>
+    </ul>
+    <ul className="navbar-nav ml-auto">
+      <li className="nav-item">
+        <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js">Github</a>
+      </li>
+    </ul>
+  </div>
+)
 
 export default class NavbarComponent extends React.Component<{}, NavbarComponentState> {
   constructor(props) {
@@ -16,19 +74,18 @@ export default class NavbarComponent extends React.Component<{}, NavbarComponent
 
   public render() {
     return (
-      <div>
-        <Navbar color="faded" className="bg-inverse" expand={true}>
-          <NavbarToggler right="true" onClick={this.toggle}/>
-          <NavbarBrand href="/">raspiJS</NavbarBrand>
-          <Collapse isOpen={this.state.isOpen} navbar={true}>
-            <Nav className="ml-auto" navbar={true}>
-              <NavItem>
-                <NavLink target="_blank" href="https://github.com/daymosik/raspi-js">Github</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div className="container">
+          <NavigationButton onClick={this.toggle}/>
+
+          <Link className="navbar-brand" to={NavigationPath.Home}>raspiJS</Link>
+
+          <NavigationMenu
+            mobileMenuOpen={this.state.isOpen}
+            hideMobileMenu={this.toggle}
+          />
+        </div>
+      </nav>
     )
   }
 

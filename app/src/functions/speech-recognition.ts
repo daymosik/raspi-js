@@ -29,15 +29,18 @@ function SpeechRecognition() {
     socket.emit('command.speak', { text })
   }
 
-  // Add our commands to annyang
-  annyang.addCommands(commands)
-  annyang.setLanguage('pl')
+  try {
+    // Add our commands to annyang
+    annyang.addCommands(commands)
+    annyang.setLanguage('pl')
 
-  // Start listening.
-  annyang.start()
+    // Start listening.
+    annyang.start()
 
-  annyang.debug()
-
+    annyang.debug()
+  } catch (e) {
+    console.log('annyyang not supported')
+  }
 }
 
 export default SpeechRecognition

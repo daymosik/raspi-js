@@ -1,6 +1,5 @@
 node_modules/
 public/
-!public/index.html
 .env
 .idea/
 firebase-debug.log
