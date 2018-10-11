@@ -1,3 +1,5 @@
+// tslint:disable no-var-requires
+
 // import servoFn from './johny/components/servo';
 // import Exploration from './johny/functions/exploration';
 // import exploration from './johny/raspi.ts';
@@ -7,17 +9,27 @@ import Player from './functions/play'
 import Speech from './functions/speech'
 import yamaha from './functions/yamaha'
 
-// tslint:disable-next-line no-var-requires
-const server = require('http').createServer()
-// tslint:disable-next-line no-var-requires
-let io = require('socket.io')
+const fs = require('fs')
+const https = require('https')
+
+const options = {
+  key: fs.readFileSync('./cert/file.pem'),
+  cert: fs.readFileSync('./cert/file.crt'),
+}
+const serverPort = 443
+
+const server = https.createServer(options)
+const io = require('socket.io')(server)
+
+// const server = require('http').createServer()
+// let io = require('socket.io')
 const speach = new Speech()
 const player = new Player()
 
-server.listen(8090)
-io = io.listen(server)
+server.listen(serverPort)
+const ioListen = io.listen(server)
 
-io.on('connection', (client) => {
+ioListen.on('connection', (client) => {
 
   client.on('event', () => {
     // TODO
