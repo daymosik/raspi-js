@@ -43,4 +43,6 @@ function SpeechRecognition() {
   }
 }
 
-export default SpeechRecognition
+const speechRecognition = new SpeechRecognition()
+
+export default speechRecognition

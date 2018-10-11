@@ -21,7 +21,7 @@ import RGB from './components/rgb'
 import Speech from './components/speech'
 import YamahaRemote from './components/yamaha-remote'
 // functions
-import SpeechRecognition from './functions/speech-recognition'
+// import './functions/speech-recognition'
 import LoginView from './modules/login'
 import AuthService from './services/auth'
 
@@ -42,8 +42,6 @@ firebase.auth().onAuthStateChanged((user: firebase.User) => {
     window.location.href = '/#'
   }
 })
-
-const speechRecognition = new SpeechRecognition()
 
 export enum NavigationPath {
   Home = '/',

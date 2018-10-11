@@ -79,6 +79,11 @@ export default class LoginView extends React.Component<RouteComponentProps<any>,
   public render() {
     return (
       <div className="container pt-5">
+
+        <div className="text-center">
+          <img src={require('../assets/images/logo-vertical.png')}/>
+        </div>
+
         <h2>Login</h2>
         <form onSubmit={this.login}>
           {/*{props.errorMessage && <p className="error-message">{props.errorMessage}</p>}*/}

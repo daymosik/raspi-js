@@ -8,7 +8,9 @@ run:
 	@cd johnny && make run
 
 build:
+	rm -rf public/*
 	@cd app && make build
 
 build-w:
+	rm -rf public/*
 	@cd app && make build-w

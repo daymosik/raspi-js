@@ -83,7 +83,9 @@ export default class NavbarComponent extends React.Component<{}, NavbarComponent
         <div className="container">
           <NavigationButton onClick={this.toggle}/>
 
-          <Link className="navbar-brand" to={NavigationPath.Home}>raspiJS</Link>
+          <Link className="navbar-brand" to={NavigationPath.Home}>
+            <img src={require('../assets/images/logo-horizontal.png')} height="40px"/>
+          </Link>
 
           <NavigationMenu
             authorized={AuthService.isAuthenticated}
