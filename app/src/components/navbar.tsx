@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { NavigationPath } from '../app'
+import AuthService from '../services/auth'
 
 export interface NavbarComponentState {
   isOpen: boolean
@@ -39,6 +40,7 @@ const NavigationListItem: React.SFC<NavigationListItemProps> = (props) => (
 )
 
 export interface NavigationMenuProps {
+  authorized: boolean
   mobileMenuOpen: boolean
   hideMobileMenu: () => void
 }
@@ -59,6 +61,9 @@ export const NavigationMenu: React.SFC<NavigationMenuProps> = (props) => (
       <li className="nav-item">
         <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js">Github</a>
       </li>
+      {!props.authorized && <NavigationListItem path={NavigationPath.Login} name={'Login'}/>}
+      {/*tslint:disable-next-line jsx-no-lambda*/}
+      {props.authorized && <NavigationListItem onClick={() => AuthService.logout()} name={'Logout'}/>}
     </ul>
   </div>
 )
@@ -81,6 +86,7 @@ export default class NavbarComponent extends React.Component<{}, NavbarComponent
           <Link className="navbar-brand" to={NavigationPath.Home}>raspiJS</Link>
 
           <NavigationMenu
+            authorized={AuthService.isAuthenticated}
             mobileMenuOpen={this.state.isOpen}
             hideMobileMenu={this.toggle}
           />
