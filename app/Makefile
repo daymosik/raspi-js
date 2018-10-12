@@ -1,11 +1,12 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-build:
+build: node_modules/INSTALLED $(shell find src -type f)
 	webpack
 
 build-w:
 	webpack -w
 
-watch: server webpack-watch
-	# concurrently --kill-others "node ./server.ts" "webpack -w" "shairport -a 'RaspiJS'"
+node_modules/INSTALLED: package.json
+	yarn install
+	touch $@

@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "@types/express": "^4.16.0",
+    "concurrently": "^4.0.1",
     "express": "^4.16.4",
     "google-translate-api": "^2.2.2",
     "j5-songs": "0.0.9",
@@ -29,5 +30,12 @@
     "@components": "dist/components",
     "@services": "dist/services",
     "@socket": "dist/server.js"
+  },
+  "scripts": {
+    "start-app": "concurrently --kill-others \"npm run server\" \"npm run homebridge\"",
+    "server": "node dist/server.js",
+    "homebridge": "homebridge",
+    "build": "tslint -p . && tsc",
+    "watch": "tsc -w"
   }
 }

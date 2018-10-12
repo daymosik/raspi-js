@@ -6,7 +6,8 @@ const SOCKET_ADDRESS = 'https://raspi-js.ddns.net:443'
 const socket = io.connect(SOCKET_ADDRESS, {
   reconnect: true,
   secure: true,
-  // rejectUnauthorized: false,
+  rejectUnauthorized: false,
+  path: '/chat/socket.io',
 })
 
 socket.on('connect', () => {

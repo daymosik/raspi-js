@@ -106,7 +106,8 @@ sudo npm install -g --unsafe-perm homebridge
 
 Install plugins
 ```
-sudo nom install -g homebridge-http
+sudo npm install -g homebridge-http
+npm install -g homebridge-yamaha-home
 ```
 
 Put *homebridge.config.json* into */home/pi/.homebridge/config.json*

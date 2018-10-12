@@ -9,16 +9,13 @@ import soundPlayer from '@services/sound-player'
 import speechService from '@services/speech'
 import yamaha from '@services/yamaha'
 
-const fs = require('fs')
-const https = require('https')
-const options = {
-  key: fs.readFileSync('./cert/file.pem'),
-  cert: fs.readFileSync('./cert/file.crt'),
-}
-const serverPort = 443
+const http = require('http')
+const serverPort = 8090
 const app: express.Application = express()
-const server = https.createServer(options, app)
-const io = require('socket.io')(server)
+const server = http.createServer(app)
+const io = require('socket.io')(server, {
+  path: '/chat/socket.io',
+})
 const ioListen = io.listen(server)
 
 server.listen(serverPort)
@@ -27,17 +24,17 @@ app.get('/', (req, res) => {
   res.send('hello')
 })
 
-app.get('/yamaha/power-on', async (req, res) => {
+app.get('/api/yamaha/power-on', async (req, res) => {
   await yamaha.turnOn()
   res.send('ok')
 })
 
-app.get('/yamaha/power-off', async (req, res) => {
+app.get('/api/yamaha/power-off', async (req, res) => {
   await yamaha.turnOff()
   res.send('ok')
 })
 
-app.get('/yamaha/power-status', async (req, res) => {
+app.get('/api/yamaha/power-status', async (req, res) => {
   const isOn = await yamaha.isOn()
   res.send(isOn ? '1' : '0')
 })

@@ -8,19 +8,39 @@
 
   "description": "HomeBridge HTTP Status Control",
 
-  "accessories": [
+  "platforms": [
     {
-      "accessory": "Http",
-      "name": "Yamaha",
-      "switchHandling": "realtime",
-      "http_method": "GET",
-      "on_url": "https://localhost/yamaha/power-on",
-      "off_url": "https://localhost/yamaha/power-off",
-      "status_url": "https://localhost/yamaha/power-status",
-      "service": "Light",
-      "sendimmediately": "",
-      "username": "",
-      "password": ""
+      "platform": "yamaha-home",
+      "play_volume": -40,
+      "setMainInputTo": "HDMI2",
+      "inputs_as_accessories":{
+        "YamahaReceiver": {
+          "1": {
+            "name":"Playstation",
+            "setInputTo": "HDMI1",
+            "set_default_volume": -40
+          },
+          "2": {
+            "name":"TV",
+            "setInputTo": "HDMI2",
+            "set_default_volume": -20
+          },
+          "3": {
+            "name": "AppleTV",
+            "setInputTo": "HDMI3",
+            "set_default_volume": -40
+          },
+          "4": {
+            "name": "Spotify",
+            "setInputTo": "Spotify",
+            "set_default_volume": -40
+          }
+        }
+      },
+      "manual_addresses": {
+        "Yamaha": "192.168.1.140"
+      },
+      "spotify": true
     }
   ]
 }

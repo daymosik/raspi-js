@@ -1,19 +1,27 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-run: build-raw server
+run: build start
 
-build:
-	tslint -p . && tsc
+build: node_modules/INSTALLED $(shell find src -type f)
+	yarn run build
+	touch $@
 
 build-raw:
 	tsc
 
 watch:
-	tsc -w
+	yarn run watch
 
 airplay:
 	shairport -a 'RaspiJS'
 
+start:
+	yarn run start-app
+
 server:
-	node dist/server.js
+	yarn run server
+
+node_modules/INSTALLED: package.json
+	yarn install
+	touch $@
