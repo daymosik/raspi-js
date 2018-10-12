@@ -13,7 +13,7 @@
     "paths": {
       "@components/*": [ "src/components/*" ],
       "@services/*": [ "src/services/*" ],
-      "@socket": [ "src/server.socket.ts" ]
+      "@socket": [ "src/server.ts" ]
     }
   },
   "include": [

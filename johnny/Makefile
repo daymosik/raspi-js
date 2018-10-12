@@ -1,7 +1,7 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-run: build server
+run: build-raw server
 
 build:
 	tslint -p . && tsc

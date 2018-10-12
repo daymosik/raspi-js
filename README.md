@@ -8,16 +8,18 @@ RaspiJS
 
 A Raspberry PI and Arduino based smart robot.  
 Built with Johnny-Five, React, Webpack and Typescript.  
-Powered with NodeJS, socket.io and firebase.  
+Powered with NodeJS, express, socket.io, firebase and Homebridge.  
 
 ## Raspi's actual abilities ##
 
-* Remote controll from gui
+* Remote controll from GUI
 * Exploration mode
 * Play songs on buzzer :)
 * It speaks!
 * AirPlay server
 * View from USB Camera through GUI
+* HomeKit Support
+* Yamaha AV receiver control from GUI
 
 ## Hardware specification ##
 
@@ -46,6 +48,7 @@ Powered with NodeJS, socket.io and firebase.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **Travis CI** automated deploys to firebase hosting
+* **Homebridge** server for Apple HomeKit support
 * **Typescript** with tslint
 * **Bootstrap 4**
 * **Node v10.0.0**
@@ -93,6 +96,20 @@ FIREBASE_PROJECT_ID=your-domain
 FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
 FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
 ```
+
+### Homebridge ###
+
+Install homebridge global
+```
+sudo npm install -g --unsafe-perm homebridge
+```
+
+Install plugins
+```
+sudo nom install -g homebridge-http
+```
+
+Put *homebridge.config.json* into */home/pi/.homebridge/config.json*
 
 ### Running scripts ###
 

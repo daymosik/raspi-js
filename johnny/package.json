@@ -4,6 +4,8 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "@types/express": "^4.16.0",
+    "express": "^4.16.4",
     "google-translate-api": "^2.2.2",
     "j5-songs": "0.0.9",
     "johnny-five": "^1.0.0",
@@ -26,6 +28,6 @@
     "@root": ".",
     "@components": "dist/components",
     "@services": "dist/services",
-    "@socket": "dist/server.socket.js"
+    "@socket": "dist/server.js"
   }
 }

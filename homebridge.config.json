@@ -1,0 +1,26 @@
+{
+  "bridge": {
+    "name": "Homebridge",
+    "username": "B8:27:EB:E5:92:16",
+    "port": 51826,
+    "pin": "031-45-154"
+  },
+
+  "description": "HomeBridge HTTP Status Control",
+
+  "accessories": [
+    {
+      "accessory": "Http",
+      "name": "Yamaha",
+      "switchHandling": "realtime",
+      "http_method": "GET",
+      "on_url": "https://localhost/yamaha/power-on",
+      "off_url": "https://localhost/yamaha/power-off",
+      "status_url": "https://localhost/yamaha/power-status",
+      "service": "Light",
+      "sendimmediately": "",
+      "username": "",
+      "password": ""
+    }
+  ]
+}
