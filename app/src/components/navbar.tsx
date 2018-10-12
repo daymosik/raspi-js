@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 export enum NavigationPath {
   Home = '/',
+  Camera = '/camera',
   Login = '/login',
   Arrows = '/arrows',
   Speech = '/speech',
@@ -59,7 +60,7 @@ export const NavigationMenu: React.SFC<NavigationMenuProps> = (props) => (
     onClick={props.hideMobileMenu}
   >
     <ul className="navbar-nav mr-auto">
-      <NavigationListItem path={NavigationPath.Home} name={'Home'}/>
+      <NavigationListItem path={NavigationPath.Camera} name={'Camera'}/>
       <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'}/>
       <NavigationListItem path={NavigationPath.Speech} name={'Speech'}/>
       <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'}/>

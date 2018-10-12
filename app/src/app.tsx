@@ -55,6 +55,14 @@ const ArrowsView = () => (
   </div>
 )
 
+const HomeView = () => (
+  <div className="container pt-5">
+    <div className="text-center">
+      <img src={require('./assets/images/logo-vertical.png')}/>
+    </div>
+  </div>
+)
+
 class Wrapper extends React.Component<{}, {}> {
   public render() {
     const styles = {
@@ -70,8 +78,9 @@ class Wrapper extends React.Component<{}, {}> {
           <div style={styles.container} className="container">
             <Switch>
               <Route path={NavigationPath.Login} component={LoginView}/>
+              <Route exact={true} path={NavigationPath.Home} component={HomeView}/>
 
-              <PrivateRoute exact={true} path={NavigationPath.Home} component={Camera}/>
+              <PrivateRoute path={NavigationPath.Camera} component={Camera}/>
               <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView}/>
               <PrivateRoute path={NavigationPath.Speech} component={SpeechView}/>
               <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote}/>
