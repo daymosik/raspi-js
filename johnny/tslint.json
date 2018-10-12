@@ -12,7 +12,8 @@
     "no-console": false,
     "jsx-no-multiline-js": false,
     "no-implicit-dependencies": false,
-    "no-var-requires": false
+    "no-var-requires": false,
+    "max-classes-per-file": 10
   },
   "rulesDirectory": []
 }

@@ -1,29 +1,21 @@
-import boardsFn from '@components/board'
 import * as five from 'johnny-five'
 
 const SERVO_PIN = 11
 
-let servo
+export class Servo {
+  public servo
 
-const servoFn = {
-  lookLeft: () => servo.to(160),
-  lookRight: () => servo.to(20),
-  lookStraight: () => servo.center(),
+  public constructor() {
+    this.servo = new five.Servo({
+      pin: SERVO_PIN,
+      center: true,
+      range: [0, 180],
+    })
+  }
+
+  public lookLeft = (): void => this.servo.to(160)
+
+  public lookRight = (): void => this.servo.to(20)
+
+  public lookStraight = (): void => this.servo.center()
 }
-
-boardsFn.boards.on('ready', () => {
-
-  servo = new five.Servo({
-    pin: SERVO_PIN,
-    center: true,
-    range: [0, 180],
-  })
-
-  boardsFn.boards.repl.inject({
-    servo,
-    servoFn,
-  })
-
-})
-
-export default servoFn

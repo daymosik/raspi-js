@@ -1,38 +1,59 @@
-import boardsFn from '@components/board'
+import { Buzzer } from '@components/buzzer'
+import { LedRgb } from '@components/led-rgb'
+import { Motors } from '@components/motors'
+import { Sensor } from '@components/sensor'
+import { Servo } from '@components/servo'
 import { SevenSegmentLed } from '@components/seven-segment-led'
-import soundPlayer from '@services/sound-player'
-import speechService from '@services/speech'
-import translateService from '@services/translate'
+import * as five from 'johnny-five'
+import { App } from './app'
 
 export interface RaspiComponents {
-  sevenSegmentLed: SevenSegmentLed | undefined
+  sevenSegmentLed: SevenSegmentLed
+  servo: Servo
+  sensor: Sensor
+  motors: Motors
+  ledRgb: LedRgb
+  buzzer: Buzzer
 }
 
-const raspiComponents: RaspiComponents = {
-  sevenSegmentLed: undefined,
+const ports = [
+  { id: 'A', port: '/dev/ttyUSB0' },
+  { id: 'B', port: '/dev/ttyACM0' },
+]
+
+// const ports = ['A', 'B'];
+
+export interface BoardsFn {
+  boards: five.Board.Collection
+  mega: five.Board
+  uno: five.Board
 }
 
-boardsFn.boards.on('ready', () => {
-  const init = () => {
-    translateService.getTranslation('Jak się masz?')
-    setTimeout(() => soundPlayer.playRandomSound(), 10000)
+const boardsFn: BoardsFn = {
+  boards: new five.Boards(ports),
+  mega: undefined,
+  uno: undefined,
+}
+
+boardsFn.boards.on('ready', function() {
+  boardsFn.mega = this[0]
+  boardsFn.uno = this[1]
+
+  const raspiComponents: RaspiComponents = {
+    sevenSegmentLed: new SevenSegmentLed(boardsFn),
+    servo: new Servo(),
+    sensor: new Sensor(boardsFn),
+    motors: new Motors(boardsFn),
+    ledRgb: new LedRgb(boardsFn),
+    buzzer: new Buzzer(boardsFn),
   }
 
-  init()
-
-  raspiComponents.sevenSegmentLed = new SevenSegmentLed(boardsFn)
-
-  // exploration = new Exploration();
-  // exploration.startExploring();
-
-  // exploration2 = new ExplorationNoServo();
-  // exploration2.startExploring();
+  const app = new App(raspiComponents)
 
   // allows direct command line access
   boardsFn.boards.repl.inject({
-    speech: speechService,
-    player: soundPlayer,
+    raspiComponents,
   })
 })
 
-export default raspiComponents
+export default boardsFn

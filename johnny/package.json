@@ -29,7 +29,8 @@
     "@root": ".",
     "@components": "dist/components",
     "@services": "dist/services",
-    "@socket": "dist/server.js"
+    "@socket": "dist/server.js",
+    "@raspi": "dist/raspi.js"
   },
   "scripts": {
     "start-app": "concurrently --kill-others \"npm run server\" \"npm run homebridge\"",

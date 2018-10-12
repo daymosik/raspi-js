@@ -13,6 +13,15 @@ export interface DistanceState {
   right: DistanceObject
 }
 
+const styles = {
+  progressBar: {
+    width: '100%',
+    height: '60px',
+    lineHeight: '60px',
+    fontSize: '20px',
+  },
+}
+
 export default class Distance extends React.Component<{}, DistanceState> {
   constructor(props) {
     super(props)
@@ -32,15 +41,6 @@ export default class Distance extends React.Component<{}, DistanceState> {
   }
 
   public render() {
-    const styles = {
-      progressBar: {
-        width: '100%',
-        height: '60px',
-        lineHeight: '60px',
-        fontSize: '20px',
-      },
-    }
-
     return (
       <div className="row">
         <div className="col">
@@ -68,27 +68,29 @@ export default class Distance extends React.Component<{}, DistanceState> {
   }
 
   public componentDidMount() {
-    socket.on('leftSensor.data', (data) => this.setDistance(data.cm))
-    socket.on('rightSensor.data', (data) => this.setBottomDistance(data.cm))
+    socket.on('leftSensor.data', (data) => this.setLeftDistance(data.cm))
+    socket.on('rightSensor.data', (data) => this.setRightDistance(data.cm))
   }
 
-  public setDistance(cm) {
+  public setLeftDistance = (cm) => {
     this.setState({
       left: {
         cm,
-        style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
+        style: this.distanceStyle(cm),
         label: `${cm}cm`,
       },
     })
   }
 
-  public setBottomDistance(cm) {
+  public setRightDistance = (cm) => {
     this.setState({
       right: {
         cm,
-        style: cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success',
+        style: this.distanceStyle(cm),
         label: `${cm}cm`,
       },
     })
   }
+
+  public distanceStyle = (cm) => cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success'
 }

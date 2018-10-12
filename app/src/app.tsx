@@ -42,11 +42,21 @@ firebase.auth().onAuthStateChanged((user: firebase.User) => {
 })
 
 const SpeechView = () => (
-  <div>
-    <RGB/>
-    <Speech/>
-    <Player/>
-    <SevenSegmentLedView/>
+  <div className="container pt-5">
+    <div className="row">
+      <div className="col">
+        <RGB/>
+      </div>
+      <div className="col">
+        <Speech/>
+        <Player/>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col">
+        <SevenSegmentLedView/>
+      </div>
+    </div>
   </div>
 )
 

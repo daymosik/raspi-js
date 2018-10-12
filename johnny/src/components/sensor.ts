@@ -1,5 +1,5 @@
-import boardsFn from '@components/board'
-import io from '@socket'
+import { BoardsFn } from '@raspi'
+// import io from '@socket'
 import * as five from 'johnny-five'
 
 const SENSORS = {
@@ -14,46 +14,33 @@ const SENSORS = {
 const SENSOR_PIN = 3
 const BOTTOM_SENSOR_PIN = 2
 
-export interface SensorFn {
-  leftSensor: five.Proximity | undefined
-  rightSensor: five.Proximity | undefined
-}
+export class Sensor {
+  public leftSensor: five.Proximity
+  public rightSensor: five.Proximity
 
-const sensorFn: SensorFn = {
-  leftSensor: undefined,
-  rightSensor: undefined,
-}
-
-boardsFn.boards.on('ready', () => {
-
-  sensorFn.leftSensor = new five.Proximity({
-    controller: 'HCSR04',
-    pin: SENSORS.left.pin,
-    board: boardsFn.uno,
-  })
-
-  sensorFn.rightSensor = new five.Proximity({
-    controller: 'HCSR04',
-    pin: SENSORS.right.pin,
-    board: boardsFn.uno,
-  })
-
-  if (sensorFn.leftSensor) {
-    sensorFn.leftSensor.on('data', function() {
-      io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
+  constructor(boardsFn: BoardsFn) {
+    this.leftSensor = new five.Proximity({
+      controller: 'HCSR04',
+      pin: SENSORS.left.pin,
+      board: boardsFn.uno,
     })
-  }
 
-  if (sensorFn.rightSensor) {
-    sensorFn.rightSensor.on('data', function() {
-      io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
+    this.rightSensor = new five.Proximity({
+      controller: 'HCSR04',
+      pin: SENSORS.right.pin,
+      board: boardsFn.uno,
     })
+
+    // if (sensorFn.leftSensor) {
+      // sensorFn.leftSensor.on('data', function() {
+      //   io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
+      // })
+    // }
+
+    // if (sensorFn.rightSensor) {
+      // sensorFn.rightSensor.on('data', function() {
+      //   io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
+      // })
+    // }
   }
-
-  boardsFn.boards.repl.inject({
-    sensorFn,
-  })
-
-})
-
-export default sensorFn
+}

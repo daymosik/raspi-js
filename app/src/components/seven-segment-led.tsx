@@ -7,8 +7,8 @@ export default class SevenSegmentLedView extends React.Component {
       <div className="row">
         <div className="col">
           Seven segment led
-          <button onClick={this.start}>Start</button>
-          <button onClick={this.stop}>Stop</button>
+          <button className="btn btn-primary" onClick={this.start}>Start counting</button>
+          <button className="btn btn-secondary" onClick={this.stop}>Stop counting</button>
         </div>
       </div>
     )

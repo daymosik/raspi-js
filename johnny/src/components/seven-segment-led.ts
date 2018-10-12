@@ -1,4 +1,4 @@
-import { BoardsFn } from '@components/board'
+import { BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
 
 const SEVEN_LED_SEGMENT_PINS = {
@@ -18,17 +18,14 @@ export class SevenSegmentLed {
     })
   }
 
+  public setNumber = (n: number): void => this.led.display(n)
+
   public start = () => {
     let num = 0
-    let decimal = 0
+    let decimal = false
 
-    // Display numbers 0-9, one at a time in a loop.
-    // Shows just the num for a half second, then
-    // the num + a decimal point for a half second.
     this.ledInterval = setInterval(() => {
-      if (this.led) {
-        this.led.display(`${num}${(decimal && '.')}`)
-      }
+      this.led.display(`${num}${(decimal && '.')}`)
 
       if (decimal) {
         num++
@@ -38,9 +35,7 @@ export class SevenSegmentLed {
         num = 0
       }
 
-      // TODO
-      // tslint:disable-next-line no-bitwise
-      decimal ^= 1
+      decimal = !decimal
     }, 500)
   }
 

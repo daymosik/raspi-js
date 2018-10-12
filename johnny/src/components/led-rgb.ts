@@ -1,4 +1,4 @@
-import boardsFn from '@components/board'
+import { BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
 
 // const LED_RGB_PINS = {
@@ -9,32 +9,20 @@ import * as five from 'johnny-five'
 
 const LED_RGB_PINS = [4, 5, 6]
 
-export interface LedRgb {
-  ledRGB: five.Led.RGB | undefined
-  changeRGBColor: (color) => void
-}
+export class LedRgb {
+  public ledRGB: five.Led.RGB
 
-const ledRGBFn: LedRgb = {
-  ledRGB: undefined,
-  changeRGBColor: (color) => ledRGBFn.ledRGB && ledRGBFn.ledRGB.color(color),
-}
+  constructor(boardsFn: BoardsFn) {
+    this.ledRGB = new five.Led.RGB({
+      pins: LED_RGB_PINS,
+      isAnode: true,
+      board: boardsFn.mega,
+    })
 
-boardsFn.boards.on('ready', () => {
-
-  ledRGBFn.ledRGB = new five.Led.RGB({
-    pins: LED_RGB_PINS,
-    isAnode: true,
-    board: boardsFn.mega,
-  })
-
-  if (ledRGBFn.ledRGB) {
-    ledRGBFn.ledRGB.off()
+    if (this.ledRGB) {
+      this.ledRGB.off()
+    }
   }
 
-  boardsFn.boards.repl.inject({
-    ledRGBFn,
-  })
-
-})
-
-export default ledRGBFn
+  public changeRGBColor = (color: string): void => this.ledRGB.color(color)
+}
