@@ -1,5 +1,5 @@
+import boardsFn from '@components/board'
 import * as five from 'johnny-five'
-import boardsFn from './board'
 
 const SEVEN_LED_SEGMENT_PINS = {
   data: 31,
@@ -15,10 +15,12 @@ export interface SevenSegmentLed {
 
 const sevenLedFn: SevenSegmentLed = {
   led: undefined,
-  // tslint:disable-next-line no-empty
-  start: () => {},
-  // tslint:disable-next-line no-empty
-  stop: () => {},
+  start: () => {
+    // TODO
+  },
+  stop: () => {
+    // TODO
+  },
 }
 
 let ledInterval

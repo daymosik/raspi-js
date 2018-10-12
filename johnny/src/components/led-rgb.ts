@@ -1,5 +1,5 @@
+import boardsFn from '@components/board'
 import * as five from 'johnny-five'
-import boardsFn from './board'
 
 // const LED_RGB_PINS = {
 //   red: 4,

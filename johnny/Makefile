@@ -6,6 +6,9 @@ run: build server
 build:
 	tslint -p . && tsc
 
+build-raw:
+	tsc
+
 watch:
 	tsc -w
 

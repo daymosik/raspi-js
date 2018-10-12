@@ -8,7 +8,13 @@
     "module": "commonjs",
     "sourceMap": true,
     "strictNullChecks": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [ "src/components/*" ],
+      "@services/*": [ "src/services/*" ],
+      "@socket": [ "src/server.socket.ts" ]
+    }
   },
   "include": [
     "src/**/*"

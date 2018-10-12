@@ -1,6 +1,6 @@
+import boardsFn from '@components/board'
 import songs from 'j5-songs'
 import * as five from 'johnny-five'
-import boardsFn from './board'
 
 const BUZZER_PIN = 7
 
@@ -12,10 +12,12 @@ export interface BuzzerFn {
 
 const buzzerFn: BuzzerFn = {
   buzzer: undefined,
-  // tslint:disable-next-line no-empty
-  stop: () => {},
-  // tslint:disable-next-line no-empty
-  play: (song) => {},
+  stop: () => {
+    // TODO
+  },
+  play: (song) => {
+    // TODO
+  },
 }
 
 boardsFn.boards.on('ready', () => {

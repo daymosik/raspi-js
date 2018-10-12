@@ -1,40 +1,17 @@
-import boardsFn from './components/board'
-// import buzzerFn from './components/buzzer'
-// import ledRGBFn from './components/led-rgb'
-// import motorsFn from './components/motors'
-// import servoFn from './components/servo';
-// import sensorFn from './components/sensor'
-// import sevenLedFn from './components/seven-segment-led'
-// import Exploration from './functions/exploration';
-// import ExplorationNoServo from './functions/exploration-no-servo'
-import Player from './functions/play'
-import Speech from './functions/speech'
-import Translate from './functions/translate'
-
-let speech
-let player
-let translate
+import boardsFn from '@components/board'
+import soundPlayer from '@services/sound-player'
+import speechService from '@services/speech'
+import translateService from '@services/translate'
 
 boardsFn.boards.on('ready', () => {
+  const init = () => {
+    translateService.getTranslation('Jak się masz?')
+    setTimeout(() => soundPlayer.playRandomSound(), 10000)
+  }
 
-  speech = new Speech()
-  player = new Player()
-
-  translate = new Translate()
-  translate.getTranslation('Jak się masz?')
-
-  setTimeout(() => {
-    player.playRandomSound()
-  }, 10000)
+  init()
 
   // exploration = new Exploration();
-
-  // io.on('connection', client => {
-  //   client.on('command.toggleExploration', () => exploration.toggleExploration());
-  // });
-
-  // ledRGBFn.ledRGB.color('blue');
-
   // exploration.startExploring();
 
   // exploration2 = new ExplorationNoServo();
@@ -42,8 +19,7 @@ boardsFn.boards.on('ready', () => {
 
   // allows direct command line access
   boardsFn.boards.repl.inject({
-    speech,
-    player,
+    speech: speechService,
+    player: soundPlayer,
   })
-
 })

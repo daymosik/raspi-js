@@ -1,6 +1,6 @@
+import boardsFn from '@components/board'
+import io from '@socket'
 import * as five from 'johnny-five'
-import io from '../server.socket'
-import boardsFn from './board'
 
 const SENSORS = {
   left: {

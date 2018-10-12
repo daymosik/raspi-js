@@ -8,7 +8,7 @@ import five from 'johnny-five';
 import boardsFn from '../../johnny/src/components/board.ts';
 import motorsFn from '../../johnny/src/components/motors.ts';
 import sensorFn from '../../johnny/src/components/sensor.ts';
-import ExplorationNoServo from '../../johnny/src/functions/exploration-no-servo.ts';
+import ExplorationNoServo from '../../johnny/src/services/exploration-no-servo.ts';
 
 const DANGER_DISTANCE = 10;
 const SAFE_DISTANCE = 30;

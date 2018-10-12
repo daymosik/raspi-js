@@ -1,6 +1,5 @@
+import boardsFn from '@components/board'
 import * as five from 'johnny-five'
-import io from '../server.socket'
-import boardsFn from './board'
 
 // const MOTORS_PINS_MEGA = [{
 //   pins: {

@@ -20,37 +20,57 @@ export default class YamahaRemote extends React.Component<{}, {}> {
       <div className="row">
         <div className="col text-center">
           <h2>Yamaha remote</h2>
-        </div>
-        <div className="row">
 
-          <button onClick={this.turnOnTv} style={styles.btn} className="btn btn-info col">
-            <i className="fa fa-share-alt"/> TV
-          </button>
+          <div className="row">
+            <button onClick={this.turnOnTv} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> TV
+            </button>
 
-          <button onClick={this.turnOnAppleTv} style={styles.btn} className="btn btn-info col">
-            <i className="fa fa-share-alt"/> Apple TV
-          </button>
+            <button onClick={this.turnOnAppleTv} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Apple TV
+            </button>
 
-          <button onClick={this.turnOnPlaystation} style={styles.btn} className="btn btn-info col">
-            <i className="fa fa-share-alt"/> Playstation
-          </button>
+            <button onClick={this.turnOnPlaystation} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Playstation
+            </button>
+          </div>
 
-        </div>
+          <div className="row">
+            <button onClick={this.volumeUp} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Volume UP
+            </button>
 
-        <div className="row">
+            <button onClick={this.muteOn} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Mute
+            </button>
 
-          <button onClick={this.volumeUp} style={styles.btn} className="btn btn-info col">
-            <i className="fa fa-share-alt"/> Volume UP
-          </button>
+            <button onClick={this.volumeDown} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Volume DOWN
+            </button>
+          </div>
 
-          <button onClick={this.volumeDown} style={styles.btn} className="btn btn-info col">
-            <i className="fa fa-share-alt"/> Volume DOWN
-          </button>
+          <div className="row">
+            <button onClick={this.turnOn} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Turn ON
+            </button>
+
+            <button onClick={this.turnOff} style={styles.btn} className="btn btn-info col">
+              <i className="fa fa-share-alt"/> Turn OFF
+            </button>
+          </div>
 
         </div>
       </div>
     )
   }
+
+  public muteOff = () => socket.emit('command.yamaha.muteOff')
+
+  public muteOn = () => socket.emit('command.yamaha.muteOn')
+
+  public turnOff = () => socket.emit('command.yamaha.turnOff')
+
+  public turnOn = () => socket.emit('command.yamaha.turnOn')
 
   public turnOnTv = () => socket.emit('command.yamaha.turnOnTv')
 
