@@ -1,4 +1,4 @@
-import boardsFn from '@components/board'
+import { BoardsFn } from '@components/board'
 import * as five from 'johnny-five'
 
 const SEVEN_LED_SEGMENT_PINS = {
@@ -7,45 +7,27 @@ const SEVEN_LED_SEGMENT_PINS = {
   latch: 32,
 }
 
-export interface SevenSegmentLed {
-  led: five.ShiftRegister | undefined
-  start: () => void
-  stop: () => void
-}
+export class SevenSegmentLed {
+  private led
+  private ledInterval
 
-const sevenLedFn: SevenSegmentLed = {
-  led: undefined,
-  start: () => {
-    // TODO
-  },
-  stop: () => {
-    // TODO
-  },
-}
-
-let ledInterval
-
-boardsFn.boards.on('ready', () => {
-
-  sevenLedFn.led = new five.ShiftRegister({
-    pins: SEVEN_LED_SEGMENT_PINS,
-    board: boardsFn.mega,
-  })
-
-  if (sevenLedFn.led) {
-    sevenLedFn.led.clear()
+  constructor(boardsFn: BoardsFn) {
+    this.led = new five.ShiftRegister({
+      pins: SEVEN_LED_SEGMENT_PINS,
+      board: boardsFn.mega,
+    })
   }
 
-  sevenLedFn.start = () => {
+  public start = () => {
     let num = 0
     let decimal = 0
 
     // Display numbers 0-9, one at a time in a loop.
     // Shows just the num for a half second, then
     // the num + a decimal point for a half second.
-    ledInterval = setInterval(() => {
-      if (sevenLedFn.led) {
-        sevenLedFn.led.display(`${num}${(decimal && '.')}`)
+    this.ledInterval = setInterval(() => {
+      if (this.led) {
+        this.led.display(`${num}${(decimal && '.')}`)
       }
 
       if (decimal) {
@@ -62,19 +44,12 @@ boardsFn.boards.on('ready', () => {
     }, 500)
   }
 
-  sevenLedFn.stop = () => {
-    if (ledInterval) {
-      clearInterval(ledInterval)
+  public stop = () => {
+    if (this.ledInterval) {
+      clearInterval(this.ledInterval)
     }
-    if (sevenLedFn.led) {
-      sevenLedFn.led.clear()
+    if (this.led) {
+      this.led.clear()
     }
   }
-
-  boardsFn.boards.repl.inject({
-    sevenLedFn,
-  })
-
-})
-
-export default sevenLedFn
+}

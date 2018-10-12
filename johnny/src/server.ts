@@ -1,5 +1,5 @@
 import 'module-alias/register'
-import './raspi'
+import raspiComponents from './raspi'
 
 import * as express from 'express'
 
@@ -47,6 +47,15 @@ ioListen.on('connection', (client) => {
   // Motors
   client.on('command.moveMotor', (data) => motorsFn[data.command](data.speed))
   // client.on('command.moveServo', data => servoFn[data.command](data.speed));
+
+  // Seven segment led
+  client.on('command.startSevenSegmentLed', () => (
+    raspiComponents.sevenSegmentLed && raspiComponents.sevenSegmentLed.start()
+  ))
+
+  client.on('command.stopSevenSegmentLed', () => (
+    raspiComponents.sevenSegmentLed && raspiComponents.sevenSegmentLed.stop()
+  ))
 
   // RGB
   client.on('command.changeRGBColor', (data) => ledRGBFn.changeRGBColor(data.color))

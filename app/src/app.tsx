@@ -8,6 +8,7 @@ import NavbarComponent, { NavigationPath } from '@components/navbar'
 import Player from '@components/player'
 import PrivateRoute from '@components/private-route'
 import RGB from '@components/rgb'
+import SevenSegmentLedView from '@components/seven-segment-led'
 import Speech from '@components/speech'
 import YamahaRemote from '@components/yamaha-remote'
 // import './functions/speech-recognition'
@@ -45,6 +46,7 @@ const SpeechView = () => (
     <RGB/>
     <Speech/>
     <Player/>
+    <SevenSegmentLedView/>
   </div>
 )
 
