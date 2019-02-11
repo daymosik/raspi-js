@@ -23,6 +23,16 @@ import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').then((registration) => {
+      console.log('SW registered: ', registration)
+    }).catch((registrationError) => {
+      console.log('SW registration failed: ', registrationError)
+    })
+  })
+}
+
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
