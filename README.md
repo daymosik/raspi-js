@@ -111,6 +111,7 @@ npm install -g homebridge-yamaha-home
 ```
 
 Put *homebridge.config.json* into */home/pi/.homebridge/config.json*
+Or create a symlink *ln -s /home/pi/Projects/raspi-js/homebridge.config.json /home/pi/.homebridge/config.json*
 
 ### Running scripts ###
 

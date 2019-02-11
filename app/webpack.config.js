@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 module.exports = {
   mode: 'development',
@@ -55,6 +56,23 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new WebpackPwaManifest({
+      name: 'RaspiJS',
+      short_name: 'RaspiJS',
+      description: '',
+      background_color: '#ffffff',
+      crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+      icons: [
+        {
+          src: path.resolve('src/assets/images/logo-vertical.png'),
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        },
+        {
+          src: path.resolve('src/assets/images/logo-vertical.png'),
+          size: '1024x1024' // you can also use the specifications pattern
+        }
+      ]
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         FIREBASE_API_KEY: JSON.stringify(process.env.FIREBASE_API_KEY),

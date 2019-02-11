@@ -4,10 +4,10 @@
   },
 
   "bridge": {
-    "name": "Homebridge",
-    "username": "B8:27:EB:E5:92:16",
-    "port": 51826,
-    "pin": "031-45-154"
+    "name": "Homebridge2",
+    "username": "D8:27:EB:E5:92:16",
+    "port": 51251,
+    "pin": "111-53-154"
   },
 
   "description": "HomeBridge HTTP Status Control",

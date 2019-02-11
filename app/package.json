@@ -4,9 +4,6 @@
   "description": "",
   "main": "app.tsx",
   "dependencies": {
-    "@types/react": "^16.4.15",
-    "@types/react-dom": "^16.0.8",
-    "@types/react-router-dom": "^4.3.1",
     "annyang": "^2.6.1",
     "bootstrap": "^4.1.3",
     "firebase": "^5.5.3",
@@ -26,6 +23,10 @@
   "author": "Damian Majsner",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^10.12.24",
+    "@types/react": "^16.4.15",
+    "@types/react-dom": "^16.0.8",
+    "@types/react-router-dom": "^4.3.1",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -39,6 +40,7 @@
     "typescript": "^3.1.1",
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-pwa-manifest": "^4.0.0"
   }
 }
