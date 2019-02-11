@@ -3,5 +3,4 @@ public/
 .env
 .idea/
 firebase-debug.log
-data/
 dist/
