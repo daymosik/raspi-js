@@ -1,4 +1,8 @@
 {
+  "mdns": {
+    "interface": "192.168.1.200"
+  },
+
   "bridge": {
     "name": "Homebridge",
     "username": "B8:27:EB:E5:92:16",
