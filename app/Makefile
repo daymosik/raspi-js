@@ -8,5 +8,5 @@ build-w:
 	webpack -w
 
 node_modules/INSTALLED: package.json
-	yarn install
+	npm install
 	touch $@

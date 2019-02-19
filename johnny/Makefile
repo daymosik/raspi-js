@@ -4,24 +4,24 @@ export PATH := node_modules/.bin:$(PATH)
 run: build start
 
 build: node_modules/INSTALLED $(shell find src -type f)
-	yarn run build
+	npm run build
 	touch $@
 
 build-raw:
 	tsc
 
 watch:
-	yarn run watch
+	npm run watch
 
 airplay:
 	shairport -a 'RaspiJS'
 
 start:
-	yarn run start-app
+	npm run start-app
 
 server:
-	yarn run server
+	npm run server
 
 node_modules/INSTALLED: package.json
-	yarn install
+	npm install
 	touch $@
