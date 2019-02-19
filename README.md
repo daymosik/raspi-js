@@ -97,22 +97,6 @@ FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
 FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
 ```
 
-### Homebridge ###
-
-Install homebridge global
-```
-sudo npm install -g --unsafe-perm homebridge
-```
-
-Install plugins
-```
-sudo npm install -g homebridge-http
-npm install -g homebridge-yamaha-home
-```
-
-Put *homebridge.config.json* into */home/pi/.homebridge/config.json*
-Or create a symlink *ln -s /home/pi/Projects/raspi-js/homebridge.config.json /home/pi/.homebridge/config.json*
-
 ### Running scripts ###
 
 Run RaspiJS app

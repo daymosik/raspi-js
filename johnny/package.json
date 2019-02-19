@@ -33,9 +33,8 @@
     "@raspi": "dist/raspi.js"
   },
   "scripts": {
-    "start-app": "concurrently --kill-others \"npm run server\" \"npm run homebridge\"",
+    "start-app": "npm run server",
     "server": "node dist/server.js",
-    "homebridge": "homebridge",
     "build": "tslint -p . && tsc",
     "watch": "tsc -w"
   }
