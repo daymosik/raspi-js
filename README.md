@@ -95,6 +95,7 @@ FIREBASE_DATABASE_URL=https://your-domain.firebaseio.com
 FIREBASE_PROJECT_ID=your-domain
 FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
 FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+FIREBASE_APP_ID=your-app-id
 ```
 
 ### Running scripts ###
