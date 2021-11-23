@@ -4,6 +4,7 @@ export class Speech {
   private cmd
 
   constructor() {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     this.exec = require('child_process').exec
     this.voice = '-voice rms'
     // kal awb_time kal16 awb rms slt
@@ -11,6 +12,7 @@ export class Speech {
   }
 
   public speak = (text: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     this.exec(this.getCommand(text), (error, stdout, stderr) => {
       // command output is in stdout
     })
@@ -19,7 +21,6 @@ export class Speech {
   private getCommand = (text: string) => {
     return text ? `flite ${this.voice} -t "${text}"` : `fortune | flite ${this.voice}`
   }
-
 }
 
 const speechService = new Speech()

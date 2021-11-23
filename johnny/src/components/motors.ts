@@ -15,19 +15,22 @@ import * as five from 'johnny-five'
 //   }
 // }];
 
-const MOTORS_PINS_UNO = [{
-  pins: {
-    pwm: 6,
-    dir: 8,
-    cdir: 7,
+const MOTORS_PINS_UNO = [
+  {
+    pins: {
+      pwm: 6,
+      dir: 8,
+      cdir: 7,
+    },
   },
-}, {
-  pins: {
-    pwm: 5,
-    dir: 9,
-    cdir: 10,
+  {
+    pins: {
+      pwm: 5,
+      dir: 9,
+      cdir: 10,
+    },
   },
-}]
+]
 
 const MOTORS_AUTO_STOP_TIME = 500
 const MOTORS_SPEED = 180
@@ -40,13 +43,16 @@ export class Motors {
   public working = false
 
   constructor(boardsFn: BoardsFn) {
-    this.motors = new five.Motors([{
-      pins: MOTORS_PINS_UNO[0].pins,
-      board: boardsFn.uno,
-    }, {
-      pins: MOTORS_PINS_UNO[1].pins,
-      board: boardsFn.uno,
-    }])
+    this.motors = new five.Motors([
+      {
+        pins: MOTORS_PINS_UNO[0].pins,
+        board: boardsFn.uno,
+      },
+      {
+        pins: MOTORS_PINS_UNO[1].pins,
+        board: boardsFn.uno,
+      },
+    ])
 
     this.motors[0].on('start', () => {
       // console.log('start', Date.now());

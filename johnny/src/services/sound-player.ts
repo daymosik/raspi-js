@@ -11,11 +11,16 @@ export class SoundPlayer {
     this.Player = new player()
     this.sounds = []
 
-    fs.readdir(MAIN_FOLDER, (err, folders) => folders && folders.forEach((folder) => {
-      fs.readdir(`${MAIN_FOLDER}${folder}/`, (e, files) => {
-        this.sounds = [...this.sounds, ...files.map((file) => `${MAIN_FOLDER}${folder}/${file}`)]
-      })
-    }))
+    fs.readdir(
+      MAIN_FOLDER,
+      (err, folders) =>
+        folders &&
+        folders.forEach((folder) => {
+          fs.readdir(`${MAIN_FOLDER}${folder}/`, (e, files) => {
+            this.sounds = [...this.sounds, ...files.map((file) => `${MAIN_FOLDER}${folder}/${file}`)]
+          })
+        }),
+    )
   }
 
   public playRandomSound = () => {

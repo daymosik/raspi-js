@@ -25,7 +25,7 @@ export class SevenSegmentLed {
     let decimal = false
 
     this.ledInterval = setInterval(() => {
-      this.led.display(`${num}${(decimal && '.')}`)
+      this.led.display(`${num}${decimal && '.'}`)
 
       if (decimal) {
         num++

@@ -5,7 +5,6 @@ import yamaha from '@services/yamaha'
 
 export class SocketRoutes {
   public routes(client, raspiComponents: RaspiComponents): void {
-
     client.on('disconnect', () => console.log('Client disconnected.'))
 
     // Johnny

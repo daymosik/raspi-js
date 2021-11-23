@@ -37,7 +37,7 @@ const boardsFn: BoardsFn = {
 
 console.log(boardsFn)
 
-boardsFn.boards.on('ready', function() {
+boardsFn.boards.on('ready', function () {
   boardsFn.mega = this[0]
   boardsFn.uno = this[1]
 
@@ -50,6 +50,7 @@ boardsFn.boards.on('ready', function() {
     buzzer: new Buzzer(boardsFn),
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const app = new App(raspiComponents)
 
   // allows direct command line access

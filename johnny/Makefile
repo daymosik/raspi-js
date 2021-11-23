@@ -1,9 +1,9 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-run: build start
+run: build server
 
-build: node_modules/INSTALLED $(shell find src -type f)
+build: lint node_modules/INSTALLED $(shell find src -type f)
 	npm run build
 	touch $@
 
@@ -16,11 +16,12 @@ watch:
 airplay:
 	shairport -a 'RaspiJS'
 
-start:
-	npm run start-app
-
 server:
 	npm run server
+
+lint:
+	npm run lint
+	npm run prettier
 
 node_modules/INSTALLED: package.json
 	npm install

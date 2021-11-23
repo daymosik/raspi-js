@@ -11,8 +11,8 @@ const SENSORS = {
   },
 }
 
-const SENSOR_PIN = 3
-const BOTTOM_SENSOR_PIN = 2
+// const SENSOR_PIN = 3
+// const BOTTOM_SENSOR_PIN = 2
 
 export class Sensor {
   public leftSensor: five.Proximity
@@ -32,15 +32,15 @@ export class Sensor {
     })
 
     // if (sensorFn.leftSensor) {
-      // sensorFn.leftSensor.on('data', function() {
-      //   io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
-      // })
+    // sensorFn.leftSensor.on('data', function() {
+    //   io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
+    // })
     // }
 
     // if (sensorFn.rightSensor) {
-      // sensorFn.rightSensor.on('data', function() {
-      //   io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
-      // })
+    // sensorFn.rightSensor.on('data', function() {
+    //   io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
+    // })
     // }
   }
 }
