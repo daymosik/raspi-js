@@ -3,7 +3,9 @@ export PATH := node_modules/.bin:$(PATH)
 
 run: build server
 
-build: lint node_modules/INSTALLED $(shell find src -type f)
+build: node_modules/INSTALLED $(shell find src -type f)
+	npm run lint
+	npm run prettier
 	npm run build
 	touch $@
 

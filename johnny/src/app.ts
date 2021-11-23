@@ -28,7 +28,12 @@ export class App {
     this.app = express()
     this.server = http.createServer(this.app)
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    this.io = require('socket.io')(this.server, { path: '/chat/socket.io' })
+    this.io = require('socket.io')(this.server, {
+      path: '/chat/socket.io',
+      cors: {
+        origin: '*',
+      },
+    })
     this.ioListen = this.io.listen(this.server)
     this.server.listen(serverPort)
 

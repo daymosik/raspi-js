@@ -16,9 +16,8 @@
     "fix": "yarn fix:ts && yarn fix:prettier"
   },
   "dependencies": {
-    "@types/express": "^4.16.0",
     "concurrently": "^6.4.0",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "google-translate-api": "^2.2.2",
     "j5-songs": "0.0.9",
     "johnny-five": "^1.0.0",
@@ -26,10 +25,11 @@
     "nodebots-interchange": "^1.1.2",
     "play-sound": "^1.1.1",
     "ramda": "^0.22.1",
-    "socket.io": "^2.1.1",
+    "socket.io": "^4.4.0",
     "yamaha-nodejs": "^0.8.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/node": "^16.11.10",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
