@@ -38,7 +38,12 @@ jobs:
         env:
           CI: true
 
-      - name: Test and build
+      - name: Lint
+        run: cd app && npm run lint
+        env:
+          CI: true
+
+      - name: Build
         run: ./build.sh
         env:
           CI: true

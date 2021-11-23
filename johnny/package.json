@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "author": "Damian Majsner",
+  "license": "ISC",
+  "scripts": {
+    "start-app": "npm run server",
+    "server": "node dist/server.js",
+    "build": "tslint -p . && tsc",
+    "watch": "tsc -w"
+  },
   "dependencies": {
     "@types/express": "^4.16.0",
     "concurrently": "^4.0.1",
@@ -17,8 +25,6 @@
     "socket.io": "^2.1.1",
     "yamaha-nodejs": "^0.8.0"
   },
-  "author": "Damian Majsner",
-  "license": "ISC",
   "devDependencies": {
     "@types/node": "^10.11.4",
     "mock-firmata": "0.0.7",
@@ -31,11 +37,5 @@
     "@services": "dist/services",
     "@socket": "dist/server.js",
     "@raspi": "dist/raspi.js"
-  },
-  "scripts": {
-    "start-app": "npm run server",
-    "server": "node dist/server.js",
-    "build": "tslint -p . && tsc",
-    "watch": "tsc -w"
   }
 }

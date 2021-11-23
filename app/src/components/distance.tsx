@@ -22,7 +22,7 @@ const styles = {
   },
 }
 
-export default class Distance extends React.Component<{}, DistanceState> {
+export default class Distance extends React.Component<unknown, DistanceState> {
   constructor(props) {
     super(props)
 
@@ -92,5 +92,5 @@ export default class Distance extends React.Component<{}, DistanceState> {
     })
   }
 
-  public distanceStyle = (cm) => cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success'
+  public distanceStyle = (cm) => (cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success')
 }

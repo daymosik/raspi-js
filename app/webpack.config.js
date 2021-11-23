@@ -12,47 +12,55 @@ module.exports = {
     filename: 'bundle.[hash].js',
   },
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      enforce: 'pre',
-      loader: 'tslint-loader'
-    }, {
-      test: /\.tsx?$/,
-      loader: 'ts-loader'
-    }, {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader']
-    }, {
-      test: /\.(jpg|jpeg|svg|gif|png(2)?)(\?[a-z0-9]+)?$/,
-      loader: 'file-loader',
-      options: {
-        esModule: false,
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
       },
-    }, {
-      test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: "url-loader",
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpg|jpeg|svg|gif|png(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader',
         options: {
-          limit: 100000,
-          mimetype: 'application/font-woff'
-        }
-      }]
-    }, {
-      test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: "url-loader",
-        options: {
-          limit: 100000,
-          mimetype: 'application/octet-stream'
-        }
-      }]
-    }, {
-      test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'file-loader'
-    }, {
-      test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
-    }]
+          esModule: false,
+        },
+      },
+      {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 100000,
+              mimetype: 'application/font-woff',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 100000,
+              mimetype: 'application/octet-stream',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json'],
@@ -75,13 +83,13 @@ module.exports = {
       icons: [
         {
           src: path.resolve('src/assets/images/logo-vertical.png'),
-          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+          sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
         },
         {
           src: path.resolve('src/assets/images/logo-vertical.png'),
-          size: '1024x1024' // you can also use the specifications pattern
-        }
-      ]
+          size: '1024x1024', // you can also use the specifications pattern
+        },
+      ],
     }),
     new webpack.DefinePlugin({
       'process.env': {
@@ -92,12 +100,12 @@ module.exports = {
         FIREBASE_STORAGE_BUCKET: JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
         FIREBASE_MESSAGING_SENDER_ID: JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
         FIREBASE_APP_ID: JSON.stringify(process.env.FIREBASE_APP_ID),
-      }
+      },
     }),
     new WorkboxPlugin.GenerateSW({
       swDest: 'sw.js',
       clientsClaim: true,
       skipWaiting: true,
     }),
-  ]
-};
+  ],
+}

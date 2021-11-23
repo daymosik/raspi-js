@@ -3,20 +3,20 @@ import socket from '@services/socket'
 import * as annyang from 'annyang'
 
 function SpeechRecognition() {
-
   const cleverbot = new Cleverbot()
 
   // cleverbot.getResponse('How can You help me?');
 
   const commands = {
     // talking
-    'cześć': () => speak('Hello Damian!'),
+    cześć: () => speak('Hello Damian!'),
     'jak się masz': () => speak('Good, thanks. And how are You?'),
     'powiedz coś': () => socket.emit('command.playRandomSound'),
     // rgb
-    'światło :name': (name) => socket.emit('command.changeRGBColor', {
-      color: name === 'czerwone' ? 'red' : name,
-    }),
+    'światło :name': (name) =>
+      socket.emit('command.changeRGBColor', {
+        color: name === 'czerwone' ? 'red' : name,
+      }),
     'wyłącz światło': () => socket.emit('command.turnOffRGB'),
     // moving
     'jedź do przodu': () => socket.emit('command.moveMotor', { command: 'goForward' }),

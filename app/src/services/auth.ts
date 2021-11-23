@@ -9,7 +9,7 @@ export enum authType {
 class Auth {
   public isAuthenticated
 
-  public authenticate = async (email: string, password: string): Promise<any> => {
+  public authenticate = async (email: string, password: string): Promise<unknown> => {
     const data = await firebase.auth().signInWithEmailAndPassword(email, password)
     this.isAuthenticated = true
     return data.user

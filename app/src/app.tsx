@@ -19,18 +19,20 @@ import 'font-awesome/css/font-awesome.css'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import { Button } from 'reactstrap'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then((registration) => {
-      console.log('SW registered: ', registration)
-    }).catch((registrationError) => {
-      console.log('SW registration failed: ', registrationError)
-    })
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration)
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError)
+      })
   })
 }
 
@@ -53,41 +55,41 @@ firebase.auth().onAuthStateChanged((user: firebase.User) => {
   }
 })
 
-const SpeechView = () => (
+const SpeechView = (): JSX.Element => (
   <div className="container pt-5">
     <div className="row">
       <div className="col">
-        <RGB/>
+        <RGB />
       </div>
       <div className="col">
-        <Speech/>
-        <Player/>
+        <Speech />
+        <Player />
       </div>
     </div>
     <div className="row">
       <div className="col">
-        <SevenSegmentLedView/>
+        <SevenSegmentLedView />
       </div>
     </div>
   </div>
 )
 
-const ArrowsView = () => (
+const ArrowsView = (): JSX.Element => (
   <div>
-    <Distance/>
-    <Arrows/>
+    <Distance />
+    <Arrows />
   </div>
 )
 
-const HomeView = () => (
+const HomeView = (): JSX.Element => (
   <div className="container pt-5">
     <div className="text-center">
-      <img src={require('./assets/images/logo-vertical.png')}/>
+      <img src={require('./assets/images/logo-vertical.png')} />
     </div>
   </div>
 )
 
-class Wrapper extends React.Component<{}, {}> {
+class Wrapper extends React.Component<unknown, unknown> {
   public render() {
     const styles = {
       container: {
@@ -98,16 +100,16 @@ class Wrapper extends React.Component<{}, {}> {
     return (
       <HashRouter basename="/">
         <div className="wrapper">
-          <NavbarComponent/>
+          <NavbarComponent />
           <div style={styles.container} className="container">
             <Switch>
-              <Route path={NavigationPath.Login} component={LoginView}/>
-              <Route exact={true} path={NavigationPath.Home} component={HomeView}/>
+              <Route path={NavigationPath.Login} component={LoginView} />
+              <Route exact={true} path={NavigationPath.Home} component={HomeView} />
 
-              <PrivateRoute path={NavigationPath.Camera} component={Camera}/>
-              <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView}/>
-              <PrivateRoute path={NavigationPath.Speech} component={SpeechView}/>
-              <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote}/>
+              <PrivateRoute path={NavigationPath.Camera} component={Camera} />
+              <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView} />
+              <PrivateRoute path={NavigationPath.Speech} component={SpeechView} />
+              <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote} />
             </Switch>
           </div>
         </div>
@@ -116,4 +118,4 @@ class Wrapper extends React.Component<{}, {}> {
   }
 }
 
-ReactDOM.render(<Wrapper/>, document.getElementById('root'))
+ReactDOM.render(<Wrapper />, document.getElementById('root'))

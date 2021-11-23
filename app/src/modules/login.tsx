@@ -1,45 +1,36 @@
 import { NavigationPath } from '@components/navbar'
 import AuthService from '@services/auth'
+import { PropsWithChildren } from 'react'
 import * as React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
 export interface FormInputPasswordProps {
-  value: string,
-  handleInputChange: any
+  value: string
+  handleInputChange: (event) => void
 }
 
-export const FormInputPassword = (props: FormInputPasswordProps) => (
-  <FormInput
-    name={'password'}
-    type={'password'}
-    value={props.value}
-    handleInputChange={props.handleInputChange}
-  />
+export const FormInputPassword = (props: FormInputPasswordProps): JSX.Element => (
+  <FormInput name={'password'} type={'password'} value={props.value} handleInputChange={props.handleInputChange} />
 )
 
 export interface FormInputEmailProps {
-  value: string,
-  handleInputChange: any
+  value: string
+  handleInputChange: (event) => void
 }
 
-export const FormInputEmail = (props: FormInputEmailProps) => (
-  <FormInput
-    name={'email'}
-    type={'text'}
-    value={props.value}
-    handleInputChange={props.handleInputChange}
-  />
+export const FormInputEmail = (props: FormInputEmailProps): JSX.Element => (
+  <FormInput name={'email'} type={'text'} value={props.value} handleInputChange={props.handleInputChange} />
 )
 
 export interface FormInputProps {
-  name: string,
+  name: string
   value: string
-  type: string,
+  type: string
   // TODO
-  handleInputChange: any,
+  handleInputChange: (event) => void
 }
 
-const FormInput = (props: FormInputProps) => (
+const FormInput = (props: FormInputProps): JSX.Element => (
   <input
     className="form-control"
     type={props.type}
@@ -54,7 +45,7 @@ export interface FormGroupProps {
   label: string
 }
 
-export const FormGroup: React.SFC<FormGroupProps> = (props) => (
+export const FormGroup = (props: PropsWithChildren<FormGroupProps>): JSX.Element => (
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">{props.label}</label>
     {props.children}
@@ -66,7 +57,7 @@ export interface LoginViewState {
   password: string
 }
 
-export default class LoginView extends React.Component<RouteComponentProps<any>, LoginViewState> {
+export default class LoginView extends React.Component<RouteComponentProps<never>, LoginViewState> {
   public constructor(props) {
     super(props)
 
@@ -79,21 +70,22 @@ export default class LoginView extends React.Component<RouteComponentProps<any>,
   public render() {
     return (
       <div className="container pt-5">
-
         <div className="text-center">
-          <img src={require('../assets/images/logo-vertical.png')}/>
+          <img src={require('../assets/images/logo-vertical.png')} />
         </div>
 
         <h2>Login</h2>
         <form onSubmit={this.login}>
           {/*{props.errorMessage && <p className="error-message">{props.errorMessage}</p>}*/}
           <FormGroup label={'Email address'}>
-            <FormInputEmail value={this.state.email} handleInputChange={this.handleInputChange}/>
+            <FormInputEmail value={this.state.email} handleInputChange={this.handleInputChange} />
           </FormGroup>
           <FormGroup label={'Password'}>
-            <FormInputPassword value={this.state.password} handleInputChange={this.handleInputChange}/>
+            <FormInputPassword value={this.state.password} handleInputChange={this.handleInputChange} />
           </FormGroup>
-          <button className="btn btn-primary" type="submit">Zaloguj</button>
+          <button className="btn btn-primary" type="submit">
+            Zaloguj
+          </button>
         </form>
       </div>
     )

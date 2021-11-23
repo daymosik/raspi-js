@@ -1,4 +1,5 @@
 import socket from '@services/socket'
+import { PropsWithChildren } from 'react'
 import * as React from 'react'
 
 const styles = {
@@ -18,13 +19,13 @@ export interface ArrowButtonProps {
   onClick: () => void
 }
 
-export const ArrowButton: React.SFC<ArrowButtonProps> = (props) => (
+export const ArrowButton = (props: PropsWithChildren<ArrowButtonProps>): JSX.Element => (
   <button onClick={props.onClick} style={styles.btn} className="btn btn-info col">
     {props.children}
   </button>
 )
 
-export default class Arrows extends React.Component<{}, {}> {
+export default class Arrows extends React.Component<unknown, unknown> {
   public render() {
     return (
       <div className="row" style={styles.row}>
@@ -32,69 +33,68 @@ export default class Arrows extends React.Component<{}, {}> {
           <div className="row">
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnLeft', 140)}>
-              <i style={styles.iconMirror} className="fa fa-share-alt"/>
+              <i style={styles.iconMirror} className="fa fa-share-alt" />
             </ArrowButton>
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('goForward')}>
-              <i className="fa fa-arrow-up"/>
+              <i className="fa fa-arrow-up" />
             </ArrowButton>
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnRight', 140)}>
-              <i className="fa fa-share-alt"/>
+              <i className="fa fa-share-alt" />
             </ArrowButton>
-            <div className="w-100"/>
+            <div className="w-100" />
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnLeft')}>
-              <i className="fa fa-arrow-left"/>
+              <i className="fa fa-arrow-left" />
             </ArrowButton>
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('goBack')}>
-              <i className="fa fa-arrow-down"/>
+              <i className="fa fa-arrow-down" />
             </ArrowButton>
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnRight')}>
-              <i className="fa fa-arrow-right"/>
+              <i className="fa fa-arrow-right" />
             </ArrowButton>
-            <div className="w-100"/>
+            <div className="w-100" />
             <ArrowButton onClick={() => this.moveServo('lookLeft')}>
-              <i className="fa fa-chevron-left"/>
+              <i className="fa fa-chevron-left" />
             </ArrowButton>
             <button onClick={this.stop} style={styles.btn} className="btn btn-warning col">
-              <i className="fa fa-pause"/>
+              <i className="fa fa-pause" />
             </button>
             {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveServo('lookRight')}>
-              <i className="glyphicon fa fa-chevron-right"/>
+              <i className="glyphicon fa fa-chevron-right" />
             </ArrowButton>
-            <div className="w-100"/>
+            <div className="w-100" />
             {/*tslint:disable-next-line jsx-no-lambda*/}
-            <ArrowButton onClick={() => this.toggleExploration()}>
-              Exploration
-            </ArrowButton>
+            <ArrowButton onClick={() => this.toggleExploration()}>Exploration</ArrowButton>
           </div>
         </div>
       </div>
     )
   }
 
-  public stop = () => {
+  public stop = (): void => {
     this.moveMotor('stop')
     this.moveServo('lookStraight')
   }
 
-  public moveMotor = (command, speed?) => {
+  public moveMotor = (command, speed?): void => {
     socket.emit('command.moveMotor', {
-      command, speed,
+      command,
+      speed,
     })
   }
 
-  public moveServo = (command) => {
+  public moveServo = (command): void => {
     socket.emit('command.moveServo', {
       command,
     })
   }
 
-  public toggleExploration = () => {
+  public toggleExploration = (): void => {
     socket.emit('command.toggleExploration', {})
   }
 }

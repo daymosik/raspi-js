@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export default class Camera extends React.Component<{}, {}> {
+export default class Camera extends React.Component<unknown, unknown> {
   public render() {
     const styles = {
       img: {
@@ -13,7 +13,7 @@ export default class Camera extends React.Component<{}, {}> {
     return (
       <div className="row">
         <div className="col text-center">
-          <img src="http://raspi-js.ddns.net:8081/" id="stream" style={styles.img}/>
+          <img src="http://raspi-js.ddns.net:8081/" id="stream" style={styles.img} />
         </div>
       </div>
     )

@@ -6,7 +6,7 @@ export interface SpeechState {
   text: string
 }
 
-export default class Speech extends React.Component<{}, SpeechState> {
+export default class Speech extends React.Component<unknown, SpeechState> {
   constructor(props) {
     super(props)
 
@@ -21,7 +21,7 @@ export default class Speech extends React.Component<{}, SpeechState> {
             <div className="col">
               <Form action="" onSubmit={this.handleSubmit}>
                 <FormGroup>
-                  <Input type="text" name="text" value={this.state.text} onChange={this.handleChange}/>
+                  <Input type="text" name="text" value={this.state.text} onChange={this.handleChange} />
                 </FormGroup>
                 <Button>Speak!</Button>
               </Form>
@@ -29,7 +29,9 @@ export default class Speech extends React.Component<{}, SpeechState> {
           </div>
           <div className="row">
             <div className="col">
-              <Button color="primary" onClick={this.speak}>Speak fortune!</Button>
+              <Button color="primary" onClick={this.speak}>
+                Speak fortune!
+              </Button>
             </div>
           </div>
         </div>

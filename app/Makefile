@@ -1,11 +1,15 @@
 SHELL=/bin/bash
 export PATH := node_modules/.bin:$(PATH)
 
-build: node_modules/INSTALLED $(shell find src -type f)
+build: lint node_modules/INSTALLED $(shell find src -type f)
 	npm run build
 
 build-w:
 	npm run webpack-watch
+
+lint:
+	npm run lint
+	npm run prettier
 
 node_modules/INSTALLED: package.json
 	npm install

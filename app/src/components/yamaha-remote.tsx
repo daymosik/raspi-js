@@ -1,7 +1,7 @@
 import socket from '@services/socket'
 import * as React from 'react'
 
-export default class YamahaRemote extends React.Component<{}, {}> {
+export default class YamahaRemote extends React.Component<unknown, unknown> {
   public render() {
     const styles = {
       row: {
@@ -23,42 +23,41 @@ export default class YamahaRemote extends React.Component<{}, {}> {
 
           <div className="row">
             <button onClick={this.turnOnTv} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> TV
+              <i className="fa fa-share-alt" /> TV
             </button>
 
             <button onClick={this.turnOnAppleTv} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Apple TV
+              <i className="fa fa-share-alt" /> Apple TV
             </button>
 
             <button onClick={this.turnOnPlaystation} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Playstation
+              <i className="fa fa-share-alt" /> Playstation
             </button>
           </div>
 
           <div className="row">
             <button onClick={this.volumeUp} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Volume UP
+              <i className="fa fa-share-alt" /> Volume UP
             </button>
 
             <button onClick={this.muteOn} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Mute
+              <i className="fa fa-share-alt" /> Mute
             </button>
 
             <button onClick={this.volumeDown} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Volume DOWN
+              <i className="fa fa-share-alt" /> Volume DOWN
             </button>
           </div>
 
           <div className="row">
             <button onClick={this.turnOn} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Turn ON
+              <i className="fa fa-share-alt" /> Turn ON
             </button>
 
             <button onClick={this.turnOff} style={styles.btn} className="btn btn-info col">
-              <i className="fa fa-share-alt"/> Turn OFF
+              <i className="fa fa-share-alt" /> Turn OFF
             </button>
           </div>
-
         </div>
       </div>
     )
