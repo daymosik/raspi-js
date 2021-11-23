@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/daymosik/raspi-js.svg?branch=master)](https://travis-ci.org/daymosik/raspi-js)
+[![Build Status](https://github.com/daymosik/raspi-js/workflows/build/badge.svg)](https://github.com/daymosik/raspi-js/actions?query=workflow%3Abuild)
 [![codebeat badge](https://codebeat.co/badges/e6723bd6-9439-4147-bc3d-12e1baabb89b)](https://codebeat.co/projects/github-com-daymosik-raspi-js-master)
 
 RaspiJS 
@@ -8,7 +8,7 @@ RaspiJS
 
 A Raspberry PI and Arduino based smart robot.  
 Built with Johnny-Five, React, Webpack and Typescript.  
-Powered with NodeJS, express, socket.io, firebase and Homebridge.  
+Powered with NodeJS, express, socket.io and firebase.  
 
 ## Raspi's actual abilities ##
 
@@ -47,8 +47,7 @@ Powered with NodeJS, express, socket.io, firebase and Homebridge.
 
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
-* **Travis CI** automated deploys to firebase hosting
-* **Homebridge** server for Apple HomeKit support
+* **GitHub Actions CI** automated deploys to firebase hosting
 * **Typescript** with tslint
 * **Bootstrap 4**
 * **Node v11.10.0**

@@ -23,16 +23,11 @@ module.exports = {
       test: /\.css$/,
       use: ['style-loader', 'css-loader']
     }, {
-      test: /\.png$/,
-      use: [{
-        loader: "url-loader",
-        options: {
-          limit: 100000
-        }
-      }]
-    }, {
-      test: /\.jpg$/,
-      loader: "file-loader"
+      test: /\.(jpg|jpeg|svg|gif|png(2)?)(\?[a-z0-9]+)?$/,
+      loader: 'file-loader',
+      options: {
+        esModule: false,
+      },
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
       use: [{
@@ -54,15 +49,6 @@ module.exports = {
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader'
-    }, {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: "url-loader",
-        options: {
-          limit: 100000,
-          mimetype: 'application/svg+xml'
-        }
-      }]
     }, {
       test: /\.scss$/,
       use: ['style-loader', 'css-loader', 'sass-loader']
