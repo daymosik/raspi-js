@@ -15,13 +15,14 @@ import YamahaRemote from '@components/yamaha-remote'
 import LoginView from '@modules/login'
 import AuthService from '@services/auth'
 import 'bootstrap/dist/css/bootstrap.css'
-import firebase = require('firebase/app')
-import 'firebase/auth'
 import 'font-awesome/css/font-awesome.css'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 import { Button } from 'reactstrap'
+
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {

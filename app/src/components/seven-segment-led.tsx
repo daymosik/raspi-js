@@ -14,7 +14,11 @@ export default class SevenSegmentLedView extends React.Component {
     )
   }
 
-  public start = (): void => socket.emit('command.startSevenSegmentLed')
+  public start = (): void => {
+    socket.emit('command.startSevenSegmentLed')
+  }
 
-  public stop = (): void => socket.emit('command.stopSevenSegmentLed')
+  public stop = (): void => {
+    socket.emit('command.stopSevenSegmentLed')
+  }
 }

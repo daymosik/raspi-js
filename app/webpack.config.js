@@ -21,28 +21,51 @@ module.exports = {
       loader: 'ts-loader'
     }, {
       test: /\.css$/,
-      loader: "style-loader!css-loader"
+      use: ['style-loader', 'css-loader']
     }, {
       test: /\.png$/,
-      loader: "url-loader?limit=100000"
+      use: [{
+        loader: "url-loader",
+        options: {
+          limit: 100000
+        }
+      }]
     }, {
       test: /\.jpg$/,
       loader: "file-loader"
     }, {
       test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      use: [{
+        loader: "url-loader",
+        options: {
+          limit: 100000,
+          mimetype: 'application/font-woff'
+        }
+      }]
     }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+      use: [{
+        loader: "url-loader",
+        options: {
+          limit: 100000,
+          mimetype: 'application/octet-stream'
+        }
+      }]
     }, {
       test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'file-loader'
     }, {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+      use: [{
+        loader: "url-loader",
+        options: {
+          limit: 100000,
+          mimetype: 'application/svg+xml'
+        }
+      }]
     }, {
       test: /\.scss$/,
-      loaders: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', 'css-loader', 'sass-loader']
     }]
   },
   resolve: {

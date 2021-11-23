@@ -1,5 +1,5 @@
-import firebase = require('firebase/app')
-import 'firebase/auth'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
 export enum authType {
   Login = 'login',

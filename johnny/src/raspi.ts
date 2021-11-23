@@ -21,7 +21,7 @@ const ports = [
   { id: 'B', port: '/dev/ttyACM0' },
 ]
 
-// const ports = ['A', 'B'];
+// const ports = ['A', 'B']
 
 export interface BoardsFn {
   boards: five.Board.Collection

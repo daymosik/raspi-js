@@ -51,7 +51,7 @@ Powered with NodeJS, express, socket.io, firebase and Homebridge.
 * **Homebridge** server for Apple HomeKit support
 * **Typescript** with tslint
 * **Bootstrap 4**
-* **Node v10.0.0**
+* **Node v11.10.0**
 * **yarn** package manager
 * **Makefile** for running scripts
 * Raspbian Jessie
