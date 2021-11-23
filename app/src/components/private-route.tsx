@@ -8,9 +8,8 @@ import { Redirect, Route } from 'react-router-dom'
 const PrivateRoute = ({ component: Component, ...rest }): JSX.Element => (
   <Route
     {...rest}
-    render={
-      // tslint:disable-next-line jsx-no-lambda
-      (props) => (AuthService.isAuthenticated ? <Component {...props} /> : <Redirect to={NavigationPath.Login} />)
+    render={(props) =>
+      AuthService.isAuthenticated ? <Component {...props} /> : <Redirect to={NavigationPath.Login} />
     }
   />
 )

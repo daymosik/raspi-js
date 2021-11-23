@@ -36,7 +36,6 @@ const FormInput = (props: FormInputProps): JSX.Element => (
     type={props.type}
     name={props.name}
     value={props.value}
-    // tslint:disable-next-line jsx-no-lambda
     onChange={(event) => props.handleInputChange({ [props.name]: event.target.value })}
   />
 )

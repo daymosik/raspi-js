@@ -80,7 +80,6 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
         </a>
       </li>
       {!props.authorized && <NavigationListItem path={NavigationPath.Login} name={'Login'} />}
-      {/*tslint:disable-next-line jsx-no-lambda*/}
       {props.authorized && <NavigationListItem onClick={() => AuthService.logout()} name={'Logout'} />}
     </ul>
   </div>

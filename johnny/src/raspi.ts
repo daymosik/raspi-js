@@ -35,6 +35,8 @@ const boardsFn: BoardsFn = {
   uno: undefined,
 }
 
+console.log(boardsFn)
+
 boardsFn.boards.on('ready', function() {
   boardsFn.mega = this[0]
   boardsFn.uno = this[1]

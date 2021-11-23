@@ -31,28 +31,22 @@ export default class Arrows extends React.Component<unknown, unknown> {
       <div className="row" style={styles.row}>
         <div className="col">
           <div className="row">
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnLeft', 140)}>
               <i style={styles.iconMirror} className="fa fa-share-alt" />
             </ArrowButton>
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('goForward')}>
               <i className="fa fa-arrow-up" />
             </ArrowButton>
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnRight', 140)}>
               <i className="fa fa-share-alt" />
             </ArrowButton>
             <div className="w-100" />
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnLeft')}>
               <i className="fa fa-arrow-left" />
             </ArrowButton>
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('goBack')}>
               <i className="fa fa-arrow-down" />
             </ArrowButton>
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveMotor('turnRight')}>
               <i className="fa fa-arrow-right" />
             </ArrowButton>
@@ -63,12 +57,10 @@ export default class Arrows extends React.Component<unknown, unknown> {
             <button onClick={this.stop} style={styles.btn} className="btn btn-warning col">
               <i className="fa fa-pause" />
             </button>
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.moveServo('lookRight')}>
               <i className="glyphicon fa fa-chevron-right" />
             </ArrowButton>
             <div className="w-100" />
-            {/*tslint:disable-next-line jsx-no-lambda*/}
             <ArrowButton onClick={() => this.toggleExploration()}>Exploration</ArrowButton>
           </div>
         </div>
