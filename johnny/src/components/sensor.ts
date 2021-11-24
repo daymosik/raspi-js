@@ -1,5 +1,4 @@
-import { BoardsFn } from '@raspi'
-// import io from '@socket'
+import { app, BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
 
 const SENSORS = {
@@ -7,7 +6,7 @@ const SENSORS = {
     pin: 3,
   },
   right: {
-    pin: 2,
+    pin: 11,
   },
 }
 
@@ -31,16 +30,16 @@ export class Sensor {
       board: boardsFn.uno,
     })
 
-    // if (sensorFn.leftSensor) {
-    // sensorFn.leftSensor.on('data', function() {
-    //   io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
-    // })
-    // }
+    if (this.leftSensor) {
+      this.leftSensor.on('data', function () {
+        app.io.emit('leftSensor.data', { cm: parseInt(this.cm, 10) })
+      })
+    }
 
-    // if (sensorFn.rightSensor) {
-    // sensorFn.rightSensor.on('data', function() {
-    //   io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
-    // })
-    // }
+    if (this.rightSensor) {
+      this.rightSensor.on('data', function () {
+        app.io.emit('rightSensor.data', { cm: parseInt(this.cm, 10) })
+      })
+    }
   }
 }

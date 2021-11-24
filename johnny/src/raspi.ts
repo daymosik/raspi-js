@@ -35,7 +35,7 @@ const boardsFn: BoardsFn = {
   uno: undefined,
 }
 
-console.log(boardsFn)
+export let app
 
 boardsFn.boards.on('ready', function () {
   boardsFn.mega = this[0]
@@ -51,7 +51,7 @@ boardsFn.boards.on('ready', function () {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const app = new App(raspiComponents)
+  app = new App(raspiComponents)
 
   // allows direct command line access
   boardsFn.boards.repl.inject({
