@@ -12,7 +12,7 @@ Powered with NodeJS, express, socket.io and firebase.
 
 ## Raspi's actual abilities ##
 
-* Remote controll from GUI
+* Remote control from GUI
 * Exploration mode
 * Play songs on buzzer :)
 * It speaks!
@@ -31,6 +31,7 @@ Powered with NodeJS, express, socket.io and firebase.
 
 ### Arduino ###
 
+* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0
 * Arduino Mega 2560 + Sensor Shield V2.0
 * Arduino Uno R3 + Sensor Shield V4.0
 * LiPo Battery (2200mAH, 11,1V)
@@ -50,7 +51,7 @@ Powered with NodeJS, express, socket.io and firebase.
 * **GitHub Actions CI** automated deploys to firebase hosting
 * **Typescript** with tslint
 * **Bootstrap 4**
-* **Node v11.10.0**
+* **Node v16.10.0**
 * **yarn** package manager
 * **Makefile** for running scripts
 * Raspbian Jessie
