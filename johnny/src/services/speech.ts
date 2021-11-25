@@ -8,7 +8,8 @@ export class Speech {
     this.exec = require('child_process').exec
     this.voice = '-voice rms'
     // kal awb_time kal16 awb rms slt
-    this.cmd = `fortune | flite ${this.voice}`
+    // this.cmd = `fortune | flite ${this.voice}`
+    this.cmd = `fortune | festival --tts`
   }
 
   public speak = (text: string) => {
@@ -19,7 +20,8 @@ export class Speech {
   }
 
   private getCommand = (text: string) => {
-    return text ? `flite ${this.voice} -t "${text}"` : `fortune | flite ${this.voice}`
+    return text ? `"${text}" | festival --tts` : `fortune | festival --tts`
+    // return text ? `flite ${this.voice} -t "${text}"` : `fortune | flite ${this.voice}`
   }
 }
 

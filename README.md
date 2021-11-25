@@ -81,7 +81,7 @@ Install motion for USB webcamera:
 sudo apt-get install motion
 ```
 
-TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite
+TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite?view=all
 
 ### Firebase ###
 
