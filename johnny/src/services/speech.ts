@@ -12,14 +12,14 @@ export class Speech {
     this.cmd = `fortune | festival --tts`
   }
 
-  public speak = (text: string) => {
+  public speak = (text: string): void => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     this.exec(this.getCommand(text), (error, stdout, stderr) => {
       // command output is in stdout
     })
   }
 
-  private getCommand = (text: string) => {
+  private getCommand = (text: string): string => {
     return text ? `"${text}" | festival --tts` : `fortune | festival --tts`
     // return text ? `flite ${this.voice} -t "${text}"` : `fortune | flite ${this.voice}`
   }

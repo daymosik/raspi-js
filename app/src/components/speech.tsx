@@ -1,6 +1,7 @@
-import socket from '@services/socket'
 import * as React from 'react'
 import { Button, Form, FormGroup, Input } from 'reactstrap'
+
+import socket from '@services/socket'
 
 export interface SpeechState {
   text: string
@@ -13,7 +14,7 @@ export default class Speech extends React.Component<unknown, SpeechState> {
     this.state = { text: '' }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="row">
         <div className="col">
@@ -39,13 +40,15 @@ export default class Speech extends React.Component<unknown, SpeechState> {
     )
   }
 
-  public speak = () => socket.emit('command.speak', { text: this.state.text })
+  public speak = (): void => {
+    socket.emit('command.speak', { text: this.state.text })
+  }
 
-  public handleChange = (event) => {
+  public handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     this.setState({ text: event.target.value })
   }
 
-  public handleSubmit = (event) => {
+  public handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault()
     this.speak()
   }

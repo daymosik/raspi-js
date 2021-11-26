@@ -1,5 +1,6 @@
-import { BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
+
+import { BoardsFn } from '@raspi'
 
 const SEVEN_LED_SEGMENT_PINS = {
   data: 31,
@@ -20,7 +21,7 @@ export class SevenSegmentLed {
 
   public setNumber = (n: number): void => this.led.display(n)
 
-  public start = () => {
+  public start = (): void => {
     let num = 0
     let decimal = false
 
@@ -39,7 +40,7 @@ export class SevenSegmentLed {
     }, 500)
   }
 
-  public stop = () => {
+  public stop = (): void => {
     if (this.ledInterval) {
       clearInterval(this.ledInterval)
     }

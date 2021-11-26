@@ -7,7 +7,7 @@ export class Translate {
     this.translate = translate
   }
 
-  public getTranslation = (text) => {
+  public getTranslation = (text: string): void => {
     this.translate(text, { from: 'pl', to: 'en' })
       .then((res) => {
         console.log(res.text)

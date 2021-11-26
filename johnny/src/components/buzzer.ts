@@ -1,6 +1,7 @@
-import { BoardsFn } from '@raspi'
-import songs from 'j5-songs'
 import * as five from 'johnny-five'
+import songs from 'j5-songs'
+
+import { BoardsFn } from '@raspi'
 
 const BUZZER_PIN = 7
 
@@ -14,7 +15,7 @@ export class Buzzer {
     })
   }
 
-  public play = (song) => this.buzzer.play(songs.load(song || 'mario-intro'))
+  public play = (song: string): void => this.buzzer.play(songs.load(song || 'mario-intro'))
 
-  public stop = () => this.buzzer.off()
+  public stop = (): void => this.buzzer.off()
 }

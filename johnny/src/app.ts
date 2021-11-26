@@ -1,21 +1,21 @@
-import { RaspiComponents } from '@raspi'
 import 'module-alias/register'
 
 import * as express from 'express'
+import * as http from 'http'
+import * as io from 'socket.io'
 
+import { RaspiComponents } from '@raspi'
 import soundPlayer from '@services/sound-player'
 import { ApiRoutes } from './routes/api-routes'
 import { SocketRoutes } from './routes/socket-routes'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const http = require('http')
 const serverPort = 8090
 
 export class App {
   public app: express.Application
-  public server
-  public io
-  public ioListen
+  public server: http.Server
+  public io: io.Server
+  public ioListen: io.Server
 
   public socketRoutes = new SocketRoutes()
   public apiRoutes = new ApiRoutes()
@@ -27,8 +27,7 @@ export class App {
 
     this.app = express()
     this.server = http.createServer(this.app)
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    this.io = require('socket.io')(this.server, {
+    this.io = new io.Server(this.server, {
       path: '/chat/socket.io',
       cors: {
         origin: '*',

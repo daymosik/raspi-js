@@ -1,8 +1,9 @@
-import socket from '@services/socket'
 import * as React from 'react'
 
+import socket from '@services/socket'
+
 export default class SevenSegmentLedView extends React.Component<unknown, unknown> {
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="row">
         <div className="col">

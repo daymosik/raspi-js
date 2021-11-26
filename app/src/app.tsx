@@ -1,6 +1,17 @@
 // styles
 // import style from './assets/styles/main.scss'
 // import font-awesome from 'font-awesome/css';
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'font-awesome/css/font-awesome.css'
+
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
+
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+
 import Arrows from '@components/arrows'
 import Camera from '@components/camera'
 import Distance from '@components/distance'
@@ -14,14 +25,6 @@ import YamahaRemote from '@components/yamaha-remote'
 // import './functions/speech-recognition'
 import LoginView from '@modules/login'
 import AuthService from '@services/auth'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'font-awesome/css/font-awesome.css'
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { HashRouter, Route, Switch } from 'react-router-dom'
-
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -84,13 +87,13 @@ const ArrowsView = (): JSX.Element => (
 const HomeView = (): JSX.Element => (
   <div className="container pt-5">
     <div className="text-center">
-      <img src={require('./assets/images/logo-vertical.png')} />
+      <img src={require('./assets/images/logo-vertical.png')} alt="" />
     </div>
   </div>
 )
 
 class Wrapper extends React.Component<unknown, unknown> {
-  public render() {
+  public render(): JSX.Element {
     const styles = {
       container: {
         paddingTop: '20px',

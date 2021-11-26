@@ -1,31 +1,44 @@
-import Cleverbot from '@classes/cleverbot'
-import socket from '@services/socket'
 import * as annyang from 'annyang'
 
-function SpeechRecognition() {
-  const cleverbot = new Cleverbot()
+// import Cleverbot from '@classes/cleverbot'
+import socket from '@services/socket'
 
+function SpeechRecognition(): void {
+  // const cleverbot = new Cleverbot()
   // cleverbot.getResponse('How can You help me?');
 
   const commands = {
     // talking
-    cześć: () => speak('Hello Damian!'),
-    'jak się masz': () => speak('Good, thanks. And how are You?'),
-    'powiedz coś': () => socket.emit('command.playRandomSound'),
+    cześć: (): void => speak('Hello Damian!'),
+    'jak się masz': (): void => speak('Good, thanks. And how are You?'),
+    'powiedz coś': (): void => {
+      socket.emit('command.playRandomSound')
+    },
     // rgb
-    'światło :name': (name) =>
+    'światło :name': (name): void => {
       socket.emit('command.changeRGBColor', {
         color: name === 'czerwone' ? 'red' : name,
-      }),
-    'wyłącz światło': () => socket.emit('command.turnOffRGB'),
+      })
+    },
+    'wyłącz światło': (): void => {
+      socket.emit('command.turnOffRGB')
+    },
     // moving
-    'jedź do przodu': () => socket.emit('command.moveMotor', { command: 'goForward' }),
-    'jedź do tyłu': () => socket.emit('command.moveMotor', { command: 'goBack' }),
-    'skręć w lewo': () => socket.emit('command.moveMotor', { command: 'turnLeft' }),
-    'skręć w prawo': () => socket.emit('command.moveMotor', { command: 'turnRight' }),
+    'jedź do przodu': (): void => {
+      socket.emit('command.moveMotor', { command: 'goForward' })
+    },
+    'jedź do tyłu': (): void => {
+      socket.emit('command.moveMotor', { command: 'goBack' })
+    },
+    'skręć w lewo': (): void => {
+      socket.emit('command.moveMotor', { command: 'turnLeft' })
+    },
+    'skręć w prawo': (): void => {
+      socket.emit('command.moveMotor', { command: 'turnRight' })
+    },
   }
 
-  function speak(text) {
+  function speak(text: string): void {
     socket.emit('command.speak', { text })
   }
 

@@ -15,7 +15,7 @@ class Auth {
     return data.user
   }
 
-  public logout = async () => {
+  public logout = async (): Promise<void> => {
     await firebase.auth().signOut()
     this.isAuthenticated = false
     window.location.reload()

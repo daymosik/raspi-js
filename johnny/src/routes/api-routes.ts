@@ -1,7 +1,9 @@
+import * as express from 'express'
+
 import yamaha from '@services/yamaha'
 
 export class ApiRoutes {
-  public routes(app): void {
+  public routes(app: express.Application): void {
     app.get('/', (req, res) => {
       res.send('hello')
     })

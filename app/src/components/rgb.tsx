@@ -1,9 +1,19 @@
-import socket from '@services/socket'
 import * as React from 'react'
 import { CirclePicker } from 'react-color'
 
+import socket from '@services/socket'
+
+export interface ReactPickerColor {
+  hsl: string
+  hex: string
+  rgb: string
+  hsv: string
+  oldHue: string
+  source: string
+}
+
 export default class RGB extends React.Component<unknown, unknown> {
-  public render() {
+  public render(): JSX.Element {
     const styles = {
       circlePicker: {
         // marginBottom: '20px'
@@ -29,7 +39,7 @@ export default class RGB extends React.Component<unknown, unknown> {
     )
   }
 
-  public handleChangeComplete = (color) => {
+  public handleChangeComplete = (color: ReactPickerColor): void => {
     socket.emit('command.changeRGBColor', {
       color: color.hex,
     })

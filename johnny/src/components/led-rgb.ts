@@ -1,5 +1,6 @@
-import { BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
+
+import { BoardsFn } from '@raspi'
 
 // const LED_RGB_PINS = {
 //   red: 4,

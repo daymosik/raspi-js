@@ -1,6 +1,7 @@
-import AuthService from '@services/auth'
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+
+import AuthService from '@services/auth'
 
 export enum NavigationPath {
   Home = '/',
@@ -80,7 +81,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
         </a>
       </li>
       {!props.authorized && <NavigationListItem path={NavigationPath.Login} name={'Login'} />}
-      {props.authorized && <NavigationListItem onClick={() => AuthService.logout()} name={'Logout'} />}
+      {props.authorized && <NavigationListItem onClick={AuthService.logout} name={'Logout'} />}
     </ul>
   </div>
 )
@@ -94,14 +95,14 @@ export default class NavbarComponent extends React.Component<unknown, NavbarComp
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <NavigationButton onClick={this.toggle} />
 
           <Link className="navbar-brand" to={NavigationPath.Home}>
-            <img src={require('../assets/images/logo-horizontal.png')} height="40px" />
+            <img src={require('../assets/images/logo-horizontal.png')} height="40px" alt="" />
           </Link>
 
           <NavigationMenu

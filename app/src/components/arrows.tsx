@@ -1,6 +1,7 @@
-import socket from '@services/socket'
-import { PropsWithChildren } from 'react'
 import * as React from 'react'
+import { PropsWithChildren } from 'react'
+
+import socket from '@services/socket'
 
 const styles = {
   row: {
@@ -26,42 +27,42 @@ export const ArrowButton = (props: PropsWithChildren<ArrowButtonProps>): JSX.Ele
 )
 
 export default class Arrows extends React.Component<unknown, unknown> {
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="row" style={styles.row}>
         <div className="col">
           <div className="row">
-            <ArrowButton onClick={() => this.moveMotor('turnLeft', 140)}>
+            <ArrowButton onClick={(): void => this.moveMotor('turnLeft', 140)}>
               <i style={styles.iconMirror} className="fa fa-share-alt" />
             </ArrowButton>
-            <ArrowButton onClick={() => this.moveMotor('goForward')}>
+            <ArrowButton onClick={(): void => this.moveMotor('goForward')}>
               <i className="fa fa-arrow-up" />
             </ArrowButton>
-            <ArrowButton onClick={() => this.moveMotor('turnRight', 140)}>
+            <ArrowButton onClick={(): void => this.moveMotor('turnRight', 140)}>
               <i className="fa fa-share-alt" />
             </ArrowButton>
             <div className="w-100" />
-            <ArrowButton onClick={() => this.moveMotor('turnLeft')}>
+            <ArrowButton onClick={(): void => this.moveMotor('turnLeft')}>
               <i className="fa fa-arrow-left" />
             </ArrowButton>
-            <ArrowButton onClick={() => this.moveMotor('goBack')}>
+            <ArrowButton onClick={(): void => this.moveMotor('goBack')}>
               <i className="fa fa-arrow-down" />
             </ArrowButton>
-            <ArrowButton onClick={() => this.moveMotor('turnRight')}>
+            <ArrowButton onClick={(): void => this.moveMotor('turnRight')}>
               <i className="fa fa-arrow-right" />
             </ArrowButton>
             <div className="w-100" />
-            <ArrowButton onClick={() => this.moveServo('lookLeft')}>
+            <ArrowButton onClick={(): void => this.moveServo('lookLeft')}>
               <i className="fa fa-chevron-left" />
             </ArrowButton>
             <button onClick={this.stop} style={styles.btn} className="btn btn-warning col">
               <i className="fa fa-pause" />
             </button>
-            <ArrowButton onClick={() => this.moveServo('lookRight')}>
+            <ArrowButton onClick={(): void => this.moveServo('lookRight')}>
               <i className="glyphicon fa fa-chevron-right" />
             </ArrowButton>
             <div className="w-100" />
-            <ArrowButton onClick={() => this.toggleExploration()}>Exploration</ArrowButton>
+            <ArrowButton onClick={(): void => this.toggleExploration()}>Exploration</ArrowButton>
           </div>
         </div>
       </div>
@@ -73,14 +74,14 @@ export default class Arrows extends React.Component<unknown, unknown> {
     this.moveServo('lookStraight')
   }
 
-  public moveMotor = (command, speed?): void => {
+  public moveMotor = (command: string, speed?: number): void => {
     socket.emit('command.moveMotor', {
       command,
       speed,
     })
   }
 
-  public moveServo = (command): void => {
+  public moveServo = (command: string): void => {
     socket.emit('command.moveServo', {
       command,
     })

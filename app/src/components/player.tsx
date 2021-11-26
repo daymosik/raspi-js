@@ -1,9 +1,10 @@
-import socket from '@services/socket'
 import * as React from 'react'
 import { Button } from 'reactstrap'
 
+import socket from '@services/socket'
+
 export default class Player extends React.Component<unknown, unknown> {
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="row">
         <div className="col">
@@ -19,7 +20,7 @@ export default class Player extends React.Component<unknown, unknown> {
     )
   }
 
-  public playRandomSound = () => {
+  public playRandomSound = (): void => {
     socket.emit('command.playRandomSound')
   }
 }

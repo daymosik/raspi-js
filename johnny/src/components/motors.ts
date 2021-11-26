@@ -1,5 +1,6 @@
-import { BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
+
+import { BoardsFn } from '@raspi'
 
 const MOTORS_PINS_NODEMCU = [
   {
@@ -80,44 +81,45 @@ export class Motors {
     // this.motors[0].on('stop', () => console.log('stop', Date.now()));
   }
 
-  public turnLeft = (speed) => this.turn('left', speed)
+  public turnLeft = (speed: number): void => this.turn('left', speed)
 
-  public turnRight = (speed) => this.turn('right', speed)
+  public turnRight = (speed: number): void => this.turn('right', speed)
 
-  public swipeLeft = () => this.swipe('left')
+  public swipeLeft = (): void => this.swipe('left')
 
-  public swipeRight = () => this.swipe('right')
+  public swipeRight = (): void => this.swipe('right')
 
-  public goForward = (speed) => {
+  public goForward = (speed: number): void => {
     this.working = true
     this.motors.forward(speed || MOTORS_SPEED)
     this.unsetWorking()
   }
 
-  public goBack = (speed) => {
+  public goBack = (speed: number): void => {
     this.working = true
     this.motors.reverse(speed || MOTORS_SPEED)
     this.unsetWorking()
   }
 
-  public stop = () => {
+  public stop = (): void => {
     this.motors.stop()
     this.unsetWorking()
   }
 
-  public unsetWorking = () => {
+  public unsetWorking = (): void => {
     setTimeout(() => {
       this.working = false
     }, MOTORS_AUTO_STOP_TIME)
   }
 
-  public isWorking = () => this.working
+  public isWorking = (): boolean => this.working
 
-  private turn = (direction: 'left' | 'right', speed) => this.move('turn', direction, speed || MOTORS_TURN_SPEED)
+  private turn = (direction: 'left' | 'right', speed: number): void =>
+    this.move('turn', direction, speed || MOTORS_TURN_SPEED)
 
-  private swipe = (direction: 'left' | 'right') => this.move('swipe', direction, MOTORS_SWIPE_SPEED)
+  private swipe = (direction: 'left' | 'right'): void => this.move('swipe', direction, MOTORS_SWIPE_SPEED)
 
-  private move = (type: 'turn' | 'swipe', direction: 'left' | 'right', speed) => {
+  private move = (type: 'turn' | 'swipe', direction: 'left' | 'right', speed: number): void => {
     this.working = true
     this.motors[direction === 'right' ? 0 : 1].forward(speed)
     this.motors[direction === 'right' ? 1 : 0].reverse(speed)

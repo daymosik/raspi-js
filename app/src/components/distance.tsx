@@ -1,6 +1,7 @@
-import socket from '@services/socket'
 import * as React from 'react'
 import { Progress } from 'reactstrap'
+
+import socket from '@services/socket'
 
 export interface DistanceObject {
   cm: number
@@ -40,7 +41,12 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     }
   }
 
-  public render() {
+  public componentDidMount(): void {
+    socket.on('leftSensor.data', (data) => this.setLeftDistance(data.cm))
+    socket.on('rightSensor.data', (data) => this.setRightDistance(data.cm))
+  }
+
+  public render(): JSX.Element {
     return (
       <div className="row">
         <div className="col">
@@ -67,12 +73,7 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     )
   }
 
-  public componentDidMount() {
-    socket.on('leftSensor.data', (data) => this.setLeftDistance(data.cm))
-    socket.on('rightSensor.data', (data) => this.setRightDistance(data.cm))
-  }
-
-  public setLeftDistance = (cm) => {
+  public setLeftDistance = (cm: number): void => {
     this.setState({
       left: {
         cm,
@@ -82,7 +83,7 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     })
   }
 
-  public setRightDistance = (cm) => {
+  public setRightDistance = (cm: number): void => {
     this.setState({
       right: {
         cm,
@@ -92,5 +93,5 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     })
   }
 
-  public distanceStyle = (cm) => (cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success')
+  public distanceStyle = (cm: number): string => (cm < 30 ? 'danger' : cm < 60 ? 'warning' : 'success')
 }

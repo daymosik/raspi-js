@@ -1,10 +1,12 @@
+import * as io from 'socket.io'
+
 import { RaspiComponents } from '@raspi'
 import soundPlayer from '@services/sound-player'
 import speechService from '@services/speech'
 import yamaha from '@services/yamaha'
 
 export class SocketRoutes {
-  public routes(client, raspiComponents: RaspiComponents): void {
+  public routes(client: io.Socket, raspiComponents: RaspiComponents): void {
     client.on('disconnect', () => console.log('Client disconnected.'))
 
     // Johnny

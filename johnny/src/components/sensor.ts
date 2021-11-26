@@ -1,5 +1,6 @@
-import { app, BoardsFn } from '@raspi'
 import * as five from 'johnny-five'
+
+import { app, BoardsFn } from '@raspi'
 
 const SENSORS = {
   left: {

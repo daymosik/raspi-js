@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import * as player from 'play-sound'
+import * as Player from 'play-sound'
 
 const MAIN_FOLDER = '../data/wav/'
 
@@ -8,7 +8,7 @@ export class SoundPlayer {
   private sounds
 
   constructor() {
-    this.Player = new player()
+    this.Player = new Player()
     this.sounds = []
 
     fs.readdir(
@@ -23,7 +23,7 @@ export class SoundPlayer {
     )
   }
 
-  public playRandomSound = () => {
+  public playRandomSound = (): void => {
     const sound = this.sounds[Math.floor(Math.random() * this.sounds.length)]
     console.info(`Playing: ${sound}`)
     return this.Player.play(sound, (err) => {

@@ -1,12 +1,13 @@
+import * as React from 'react'
+import { PropsWithChildren } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+
 import { NavigationPath } from '@components/navbar'
 import AuthService from '@services/auth'
-import { PropsWithChildren } from 'react'
-import * as React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
 
 export interface FormInputPasswordProps {
   value: string
-  handleInputChange: (event) => void
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const FormInputPassword = (props: FormInputPasswordProps): JSX.Element => (
@@ -15,7 +16,7 @@ export const FormInputPassword = (props: FormInputPasswordProps): JSX.Element =>
 
 export interface FormInputEmailProps {
   value: string
-  handleInputChange: (event) => void
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const FormInputEmail = (props: FormInputEmailProps): JSX.Element => (
@@ -23,11 +24,10 @@ export const FormInputEmail = (props: FormInputEmailProps): JSX.Element => (
 )
 
 export interface FormInputProps {
-  name: string
+  name: LoginViewStateKeys
   value: string
   type: string
-  // TODO
-  handleInputChange: (event) => void
+  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const FormInput = (props: FormInputProps): JSX.Element => (
@@ -36,7 +36,7 @@ const FormInput = (props: FormInputProps): JSX.Element => (
     type={props.type}
     name={props.name}
     value={props.value}
-    onChange={(event) => props.handleInputChange({ [props.name]: event.target.value })}
+    onChange={props.handleInputChange}
   />
 )
 
@@ -56,6 +56,8 @@ export interface LoginViewState {
   password: string
 }
 
+export type LoginViewStateKeys = keyof LoginViewState
+
 export default class LoginView extends React.Component<RouteComponentProps<never>, LoginViewState> {
   public constructor(props) {
     super(props)
@@ -66,11 +68,11 @@ export default class LoginView extends React.Component<RouteComponentProps<never
     }
   }
 
-  public render() {
+  public render(): JSX.Element {
     return (
       <div className="container pt-5">
         <div className="text-center">
-          <img src={require('../assets/images/logo-vertical.png')} />
+          <img src={require('../assets/images/logo-vertical.png')} alt="" />
         </div>
 
         <h2>Login</h2>
@@ -90,9 +92,10 @@ export default class LoginView extends React.Component<RouteComponentProps<never
     )
   }
 
-  public handleInputChange = (obj): void => this.setState({ ...obj })
+  public handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void =>
+    this.setState({ ...this.state, [event.target.name]: event.target.value })
 
-  public login = async (event) => {
+  public login = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault()
 
     await AuthService.authenticate(this.state.email, this.state.password)

@@ -1,12 +1,13 @@
+import * as five from 'johnny-five'
+import { EtherPortClient } from 'etherport-client'
+
 import { Buzzer } from '@components/buzzer'
 import { LedRgb } from '@components/led-rgb'
 import { Motors } from '@components/motors'
 import { Sensor } from '@components/sensor'
 import { Servo } from '@components/servo'
 import { SevenSegmentLed } from '@components/seven-segment-led'
-import * as five from 'johnny-five'
 import { App } from './app'
-import { EtherPortClient } from 'etherport-client'
 
 export interface RaspiComponents {
   sevenSegmentLed: SevenSegmentLed
