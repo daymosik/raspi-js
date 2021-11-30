@@ -8,7 +8,7 @@ const socket = io.connect(SOCKET_ADDRESS, {
   secure: true,
   rejectUnauthorized: false,
   path: '/chat/socket.io',
-  transports: ['websocket'],
+  // transports: ['websocket'],
 })
 
 socket.on('connect', () => {
