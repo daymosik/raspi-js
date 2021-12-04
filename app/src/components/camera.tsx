@@ -13,8 +13,7 @@ export default class Camera extends React.Component<unknown, unknown> {
     return (
       <div className="row">
         <div className="col text-center">
-          {/*<img src="http://raspi-js.ddns.net:8081/" id="stream" style={styles.img} alt="" />*/}
-          <img src="https://images.weserv.nl/?url=raspi-js.ddns.net:8081" id="stream" style={styles.img} alt="" />
+          <img src="http://raspi-js.ddns.net:8081/" id="stream" style={styles.img} alt="" />
         </div>
       </div>
     )
