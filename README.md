@@ -82,6 +82,15 @@ Install motion for USB webcamera:
 sudo apt-get install motion
 ```
 
+Useful commands:
+```
+sudo modprobe bcm2835-v4l2
+sudo vim /etc/motion/motion.conf
+sudo service motion start
+```
+
+https://raspberry-valley.azurewebsites.net/Streaming-Video-with-Motion/#setup-streaming
+
 TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite?view=all
 
 ### Firebase ###
