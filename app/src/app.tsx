@@ -1,9 +1,6 @@
 // styles
-// import style from './assets/styles/main.scss'
-// import font-awesome from 'font-awesome/css';
-
+import './assets/styles/main.scss'
 import 'bootstrap/dist/css/bootstrap.css'
-import 'font-awesome/css/font-awesome.css'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'

@@ -62,7 +62,7 @@ boardsFn.boards.on('ready', function () {
   const raspiComponents: RaspiComponents = {
     motors: new Motors(boardsFn),
     sevenSegmentLed: new SevenSegmentLed(boardsFn),
-    servo: new Servo(),
+    servo: new Servo(boardsFn),
     ledRgb: new LedRgb(boardsFn),
     buzzer: new Buzzer(boardsFn),
     // sensor: new Sensor(boardsFn),

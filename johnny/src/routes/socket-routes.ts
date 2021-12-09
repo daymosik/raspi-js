@@ -13,7 +13,11 @@ export class SocketRoutes {
 
     // Motors
     client.on('command.moveMotor', (data) => raspiComponents.motors[data.command](data.speed))
-    // client.on('command.moveServo', data => servoFn[data.command](data.speed));
+    client.on('command.moveServo', (data) => raspiComponents.servo[data.command](data.speed))
+
+    client.on('command.lookLeft', () => raspiComponents.servo.lookLeft())
+    client.on('command.lookRight', () => raspiComponents.servo.lookRight())
+    client.on('command.lookStraight', () => raspiComponents.servo.lookStraight())
 
     // Seven segment led
     client.on('command.startSevenSegmentLed', () => raspiComponents.sevenSegmentLed.start())

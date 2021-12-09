@@ -29,32 +29,12 @@ module.exports = {
         },
       },
       {
-        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 100000,
-              mimetype: 'application/font-woff',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 100000,
-              mimetype: 'application/octet-stream',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
+        test: /\.(svg|eot|woff|woff2|ttf)$/,
+        type: 'asset/resource',
+        generator: {
+          //publicPath: '../fonts/',
+          filename: 'compiled/fonts/[hash][ext][query]',
+        },
       },
       {
         test: /\.scss$/,
