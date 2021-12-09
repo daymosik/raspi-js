@@ -19,9 +19,14 @@ import RGB from '@components/rgb'
 import SevenSegmentLedView from '@components/seven-segment-led'
 import Speech from '@components/speech'
 import YamahaRemote from '@components/yamaha-remote'
+import Joystick from '@components/joystick'
+
 // import './functions/speech-recognition'
-import LoginView from '@modules/login'
+
 import AuthService from '@services/auth'
+
+import RemoteControlView from '@modules/remote-control'
+import LoginView from '@modules/login'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -75,9 +80,11 @@ const SpeechView = (): JSX.Element => (
 )
 
 const ArrowsView = (): JSX.Element => (
-  <div>
+  <div className="container pt-5">
     <Distance />
     <Arrows />
+    <Joystick />
+    <Camera />
   </div>
 )
 
@@ -106,7 +113,7 @@ class Wrapper extends React.Component<unknown, unknown> {
               <Route path={NavigationPath.Login} component={LoginView} />
               <Route exact={true} path={NavigationPath.Home} component={HomeView} />
 
-              <PrivateRoute path={NavigationPath.Camera} component={Camera} />
+              <PrivateRoute path={NavigationPath.RemoteControl} component={RemoteControlView} />
               <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView} />
               <PrivateRoute path={NavigationPath.Speech} component={SpeechView} />
               <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote} />

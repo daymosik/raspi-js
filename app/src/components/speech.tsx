@@ -8,7 +8,7 @@ export interface SpeechState {
 }
 
 export default class Speech extends React.Component<unknown, SpeechState> {
-  constructor(props) {
+  constructor(props: unknown) {
     super(props)
 
     this.state = { text: '' }

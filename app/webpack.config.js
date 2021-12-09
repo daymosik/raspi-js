@@ -40,6 +40,29 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
+      {
+        test: /node_modules[/\\]createjs/,
+        use: [
+          {
+            loader: 'exports-loader',
+            options: {
+              type: 'commonjs',
+              exports: 'single window.createjs',
+            },
+          },
+        ],
+      },
+      {
+        test: /node_modules[/\\]createjs/,
+        use: [
+          {
+            loader: 'imports-loader',
+            options: {
+              wrapper: 'window',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -50,6 +73,7 @@ module.exports = {
       '@services': path.join(__dirname, 'src/services'),
       '@functions': path.join(__dirname, 'src/functions'),
       '@classes': path.join(__dirname, 'src/classes'),
+      createjs: 'createjs/builds/1.0.0/createjs.js',
     },
   },
   plugins: [

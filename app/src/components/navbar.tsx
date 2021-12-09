@@ -5,7 +5,7 @@ import AuthService from '@services/auth'
 
 export enum NavigationPath {
   Home = '/',
-  Camera = '/camera',
+  RemoteControl = '/remote-control',
   Login = '/login',
   Arrows = '/arrows',
   Speech = '/speech',
@@ -69,7 +69,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
     onClick={props.hideMobileMenu}
   >
     <ul className="navbar-nav mr-auto">
-      <NavigationListItem path={NavigationPath.Camera} name={'Camera'} />
+      <NavigationListItem path={NavigationPath.RemoteControl} name={'Remote Control'} />
       <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'} />
       <NavigationListItem path={NavigationPath.Speech} name={'Speech'} />
       <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} />
@@ -87,7 +87,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
 )
 
 export default class NavbarComponent extends React.Component<unknown, NavbarComponentState> {
-  constructor(props) {
+  constructor(props: unknown) {
     super(props)
 
     this.state = {

@@ -58,8 +58,10 @@ export interface LoginViewState {
 
 export type LoginViewStateKeys = keyof LoginViewState
 
-export default class LoginView extends React.Component<RouteComponentProps<never>, LoginViewState> {
-  public constructor(props) {
+export type LoginViewProps = RouteComponentProps<never>
+
+export default class LoginView extends React.Component<LoginViewProps, LoginViewState> {
+  public constructor(props: LoginViewProps) {
     super(props)
 
     this.state = {

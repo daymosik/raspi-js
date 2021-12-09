@@ -1,21 +1,21 @@
 import * as React from 'react'
 
-export default class Camera extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
-    const styles = {
-      img: {
-        width: '640px',
-        height: '480px',
-        marginBottom: '20px',
-      },
-    }
-
-    return (
-      <div className="row">
-        <div className="col text-center">
-          <img src="https://raspi-js.ddns.net:8082/" id="stream" style={styles.img} alt="" />
-        </div>
+const Camera = (): JSX.Element => {
+  return (
+    <div className="row">
+      <div className="col text-center">
+        <img src="https://raspi-js.ddns.net:8082/" id="stream" style={styles.img} alt="" />
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+const styles = {
+  img: {
+    width: '100%',
+    height: '100%',
+    marginBottom: '20px',
+  },
+}
+
+export default Camera
