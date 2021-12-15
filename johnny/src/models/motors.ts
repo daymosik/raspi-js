@@ -3,4 +3,8 @@ export interface JoystickCoords {
   y: number
 }
 
-export type JoystickDirection = 'up' | 'down' | 'left' | 'right'
+export type JoystickPrimaryDirection = 'up' | 'down' | 'left' | 'right'
+
+export type JoystickComplexDirection = 'up-right' | 'up-left' | 'down-left' | 'down-right'
+
+export type JoystickDirection = JoystickPrimaryDirection | JoystickComplexDirection

@@ -26,13 +26,31 @@ const joystickHelper = {
   },
 
   getJoystickDirection: (coords: JoystickCoords): JoystickDirection | null => {
-    if (coords.x < -MINIMUM_JOYSTICK_MOVEMENT) {
-      return 'left'
-    } else if (coords.y < -MINIMUM_JOYSTICK_MOVEMENT) {
+    const { x, y } = coords
+
+    if (y < -MINIMUM_JOYSTICK_MOVEMENT && x < -MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'up-left'
+    } else if (y < -MINIMUM_JOYSTICK_MOVEMENT && x > MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'up-right'
+    } else if (y < -MINIMUM_JOYSTICK_MOVEMENT) {
       return 'up'
-    } else if (coords.x > MINIMUM_JOYSTICK_MOVEMENT) {
+    }
+
+    if (y > MINIMUM_JOYSTICK_MOVEMENT && x < -MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'down-left'
+    } else if (y > MINIMUM_JOYSTICK_MOVEMENT && x > MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'down-right'
+    } else if (y > MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'down'
+    }
+
+    if (x < -MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'left'
+    } else if (y < -MINIMUM_JOYSTICK_MOVEMENT) {
+      return 'up'
+    } else if (x > MINIMUM_JOYSTICK_MOVEMENT) {
       return 'right'
-    } else if (coords.y > MINIMUM_JOYSTICK_MOVEMENT) {
+    } else if (y > MINIMUM_JOYSTICK_MOVEMENT) {
       return 'down'
     }
     return null

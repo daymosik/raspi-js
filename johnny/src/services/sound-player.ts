@@ -1,14 +1,16 @@
 import * as fs from 'fs'
-import * as Player from 'play-sound'
+import Player from 'play-sound'
 
 const MAIN_FOLDER = '../data/wav/'
 
+type Play = ReturnType<typeof Player>
+
 export class SoundPlayer {
-  private Player
+  private player: Play
   private sounds
 
   constructor() {
-    this.Player = new Player()
+    this.player = Player()
     this.sounds = []
 
     fs.readdir(
@@ -23,15 +25,18 @@ export class SoundPlayer {
     )
   }
 
-  // TODO: try catch
   public playRandomSound = (): void => {
-    const sound = this.sounds[Math.floor(Math.random() * this.sounds.length)]
-    console.info(`Playing: ${sound}`)
-    return this.Player.play(sound, (err) => {
-      if (err) {
-        throw err
-      }
-    })
+    try {
+      const sound = this.sounds[Math.floor(Math.random() * this.sounds.length)]
+      console.info(`Playing: ${sound}`)
+      this.player.play(sound, (err) => {
+        if (err) {
+          throw err
+        }
+      })
+    } catch (e) {
+      console.log('player-error', e)
+    }
   }
 }
 

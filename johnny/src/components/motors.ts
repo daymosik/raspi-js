@@ -2,7 +2,7 @@ import * as five from 'johnny-five'
 
 import { BoardsFn } from '@raspi'
 import joystickHelper from '../helpers/joystick'
-import { JoystickCoords } from '../models/motors'
+import { JoystickCoords, JoystickDirection } from '../models/motors'
 
 const MOTORS_PINS_NODEMCU = [
   {
@@ -53,6 +53,7 @@ const MOTORS_PINS_NODEMCU = [
 // ]
 
 const MOTORS_AUTO_STOP_TIME = 500
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOTORS_SPEED = 180
 const MOTORS_TURN_SPEED = 180
 const MOTORS_SWIPE_SPEED = 150
@@ -102,24 +103,14 @@ export class Motors {
     const direction = joystickHelper.getJoystickDirection(this.coords)
     const speed = joystickHelper.getSpeedFromCoords(this.coords)
 
-    switch (direction) {
-      case 'up':
-        this.goForward(speed)
-        break
-      case 'left':
-        this.turnLeft(speed)
-        break
-      case 'right':
-        this.turnRight(speed)
-        break
-      case 'down':
-        this.goBack(speed)
-        break
-      case null:
-        this.stop()
+    console.log(direction, speed)
+
+    if (!direction || !speed) {
+      this.stop()
+      return
     }
 
-    console.log(direction, speed)
+    this.moveJoystick(direction, speed)
   }
 
   public turnLeft = (speed: number): void => this.turn('left', speed)
@@ -132,13 +123,13 @@ export class Motors {
 
   public goForward = (speed: number): void => {
     this.working = true
-    this.motors.forward(speed || MOTORS_SPEED)
+    this.motors.forward(speed)
     this.unsetWorking()
   }
 
   public goBack = (speed: number): void => {
     this.working = true
-    this.motors.reverse(speed || MOTORS_SPEED)
+    this.motors.reverse(speed)
     this.unsetWorking()
   }
 
@@ -158,14 +149,51 @@ export class Motors {
   public isWorking = (): boolean => this.working
 
   private turn = (direction: 'left' | 'right', speed: number): void =>
-    this.move('turn', direction, speed || MOTORS_TURN_SPEED)
+    this.complexMove('turn', direction, speed || MOTORS_TURN_SPEED)
 
-  private swipe = (direction: 'left' | 'right'): void => this.move('swipe', direction, MOTORS_SWIPE_SPEED)
+  private swipe = (direction: 'left' | 'right', speed?: number): void =>
+    this.complexMove('swipe', direction, speed || MOTORS_SWIPE_SPEED)
 
-  private move = (type: 'turn' | 'swipe', direction: 'left' | 'right', speed: number): void => {
+  private complexMove = (moveType: 'turn' | 'swipe', direction: 'left' | 'right', speed: number): void => {
     this.working = true
-    this.motors[direction === 'right' ? 0 : 1].forward(speed)
-    this.motors[direction === 'right' ? 1 : 0].reverse(speed)
+    if (moveType === 'turn') {
+      this.motors[direction === 'right' ? 0 : 1].forward(speed)
+      this.motors[direction === 'right' ? 1 : 0].reverse(speed)
+    } else if (moveType === 'swipe') {
+      this.motors[direction === 'right' ? 0 : 1].forward(speed)
+      this.motors[direction === 'right' ? 1 : 0].forward(speed / 2)
+    }
     this.unsetWorking()
+  }
+
+  private moveJoystick = (direction: JoystickDirection, speed: number): void => {
+    switch (direction) {
+      case 'up':
+        this.goForward(speed)
+        break
+      case 'up-left':
+        this.swipe('left', speed)
+        break
+      case 'up-right':
+        this.swipe('right', speed)
+        break
+      case 'left':
+        this.turnLeft(speed)
+        break
+      case 'right':
+        this.turnRight(speed)
+        break
+      case 'down':
+        this.goBack(speed)
+        break
+      case 'down-left':
+        // TODO
+        break
+      case 'down-right':
+        // TODO
+        break
+      case null:
+        this.stop()
+    }
   }
 }

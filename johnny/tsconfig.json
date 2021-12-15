@@ -15,7 +15,8 @@
       "@services/*": [ "src/services/*" ],
       "@socket": [ "src/server.ts" ],
       "@raspi": [ "src/raspi.ts" ]
-    }
+    },
+    "esModuleInterop": true
   },
   "include": [
     "src/**/*",

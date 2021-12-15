@@ -15,10 +15,16 @@ export interface JoystickProps {
 export interface JoystickState {
   coordX: number
   coordY: number
+  xCenter: number
+  yCenter: number
 }
 
 export default class Joystick extends React.Component<JoystickProps, JoystickState> {
   private readonly myRef: RefObject<HTMLCanvasElement>
+  private hammerManager: HammerManager
+
+  private stage
+  private shape
 
   constructor(props: JoystickProps) {
     super(props)
@@ -26,6 +32,8 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
     this.state = {
       coordX: 0,
       coordY: 0,
+      xCenter: 150,
+      yCenter: 150,
     }
 
     this.myRef = React.createRef()
@@ -35,9 +43,17 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
     this.init()
   }
 
+  public componentWillUnmount(): void {
+    this.unsubscribeEvents()
+
+    if (this.hammerManager) {
+      this.hammerManager.destroy()
+    }
+  }
+
   public render(): JSX.Element {
     return (
-      <div className="container">
+      <div className="container noselect">
         <div className="center-align">
           <canvas style={styles.joystick} ref={this.myRef} id="joystick" height="300" width="300" />
         </div>
@@ -46,46 +62,52 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
   }
 
   public init = (): void => {
-    let xCenter = 150
-    let yCenter = 150
-    const stage = new createjs.Stage('joystick')
+    this.stage = new createjs.Stage('joystick')
+    this.shape = new createjs.Shape()
 
-    const psp = new createjs.Shape()
+    this.shape.graphics.beginFill('#333333').drawCircle(this.state.xCenter, this.state.yCenter, 50)
 
-    psp.graphics.beginFill('#333333').drawCircle(xCenter, yCenter, 50)
-
-    psp.alpha = 0.25
+    this.shape.alpha = 0.25
 
     const vertical = new createjs.Shape()
     const horizontal = new createjs.Shape()
     vertical.graphics.beginFill('#ff4d4d').drawRect(150, 0, 2, 300)
     horizontal.graphics.beginFill('#ff4d4d').drawRect(0, 150, 300, 2)
 
-    stage.addChild(psp)
-    stage.addChild(vertical)
-    stage.addChild(horizontal)
+    this.stage.addChild(this.shape)
+    this.stage.addChild(vertical)
+    this.stage.addChild(horizontal)
+
     createjs.Ticker.framerate = 60
-    createjs.Ticker.addEventListener('tick', stage)
-    stage.update()
+    createjs.Ticker.addEventListener('tick', this.stage)
+
+    this.stage.update()
 
     const myElement: HTMLElement = $('#joystick')[0]
     // const myElement = $(this.myRef)[0]
 
     // create a simple instance
     // by default, it only adds horizontal recognizers
-    const mc = new Hammer(myElement)
+    this.hammerManager = new Hammer(myElement)
 
-    mc.on('panstart', () => {
-      xCenter = psp.x
-      yCenter = psp.y
-      psp.alpha = 0.5
+    this.subscribeEvents()
+  }
 
-      stage.update()
+  public subscribeEvents = (): void => {
+    this.hammerManager.on('panstart', () => {
+      this.setState({
+        xCenter: this.shape.x,
+        yCenter: this.shape.y,
+      })
+
+      this.shape.alpha = 0.5
+
+      this.stage.update()
 
       this.props.onStart && this.props.onStart()
     })
 
-    mc.on('panmove', (ev) => {
+    this.hammerManager.on('panmove', (ev) => {
       // const pos = $('#joystick').position()
       // const x = ev.center.x - pos.left - 150
       // const y = ev.center.y - pos.top - 150
@@ -101,22 +123,30 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
         coordY: coords.y,
       })
 
-      psp.x = coords.x
-      psp.y = coords.y
+      this.shape.x = coords.x
+      this.shape.y = coords.y
 
-      psp.alpha = 0.5
+      this.shape.alpha = 0.5
 
-      stage.update()
+      this.stage.update()
 
       this.props.onMove && this.props.onMove(coords)
     })
 
-    mc.on('panend', () => {
-      psp.alpha = 0.25
-      createjs.Tween.get(psp).to({ x: xCenter, y: yCenter }, 750, createjs.Ease.elasticOut)
+    this.hammerManager.on('panend', () => {
+      this.shape.alpha = 0.25
+      createjs.Tween.get(this.shape).to({ x: this.state.xCenter, y: this.state.yCenter }, 750, createjs.Ease.elasticOut)
 
       this.props.onEnd && this.props.onEnd()
     })
+  }
+
+  private unsubscribeEvents = (): void => {
+    if (this.hammerManager) {
+      this.hammerManager.off('panend')
+      this.hammerManager.off('panmove')
+      this.hammerManager.off('panstart')
+    }
   }
 
   public calculateCoords = (angle: number, distance: number): JoystickCoords => {
@@ -137,7 +167,6 @@ const styles = {
     borderRadius: '300px',
     textAlign: 'center' as const,
     backgroundColor: '#80d5ff',
-    // font: 24px/300px Helvetica, Arial, sans-serif,
     cursor: 'all-scroll',
     userSelect: 'none' as const,
     zIndex: '-100',
@@ -150,6 +179,6 @@ const styles = {
     // -khtml-user-select: none;
     // -moz-user-select: none;
     // -ms-user-select: none;
-    userSelect: 'none',
+    userSelect: 'none' as const,
   },
 }

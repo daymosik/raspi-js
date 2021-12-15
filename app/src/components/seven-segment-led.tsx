@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import socket from '@services/socket'
 
+// TODO: visual segment led with current number
+
 export default class SevenSegmentLedView extends React.Component<unknown, unknown> {
   public render(): JSX.Element {
     return (
