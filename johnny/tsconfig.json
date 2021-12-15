@@ -8,8 +8,8 @@
     "module": "commonjs",
     "sourceMap": true,
     "strictNullChecks": true,
-    "outDir": "dist",
-    "baseUrl": ".",
+    "outDir": "./dist",
+    "baseUrl": "./",
     "paths": {
       "@components/*": [ "src/components/*" ],
       "@services/*": [ "src/services/*" ],
@@ -18,6 +18,6 @@
     }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
   ]
 }

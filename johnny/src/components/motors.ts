@@ -1,6 +1,8 @@
 import * as five from 'johnny-five'
 
 import { BoardsFn } from '@raspi'
+import joystickHelper from '../helpers/joystick'
+import { JoystickCoords } from '../models/motors'
 
 const MOTORS_PINS_NODEMCU = [
   {
@@ -57,8 +59,11 @@ const MOTORS_SWIPE_SPEED = 150
 
 export class Motors {
   public motors
-  public autoStopTime = MOTORS_AUTO_STOP_TIME
+  public autoStopTime: number = MOTORS_AUTO_STOP_TIME
   public working = false
+
+  public coords: JoystickCoords = { x: 0, y: 0 }
+  public joystickControl = false
 
   constructor(boardsFn: BoardsFn) {
     this.motors = new five.Motors([
@@ -75,10 +80,46 @@ export class Motors {
     this.motors[0].on('start', () => {
       // console.log('start', Date.now());
 
-      boardsFn.boards[0].wait(MOTORS_AUTO_STOP_TIME, () => this.motors.stop())
+      boardsFn.boards[0].wait(MOTORS_AUTO_STOP_TIME, () => {
+        if (!this.joystickControl) {
+          this.motors.stop()
+        }
+      })
     })
 
     // this.motors[0].on('stop', () => console.log('stop', Date.now()));
+  }
+
+  public handleJoystick = (coords: JoystickCoords): void => {
+    this.coords = coords
+
+    if (this.isWorking()) {
+      return
+    }
+
+    this.joystickControl = true
+
+    const direction = joystickHelper.getJoystickDirection(this.coords)
+    const speed = joystickHelper.getSpeedFromCoords(this.coords)
+
+    switch (direction) {
+      case 'up':
+        this.goForward(speed)
+        break
+      case 'left':
+        this.turnLeft(speed)
+        break
+      case 'right':
+        this.turnRight(speed)
+        break
+      case 'down':
+        this.goBack(speed)
+        break
+      case null:
+        this.stop()
+    }
+
+    console.log(direction, speed)
   }
 
   public turnLeft = (speed: number): void => this.turn('left', speed)
@@ -102,6 +143,8 @@ export class Motors {
   }
 
   public stop = (): void => {
+    this.joystickControl = false
+
     this.motors.stop()
     this.unsetWorking()
   }

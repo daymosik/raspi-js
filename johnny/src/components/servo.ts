@@ -32,5 +32,5 @@ export class Servo {
 
   public sweep = (): void => this.servo.sweep()
 
-  public step = (rate): void => this.servo.step(rate)
+  public step = (rate: number): void => this.servo.step(rate)
 }

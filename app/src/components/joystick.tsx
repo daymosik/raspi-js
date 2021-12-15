@@ -2,16 +2,12 @@ import { RefObject } from 'react'
 import * as React from 'react'
 import * as $ from 'jquery'
 import * as Hammer from 'hammerjs'
+import { JoystickCoords } from '../models/motors'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const createjs = require('createjs')
 
-export interface Coords {
-  x: number
-  y: number
-}
-
 export interface JoystickProps {
-  onMove?: (coords: Coords) => void
+  onMove?: (coords: JoystickCoords) => void
   onStart?: () => void
   onEnd?: () => void
 }
@@ -123,7 +119,7 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
     })
   }
 
-  public calculateCoords = (angle: number, distance: number): Coords => {
+  public calculateCoords = (angle: number, distance: number): JoystickCoords => {
     distance = Math.min(distance, 100)
     const rads = (angle * Math.PI) / 180.0
 

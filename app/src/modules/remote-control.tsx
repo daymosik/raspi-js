@@ -1,42 +1,30 @@
 import Camera from '@components/camera'
-import Joystick, { Coords } from '@components/joystick'
+import Joystick from '@components/joystick'
 import socket from '@services/socket'
 import * as React from 'react'
+import { JoystickCoords } from '../models/motors'
 
 const RemoteControlView = (): JSX.Element => {
-  const onMove = (coords: Coords): void => {
+  const onMove = (coords: JoystickCoords): void => {
     console.log(coords)
+    socket.emit('command.handleJoystick', coords)
+  }
 
-    let command = ''
+  const onStart = (): void => {
+    console.log('onStart')
+  }
 
-    if (coords.x < -60) {
-      //left
-      command = 'turnLeft'
-    } else if (coords.y < -60) {
-      // top
-      command = 'goForward'
-    } else if (coords.x > 60) {
-      // right
-      command = 'turnRight'
-    } else if (coords.y > 60) {
-      // bottom
-      command = 'goBack'
-    }
-
-    if (command) {
-      socket.emit('command.moveMotor', {
-        command,
-        speed: undefined,
-      })
-    }
+  const onEnd = (): void => {
+    console.log('onEnd')
+    socket.emit('command.stopMotor', {})
   }
 
   return (
     <div className="row">
       <div className="col">
-        <div style={{ position: 'relative' }}>
+        <div style={{ position: 'relative', minHeight: '300px' }}>
           <div style={{ position: 'absolute', bottom: 0, right: 0 }}>
-            <Joystick onMove={onMove} />
+            <Joystick onMove={onMove} onStart={onStart} onEnd={onEnd} />
           </div>
           <Camera />
         </div>

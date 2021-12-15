@@ -13,6 +13,8 @@ export class SocketRoutes {
 
     // Motors
     client.on('command.moveMotor', (data) => raspiComponents.motors[data.command](data.speed))
+    client.on('command.handleJoystick', (data) => raspiComponents.motors.handleJoystick(data))
+    client.on('command.stopMotor', () => raspiComponents.motors.stop())
     client.on('command.moveServo', (data) => raspiComponents.servo[data.command](data.speed))
 
     client.on('command.lookLeft', () => raspiComponents.servo.lookLeft())

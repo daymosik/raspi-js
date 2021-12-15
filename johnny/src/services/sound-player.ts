@@ -23,6 +23,7 @@ export class SoundPlayer {
     )
   }
 
+  // TODO: try catch
   public playRandomSound = (): void => {
     const sound = this.sounds[Math.floor(Math.random() * this.sounds.length)]
     console.info(`Playing: ${sound}`)
