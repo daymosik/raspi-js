@@ -6,16 +6,16 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
-import { initializeApp } from 'firebase/app'
+import { FirebaseOptions, initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+
+import AuthService from '@services/auth'
 
 import NavbarComponent, { NavigationPath } from '@components/navbar'
 import PrivateRoute from '@components/private-route'
 import YamahaRemote from '@components/yamaha-remote'
 
 // import './functions/speech-recognition'
-
-import AuthService from '@services/auth'
 
 import RemoteControlView from '@modules/remote-control'
 import LoginView from '@modules/login/login'
@@ -36,7 +36,7 @@ if ('serviceWorker' in navigator) {
   })
 }
 
-const firebaseConfig = {
+const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIREBASE_API_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
   databaseURL: process.env.FIREBASE_DATABASE_URL,
@@ -46,12 +46,12 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 }
 
+export const firebaseApp = initializeApp(firebaseConfig)
+export const firebaseAppAuth = getAuth(firebaseApp)
+
 export interface AppState {
   initialized: boolean
 }
-
-export const firebaseApp = initializeApp(firebaseConfig)
-export const firebaseAppAuth = getAuth(firebaseApp)
 
 class App extends React.Component<unknown, AppState> {
   public constructor(props) {

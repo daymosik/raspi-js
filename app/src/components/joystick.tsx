@@ -3,8 +3,8 @@ import * as React from 'react'
 import * as $ from 'jquery'
 import * as Hammer from 'hammerjs'
 import { JoystickCoords } from '../models/motors'
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const createjs = require('createjs')
+import * as createjs from 'createjs-module'
+import { Shape, Stage } from 'createjs-module'
 
 export interface JoystickProps {
   onMove?: (coords: JoystickCoords) => void
@@ -23,8 +23,8 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
   private readonly myRef: RefObject<HTMLCanvasElement>
   private hammerManager: HammerManager
 
-  private stage
-  private shape
+  private stage: Stage
+  private shape: Shape
 
   constructor(props: JoystickProps) {
     super(props)
