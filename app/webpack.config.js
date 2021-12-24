@@ -4,11 +4,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const WorkboxPlugin = require('workbox-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const shouldAnalize = true
 
 const defaultPlugins = [
   new HtmlWebpackPlugin({ template: './src/index.html' }),
+  new MiniCssExtractPlugin({
+    filename: `[name].[chunkhash].css`,
+    chunkFilename: `[id][chunkhash].css`,
+  }),
   new WebpackPwaManifest({
     name: 'RaspiJS',
     short_name: 'RaspiJS',
@@ -46,66 +51,68 @@ const defaultPlugins = [
 
 const analyzePlugins = [new BundleAnalyzerPlugin()]
 
+const rules = [
+  {
+    test: /\.tsx?$/,
+    loader: 'ts-loader',
+  },
+  {
+    test: /\.css$/,
+    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+  },
+  {
+    test: /\.(jpg|jpeg|svg|gif|png(2)?)(\?[a-z0-9]+)?$/,
+    loader: 'file-loader',
+    options: {
+      esModule: false,
+    },
+  },
+  {
+    test: /\.(svg|eot|woff|woff2|ttf)$/,
+    type: 'asset/resource',
+    generator: {
+      //publicPath: '../fonts/',
+      filename: 'compiled/fonts/[hash][ext][query]',
+    },
+  },
+  {
+    test: /\.scss$/,
+    use: ['style-loader', 'css-loader', 'sass-loader'],
+  },
+  {
+    test: /node_modules[/\\]createjs/,
+    use: [
+      {
+        loader: 'exports-loader',
+        options: {
+          type: 'commonjs',
+          exports: 'single window.createjs',
+        },
+      },
+    ],
+  },
+  {
+    test: /node_modules[/\\]createjs/,
+    use: [
+      {
+        loader: 'imports-loader',
+        options: {
+          wrapper: 'window',
+        },
+      },
+    ],
+  },
+]
+
 module.exports = {
   mode: 'development',
   entry: './src/app.tsx',
   output: {
     path: path.resolve(__dirname, '..', 'public'),
-    filename: 'bundle.[hash].js',
+    filename: '[name].bundle.[hash].js',
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(jpg|jpeg|svg|gif|png(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader',
-        options: {
-          esModule: false,
-        },
-      },
-      {
-        test: /\.(svg|eot|woff|woff2|ttf)$/,
-        type: 'asset/resource',
-        generator: {
-          //publicPath: '../fonts/',
-          filename: 'compiled/fonts/[hash][ext][query]',
-        },
-      },
-      {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /node_modules[/\\]createjs/,
-        use: [
-          {
-            loader: 'exports-loader',
-            options: {
-              type: 'commonjs',
-              exports: 'single window.createjs',
-            },
-          },
-        ],
-      },
-      {
-        test: /node_modules[/\\]createjs/,
-        use: [
-          {
-            loader: 'imports-loader',
-            options: {
-              wrapper: 'window',
-            },
-          },
-        ],
-      },
-    ],
+    rules,
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json'],
@@ -120,4 +127,18 @@ module.exports = {
     },
   },
   plugins: shouldAnalize ? [...analyzePlugins, ...defaultPlugins] : defaultPlugins,
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          minSize: 1,
+        },
+      },
+    },
+  },
 }
