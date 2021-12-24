@@ -35,7 +35,7 @@ export class SocketRoutes {
     client.on('command.playRandomSound', () => soundPlayer.playRandomSound())
 
     // Buzzer
-    client.on('command.playBuzzer', (song?: string) => raspiComponents.buzzer.play(song))
+    client.on('command.playBuzzer', (data) => raspiComponents.buzzer.play(data.text))
 
     // Yamaha
     client.on('command.yamaha.muteOn', () => yamaha.muteOn())

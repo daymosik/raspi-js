@@ -1,11 +1,30 @@
 import * as React from 'react'
-import { Button, Form, FormGroup, Input } from 'reactstrap'
+import { Button, Dropdown, DropdownItem, Form, FormGroup } from 'reactstrap'
 
 import socket from '@services/socket'
 
 export interface BuzzerState {
   text: string
 }
+
+const buzzerSongs = [
+  'beethovens-fifth',
+  'claxon',
+  'do-re-mi',
+  'doorbell',
+  'funeral-march-short',
+  'jingle-bells',
+  'jingle-bells-short',
+  'mario-fanfare',
+  'mario-intro',
+  'never-gonna-give-you-up',
+  'nyan-intro',
+  'nyan-melody',
+  'pew-pew-pew',
+  'starwars-theme',
+  'tetris-theme',
+  'wedding-march',
+]
 
 export default class Buzzer extends React.Component<unknown, BuzzerState> {
   constructor(props: unknown) {
@@ -22,7 +41,14 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
             <div className="col">
               <Form action="" onSubmit={this.handleSubmit}>
                 <FormGroup>
-                  <Input type="text" name="text" value={this.state.text} onChange={this.handleChange} />
+                  <Dropdown>
+                    {buzzerSongs.map((song) => (
+                      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+                      <DropdownItem onClick={() => this.speakDropdown(song)} key={song}>
+                        {song}
+                      </DropdownItem>
+                    ))}
+                  </Dropdown>
                 </FormGroup>
                 <Button>Play buzzer !</Button>
               </Form>
@@ -38,6 +64,10 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
         </div>
       </div>
     )
+  }
+
+  public speakDropdown = (song?: string): void => {
+    socket.emit('command.playBuzzer', { text: song })
   }
 
   public speak = (): void => {

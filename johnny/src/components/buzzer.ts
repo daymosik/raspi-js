@@ -15,7 +15,15 @@ export class Buzzer {
     })
   }
 
-  public play = (song?: string): void => this.buzzer.play(songs.load(song || 'mario-intro'))
+  public play = (song?: string): void => {
+    try {
+      const fileName = song || 'mario-intro'
+      const songFile = songs.load(fileName)
+      this.buzzer.play(songFile)
+    } catch (e) {
+      console.log('buzzer-error', e)
+    }
+  }
 
   public stop = (): void => this.buzzer.off()
 }
