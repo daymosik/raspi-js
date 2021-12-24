@@ -68,6 +68,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json'],
     alias: {
+      '@assets': path.join(__dirname, 'src/assets'),
       '@components': path.join(__dirname, 'src/components'),
       '@modules': path.join(__dirname, 'src/modules'),
       '@services': path.join(__dirname, 'src/services'),

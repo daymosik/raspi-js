@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Dropdown, DropdownItem, Form, FormGroup } from 'reactstrap'
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Form, FormGroup } from 'reactstrap'
 
 import socket from '@services/socket'
 
@@ -42,12 +42,15 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
               <Form action="" onSubmit={this.handleSubmit}>
                 <FormGroup>
                   <Dropdown>
-                    {buzzerSongs.map((song) => (
-                      // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-                      <DropdownItem onClick={() => this.speakDropdown(song)} key={song}>
-                        {song}
-                      </DropdownItem>
-                    ))}
+                    <DropdownToggle caret>Buzzer Songs</DropdownToggle>
+                    <DropdownMenu>
+                      {buzzerSongs.map((song) => (
+                        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+                        <DropdownItem onClick={() => this.speakDropdown(song)} key={song}>
+                          {song}
+                        </DropdownItem>
+                      ))}
+                    </DropdownMenu>
                   </Dropdown>
                 </FormGroup>
                 <Button>Play buzzer !</Button>

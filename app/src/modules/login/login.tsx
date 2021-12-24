@@ -1,5 +1,6 @@
+import { FormGroup } from '@modules/login/form-group'
+import { FormInput } from '@modules/login/form-input'
 import * as React from 'react'
-import { PropsWithChildren } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
 import { NavigationPath } from '@components/navbar'
@@ -23,34 +24,6 @@ export const FormInputEmail = (props: FormInputEmailProps): JSX.Element => (
   <FormInput name={'email'} type={'text'} value={props.value} handleInputChange={props.handleInputChange} />
 )
 
-export interface FormInputProps {
-  name: LoginViewStateKeys
-  value: string
-  type: string
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const FormInput = (props: FormInputProps): JSX.Element => (
-  <input
-    className="form-control"
-    type={props.type}
-    name={props.name}
-    value={props.value}
-    onChange={props.handleInputChange}
-  />
-)
-
-export interface FormGroupProps {
-  label: string
-}
-
-export const FormGroup = (props: PropsWithChildren<FormGroupProps>): JSX.Element => (
-  <div className="form-group">
-    <label htmlFor="exampleInputEmail1">{props.label}</label>
-    {props.children}
-  </div>
-)
-
 export interface LoginViewState {
   email: string
   password: string
@@ -70,11 +43,15 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
     }
   }
 
+  public componentDidMount(): void {
+    console.log(AuthService.isAuthenticated)
+  }
+
   public render(): JSX.Element {
     return (
       <div className="container pt-5">
         <div className="text-center">
-          <img src={require('../assets/images/logo-vertical.png')} alt="" />
+          <img src={require('../../assets/images/logo-vertical.png')} alt="" />
         </div>
 
         <h2>Login</h2>

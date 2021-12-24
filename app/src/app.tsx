@@ -1,7 +1,6 @@
 // styles
 import './assets/styles/main.scss'
 import 'bootstrap/dist/css/bootstrap.css'
-import Buzzer from '@components/buzzer'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -10,24 +9,19 @@ import { HashRouter, Route, Switch } from 'react-router-dom'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 
-import Arrows from '@components/arrows'
-import Camera from '@components/camera'
-import Distance from '@components/distance'
 import NavbarComponent, { NavigationPath } from '@components/navbar'
-import Player from '@components/player'
 import PrivateRoute from '@components/private-route'
-import RGB from '@components/rgb'
-import SevenSegmentLedView from '@components/seven-segment-led'
-import Speech from '@components/speech'
 import YamahaRemote from '@components/yamaha-remote'
-import Joystick from '@components/joystick'
 
 // import './functions/speech-recognition'
 
 import AuthService from '@services/auth'
 
 import RemoteControlView from '@modules/remote-control'
-import LoginView from '@modules/login'
+import LoginView from '@modules/login/login'
+import { ArrowsView } from '@modules/arrows'
+import { HomeView } from '@modules/home'
+import { SpeechView } from '@modules/speech'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -52,61 +46,39 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID,
 }
 
-export const firebaseApp = firebase.initializeApp(firebaseConfig)
+export interface AppState {
+  initialized: boolean
+}
 
-firebase.auth().onAuthStateChanged((user: firebase.User) => {
-  if (user) {
-    AuthService.isAuthenticated = true
-    window.location.href = '/#'
+class App extends React.Component<unknown, AppState> {
+  public constructor(props) {
+    super(props)
+
+    this.state = {
+      initialized: false,
+    }
   }
-})
 
-const SpeechView = (): JSX.Element => (
-  <div className="container pt-5">
-    <div className="row">
-      <div className="col">
-        <RGB />
-      </div>
-      <div className="col">
-        <Speech />
-        <Player />
-        <Buzzer />
-      </div>
-    </div>
-    <div className="row">
-      <div className="col">
-        <SevenSegmentLedView />
-      </div>
-    </div>
-  </div>
-)
+  public componentDidMount(): void {
+    firebase.initializeApp(firebaseConfig)
 
-const ArrowsView = (): JSX.Element => (
-  <div className="container pt-5">
-    <Distance />
-    <Arrows />
-    <Joystick />
-    <Camera />
-  </div>
-)
+    firebase.auth().onAuthStateChanged((user: firebase.User) => {
+      if (user) {
+        AuthService.isAuthenticated = true
+      }
+      this.setState({ initialized: true })
+    })
+  }
 
-const HomeView = (): JSX.Element => (
-  <div className="container pt-5">
-    <div className="text-center">
-      <img src={require('./assets/images/logo-vertical.png')} alt="" />
-    </div>
-  </div>
-)
-
-class Wrapper extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
+  public render(): JSX.Element | null {
     const styles = {
       container: {
         paddingTop: '20px',
       },
     }
 
-    return (
+    // TODO: loader insteadof null
+    return !this.state.initialized ? null : (
       <HashRouter basename="/">
         <div className="wrapper">
           <NavbarComponent />
@@ -127,4 +99,4 @@ class Wrapper extends React.Component<unknown, unknown> {
   }
 }
 
-ReactDOM.render(<Wrapper />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))
