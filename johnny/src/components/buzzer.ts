@@ -15,7 +15,7 @@ export class Buzzer {
     })
   }
 
-  public play = (song: string): void => this.buzzer.play(songs.load(song || 'mario-intro'))
+  public play = (song?: string): void => this.buzzer.play(songs.load(song || 'mario-intro'))
 
   public stop = (): void => this.buzzer.off()
 }

@@ -1,6 +1,7 @@
 // styles
 import './assets/styles/main.scss'
 import 'bootstrap/dist/css/bootstrap.css'
+import Buzzer from '@components/buzzer'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -69,6 +70,7 @@ const SpeechView = (): JSX.Element => (
       <div className="col">
         <Speech />
         <Player />
+        <Buzzer />
       </div>
     </div>
     <div className="row">

@@ -1,4 +1,4 @@
-import * as YamahaAPI from 'yamaha-nodejs'
+import YamahaAPI from 'yamaha-nodejs'
 
 export type YamahaInput = 'HDMI1' | 'HDMI2' | 'HDMI3'
 

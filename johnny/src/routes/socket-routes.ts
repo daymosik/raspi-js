@@ -34,6 +34,9 @@ export class SocketRoutes {
     client.on('command.speak', (data) => speechService.speak(data.text))
     client.on('command.playRandomSound', () => soundPlayer.playRandomSound())
 
+    // Buzzer
+    client.on('command.playBuzzer', (song?: string) => raspiComponents.buzzer.play(song))
+
     // Yamaha
     client.on('command.yamaha.muteOn', () => yamaha.muteOn())
     client.on('command.yamaha.muteOff', () => yamaha.muteOff())

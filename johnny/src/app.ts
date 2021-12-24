@@ -1,6 +1,6 @@
 import 'module-alias/register'
 
-import * as express from 'express'
+import express from 'express'
 import * as http from 'http'
 import * as io from 'socket.io'
 

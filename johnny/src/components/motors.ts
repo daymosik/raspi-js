@@ -94,10 +94,6 @@ export class Motors {
   public handleJoystick = (coords: JoystickCoords): void => {
     this.coords = coords
 
-    if (this.isWorking()) {
-      return
-    }
-
     this.joystickControl = true
 
     const direction = joystickHelper.getJoystickDirection(this.coords)
@@ -109,6 +105,10 @@ export class Motors {
       this.stop()
       return
     }
+
+    // if (this.isWorking()) {
+    //   return
+    // }
 
     this.moveJoystick(direction, speed)
   }

@@ -31,7 +31,8 @@ export class SoundPlayer {
       console.info(`Playing: ${sound}`)
       this.player.play(sound, (err) => {
         if (err) {
-          throw err
+          console.log('player-error-inside', err)
+          // throw err
         }
       })
     } catch (e) {
