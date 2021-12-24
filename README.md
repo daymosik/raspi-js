@@ -12,7 +12,7 @@ Powered with NodeJS, express, socket.io and firebase.
 
 ## Raspi's actual abilities ##
 
-* Remote control from GUI
+* Remote control from GUI (arrows + joystick)
 * Exploration mode
 * Play songs on buzzer :)
 * It speaks!
@@ -26,21 +26,22 @@ Powered with NodeJS, express, socket.io and firebase.
 ### Raspberry Pi ###
 
 * Raspberry Pi 3 Model B + Lithium Battery Board (3800mAH, 5.1V)
+* Raspberry Pi Camera Module V2 IR 8MP
 * USB Sound Card
-* USB Camera
 
 ### Arduino ###
 
 * NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0
 * Arduino Mega 2560 + Sensor Shield V2.0
-* Arduino Uno R3 + Sensor Shield V4.0
+* ~~Arduino Uno R3 + Sensor Shield V4.0~~
 * LiPo Battery (2200mAH, 11,1V)
-* Ultrasonic sensor HC-SR04
-* L298N H-bridge Dual Motor Controller + 4 x DC dual axis TT gear motor
-* TowerPro SG90 Servo
+* ~~Ultrasonic sensor HC-SR04~~
+* L298N H-bridge Dual Motor Controller + 2 x LEGO 88003 SILNIK L
+* ~~TowerPro SG90 Servo~~
 * 5161AS Seven Segment LED Display with 74HC595 Shift Register
 * RGB Common cathode LED
 * Buzzer
+* LCD 2x16 Display with PCF8574 I2C converter
 
 ## Software specification ##
 
@@ -50,7 +51,7 @@ Powered with NodeJS, express, socket.io and firebase.
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **GitHub Actions CI** automated deploys to firebase hosting
 * **Typescript** with tslint
-* **Bootstrap 4**
+* **Bootstrap 5**
 * **Node v16.10.0**
 * **yarn** package manager
 * **Makefile** for running scripts
@@ -126,3 +127,7 @@ Build GUI
 make build
 ```
 
+Run this command  to build with firebase config
+```
+./build.sh
+```

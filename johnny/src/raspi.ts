@@ -1,3 +1,4 @@
+import { LcdDisplay } from '@components/lcd-display'
 import * as five from 'johnny-five'
 import { EtherPortClient } from 'etherport-client'
 
@@ -17,6 +18,7 @@ export interface RaspiComponents {
   servo: Servo
   ledRgb: LedRgb
   buzzer: Buzzer
+  lcdDisplay: LcdDisplay
   // needs uno
   // sensor: Sensor
 }
@@ -65,6 +67,7 @@ boardsFn.boards.on('ready', function () {
     servo: new Servo(boardsFn),
     ledRgb: new LedRgb(boardsFn),
     buzzer: new Buzzer(boardsFn),
+    lcdDisplay: new LcdDisplay(boardsFn),
     // sensor: new Sensor(boardsFn),
   }
 
