@@ -19,4 +19,4 @@ else
   export FIREBASE_APP_ID="${FIREBASE_APP_ID}"
 fi
 
-cd app && npm run build
+cd app && npm run build:production

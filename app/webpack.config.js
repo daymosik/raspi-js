@@ -1,3 +1,5 @@
+const isProd = process.env.NODE_ENV === 'production'
+
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -12,7 +14,7 @@ const defaultPlugins = [
   new HtmlWebpackPlugin({ template: './src/index.html' }),
   new MiniCssExtractPlugin({
     filename: `[name].[chunkhash].css`,
-    chunkFilename: `[id][chunkhash].css`,
+    chunkFilename: `[id].[chunkhash].css`,
   }),
   new WebpackPwaManifest({
     name: 'RaspiJS',
@@ -105,12 +107,14 @@ const rules = [
 ]
 
 module.exports = {
-  mode: 'development',
   entry: './src/app.tsx',
   output: {
     path: path.resolve(__dirname, '..', 'public'),
-    filename: '[name].bundle.[hash].js',
+    filename: '[name].[hash].js',
   },
+  ...(!isProd && {
+    devtool: 'source-map',
+  }),
   module: {
     rules,
   },
@@ -123,7 +127,7 @@ module.exports = {
       '@services': path.join(__dirname, 'src/services'),
       '@functions': path.join(__dirname, 'src/functions'),
       '@classes': path.join(__dirname, 'src/classes'),
-      createjs: 'createjs/builds/1.0.0/createjs.js',
+      '@models': path.join(__dirname, 'src/models'),
     },
   },
   plugins: shouldAnalize ? [...analyzePlugins, ...defaultPlugins] : defaultPlugins,

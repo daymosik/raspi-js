@@ -7,6 +7,7 @@
   "license": "ISC",
   "scripts": {
     "build": "webpack",
+    "build:production": "NODE_ENV=production webpack",
     "webpack-watch": "webpack -w",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "prettier": "prettier \"./src/**/*.{ts,tsx,scss}\" --check",
@@ -21,7 +22,6 @@
     "createjs-module": "^0.8.3",
     "firebase": "^9.5.0",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.6.0",
     "jsonp": "^0.2.1",
     "react": "^17.0.2",
     "react-color": "^2.19.3",

@@ -16,7 +16,8 @@
       "@modules/*": [ "src/modules/*" ],
       "@services/*": [ "src/services/*" ],
       "@functions/*": [ "src/functions/*" ],
-      "@classes/*": [ "src/classes/*" ]
+      "@classes/*": [ "src/classes/*" ],
+      "@models/*": [ "src/models/*" ]
     }
   }
 }
