@@ -1,6 +1,5 @@
 import { RefObject } from 'react'
 import * as React from 'react'
-import * as $ from 'jquery'
 import * as Hammer from 'hammerjs'
 import { JoystickCoords } from '../models/motors'
 import * as createjs from 'createjs-module'
@@ -83,12 +82,12 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
 
     this.stage.update()
 
-    const myElement: HTMLElement = $('#joystick')[0]
-    // const myElement = $(this.myRef)[0]
-
     // create a simple instance
     // by default, it only adds horizontal recognizers
-    this.hammerManager = new Hammer(myElement)
+    const myElement = this.myRef.current
+    if (myElement) {
+      this.hammerManager = new Hammer(myElement)
+    }
 
     this.subscribeEvents()
   }
