@@ -6,8 +6,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import { initializeApp } from 'firebase/app'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import NavbarComponent, { NavigationPath } from '@components/navbar'
 import PrivateRoute from '@components/private-route'
@@ -50,6 +50,9 @@ export interface AppState {
   initialized: boolean
 }
 
+export const firebaseApp = initializeApp(firebaseConfig)
+export const firebaseAppAuth = getAuth(firebaseApp)
+
 class App extends React.Component<unknown, AppState> {
   public constructor(props) {
     super(props)
@@ -60,9 +63,7 @@ class App extends React.Component<unknown, AppState> {
   }
 
   public componentDidMount(): void {
-    firebase.initializeApp(firebaseConfig)
-
-    firebase.auth().onAuthStateChanged((user: firebase.User) => {
+    onAuthStateChanged(firebaseAppAuth, (user) => {
       if (user) {
         AuthService.isAuthenticated = true
       }

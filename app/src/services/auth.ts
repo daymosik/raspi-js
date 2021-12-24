@@ -1,5 +1,5 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { firebaseAppAuth } from '../app'
 
 export enum authType {
   Login = 'login',
@@ -10,13 +10,13 @@ class Auth {
   public isAuthenticated
 
   public authenticate = async (email: string, password: string): Promise<unknown> => {
-    const data = await firebase.auth().signInWithEmailAndPassword(email, password)
+    const data = await signInWithEmailAndPassword(firebaseAppAuth, email, password)
     this.isAuthenticated = true
     return data.user
   }
 
   public logout = async (): Promise<void> => {
-    await firebase.auth().signOut()
+    await signOut(firebaseAppAuth)
     this.isAuthenticated = false
     window.location.reload()
   }
