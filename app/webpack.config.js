@@ -8,7 +8,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const shouldAnalize = true
+const shouldAnalize = false
 
 const defaultPlugins = [
   new HtmlWebpackPlugin({ template: './src/index.html' }),

@@ -21,6 +21,11 @@ export class SocketRoutes {
     client.on('command.lookRight', () => raspiComponents.servo.lookRight())
     client.on('command.lookStraight', () => raspiComponents.servo.lookStraight())
 
+    // LCD  Display
+    client.on('command.printLCD', (data) => raspiComponents.lcdDisplay.print(data.text))
+    client.on('command.printLCDAutoscroll', (data) => raspiComponents.lcdDisplay.printAutoscroll(data.text))
+    client.on('command.cleanLCD', () => raspiComponents.lcdDisplay.clean())
+
     // Seven segment led
     client.on('command.startSevenSegmentLed', () => raspiComponents.sevenSegmentLed.start())
     client.on('command.stopSevenSegmentLed', () => raspiComponents.sevenSegmentLed.stop())

@@ -40,6 +40,7 @@ export class App {
 
     this.ioListen.on('connection', (client) => this.socketRoutes.routes(client, this.raspiComponents))
 
-    setTimeout(() => soundPlayer.playRandomSound(), 10000)
+    this.raspiComponents.lcdDisplay.print('Hello World!')
+    setTimeout(() => soundPlayer.playRandomSound(), 1000)
   }
 }
