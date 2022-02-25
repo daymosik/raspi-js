@@ -71,17 +71,6 @@ boardsFn.boards.on('ready', function () {
     // sensor: new Sensor(boardsFn),
   }
 
-  const strobe = new five.Pin({
-    pin: 16,
-    board: boardsFn.nodemcu,
-    mode: five.Pin.OUTPUT,
-  })
-  let state = 0x00
-
-  this.loop(500, function () {
-    strobe.write((state ^= 0x01))
-  })
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   app = new App(raspiComponents)
 
