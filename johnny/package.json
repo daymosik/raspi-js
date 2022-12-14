@@ -18,7 +18,7 @@
   "dependencies": {
     "concurrently": "^6.4.0",
     "etherport-client": "^0.1.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "google-translate-api": "^2.3.0",
     "j5-songs": "0.0.9",
     "johnny-five": "^2.1.0",
