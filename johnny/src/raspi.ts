@@ -29,13 +29,13 @@ const ports = [
   // uno
   // { id: 'B', port: '/dev/ttyACM0' },
   // nodemcu
-  {
-    id: 'C',
-    port: new EtherPortClient({
-      host: '192.168.1.181',
-      port: 3030,
-    }),
-  },
+  // {
+  //   id: 'C',
+  //   port: new EtherPortClient({
+  //     host: '192.168.1.181',
+  //     port: 3030,
+  //   }),
+  // },
 ]
 
 // const ports = ['A', 'B']

@@ -4,3 +4,4 @@ public/
 .idea/
 firebase-debug.log
 dist/
+VERSION

@@ -1,0 +1,27 @@
+version: '3'
+services:
+  johnny:
+    container_name: johnny
+    build:
+      context: ./johnny
+      dockerfile: Dockerfile
+    volumes:
+      - /home/damian/raspi-js/johnny:/app
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    tty: true
+
+  webapp:
+    container_name: webapp
+    build:
+      context: webapp
+      dockerfile: Dockerfile
+    volumes:
+      - /home/damian/raspi-js/webapp:/app
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    tty: true

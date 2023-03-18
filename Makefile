@@ -13,8 +13,8 @@ serve:
 
 build:
 	rm -rf public/*
-	@cd app && make build
+	@cd webapp && make build
 
 build-w:
 	rm -rf public/*
-	@cd app && make build-w
+	@cd webapp && make build-w

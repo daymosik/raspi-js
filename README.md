@@ -71,6 +71,8 @@ npm install
 ```
 
 Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to arduino correct interface)
+
+Removed from package.json "nodebots-interchange": "^2.1.3",
 ```
 interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
