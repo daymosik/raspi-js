@@ -1,7 +1,7 @@
 import * as io from 'socket.io-client'
 
-const SOCKET_ADDRESS = 'https://raspi-js.ddns.net:443'
-// const SOCKET_ADDRESS = 'https://192.168.1.200:443'
+// const SOCKET_ADDRESS = 'https://raspi-js.ddns.net:443'
+const SOCKET_ADDRESS = 'https://192.168.1.180:443'
 
 const socket = io.connect(SOCKET_ADDRESS, {
   // reconnect: true,

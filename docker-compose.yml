@@ -1,0 +1,44 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    volumes:
+      - /home/damian/raspi-js/nginx/certs:/etc/nginx/certs
+      - /home/damian/raspi-js/nginx/snippets:/etc/nginx/snippets
+    restart: unless-stopped
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#      - "5001:5001"
+    network_mode: host
+
+  johnny:
+    container_name: johnny
+    build:
+      context: johnny
+      dockerfile: Dockerfile
+    volumes:
+      - /home/damian/raspi-js/johnny:/app
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: unless-stopped
+#    ports:
+#      - "8090:8090"
+    privileged: true
+    network_mode: host
+    tty: true
+
+  webapp:
+    container_name: webapp
+    build:
+      context: webapp
+      dockerfile: Dockerfile
+    volumes:
+      - /home/damian/raspi-js/webapp:/app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+      - "9005:9005"
