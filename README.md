@@ -18,7 +18,6 @@ Powered with NodeJS, express, socket.io and firebase.
 * It speaks!
 * AirPlay server
 * View from USB Camera through GUI
-* HomeKit Support
 * Yamaha AV receiver control from GUI
 
 ## Hardware specification ##
@@ -50,16 +49,33 @@ Powered with NodeJS, express, socket.io and firebase.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **GitHub Actions CI** automated deploys to firebase hosting
-* **Typescript** with tslint
+* **Typescript**
 * **Bootstrap 5**
-* **Node v16.10.0**
-* **yarn** package manager
+* **Node v18.x**
 * **Makefile** for running scripts
-* Raspbian Jessie
+* Raspbian Buster
+
+## Docker ##
+
+```
+docker compose build
+docker compose up -d
+
+docker exec -ti webapp zsh
+```
+
 
 ## Installation ##
 
 For preparing your Raspberry Pi connection through Node.js with Arduino Uno, You have to upload **StandardFirmataPlus** on Arduino. For more information please refer to [Johnny-Five](http://johnny-five.io)
+
+Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to arduino correct interface)
+
+20.03.2023: Removed from package.json "nodebots-interchange": "^2.1.3",
+```
+interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
+```
+TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
 
 For running scripts You must have a **SSH** connection or direct bash access to Raspberry Pi  
 
@@ -69,14 +85,6 @@ Install all required node dependencies
 ```
 npm install
 ```
-
-Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to arduino correct interface)
-
-Removed from package.json "nodebots-interchange": "^2.1.3",
-```
-interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
-```
-TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
 
 For AirPlay install [shairport](https://github.com/abrasive/shairport)
 
