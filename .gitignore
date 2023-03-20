@@ -5,3 +5,6 @@ public/
 firebase-debug.log
 dist/
 VERSION
+
+# Firebase cache
+.firebase/
