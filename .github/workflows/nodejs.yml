@@ -14,7 +14,7 @@ jobs:
         node-version: [ 18.x ]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -45,5 +45,10 @@ jobs:
         env:
           CI: true
 
-      - name: Deploy
-        run: cd webapp && npm run deploy --token ${{ secrets.FIREBASE_TOKEN }}
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_RASPI_JS }}'
+          channelId: live
+          projectId: raspi-js
+          entryPoint: "./webapp"
