@@ -10,6 +10,7 @@
     "build:production": "NODE_ENV=production webpack",
     "webpack-watch": "webpack -w",
     "serve": "firebase serve --host 0.0.0.0",
+    "deploy": "firebase deploy",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "prettier": "prettier \"./src/**/*.{ts,tsx,scss}\" --check",
     "fix:prettier": "prettier \"./src/**/*.{ts,tsx,scss}\" --write",

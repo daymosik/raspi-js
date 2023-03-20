@@ -46,4 +46,4 @@ jobs:
           CI: true
 
       - name: Deploy
-        run: cd webapp && firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+        run: cd webapp && npm run deploy --token ${{ secrets.FIREBASE_TOKEN }}
