@@ -32,15 +32,15 @@ Powered with NodeJS, express, socket.io and firebase.
 
 * NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0
 * Arduino Mega 2560 + Sensor Shield V2.0
-* ~~Arduino Uno R3 + Sensor Shield V4.0~~
 * LiPo Battery (2200mAH, 11,1V)
-* ~~Ultrasonic sensor HC-SR04~~
 * L298N H-bridge Dual Motor Controller + 2 x LEGO 88003 SILNIK L
-* ~~TowerPro SG90 Servo~~
 * 5161AS Seven Segment LED Display with 74HC595 Shift Register
 * RGB Common cathode LED
 * Buzzer
 * LCD 2x16 Display with PCF8574 I2C converter
+* ~~Arduino Uno R3 + Sensor Shield V4.0~~
+* ~~TowerPro SG90 Servo~~
+* ~~Ultrasonic sensor HC-SR04~~
 
 ## Software specification ##
 
