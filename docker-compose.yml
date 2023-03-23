@@ -33,6 +33,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./johnny:/app
+      - ./data/wav:/wav
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
     restart: unless-stopped

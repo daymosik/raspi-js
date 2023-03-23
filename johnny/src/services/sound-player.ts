@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 import Player from 'play-sound'
 
-const MAIN_FOLDER = '../data/wav/'
+const MAIN_FOLDER = '../wav/'
 
 type Play = ReturnType<typeof Player>
 

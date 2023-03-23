@@ -30,7 +30,7 @@ Powered with NodeJS, express, socket.io and firebase.
 
 ### Arduino ###
 
-* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0
+* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI )
 * Arduino Mega 2560 + Sensor Shield V2.0
 * LiPo Battery (2200mAH, 11,1V)
 * L298N H-bridge Dual Motor Controller + 2 x LEGO 88003 SILNIK L
