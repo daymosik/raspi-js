@@ -30,10 +30,12 @@ Powered with NodeJS, express, socket.io and firebase.
 
 ### Arduino ###
 
-* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI )
 * Arduino Mega 2560 + Sensor Shield V2.0
+* Arduino Uno R3
+* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI )
 * LiPo Battery (2200mAH, 11,1V)
 * L298N H-bridge Dual Motor Controller + 2 x LEGO 88003 SILNIK L
+* L298N H-bridge Dual Motor Controller + 1 x LEGO 88003 SILNIK L
 * 5161AS Seven Segment LED Display with 74HC595 Shift Register
 * RGB Common cathode LED
 * Buzzer
@@ -49,6 +51,7 @@ Powered with NodeJS, express, socket.io and firebase.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **GitHub Actions CI** automated deploys to firebase hosting
+* **Docker**
 * **Typescript**
 * **Bootstrap 5**
 * **Node v18.x**
@@ -60,6 +63,8 @@ Powered with NodeJS, express, socket.io and firebase.
 ```
 docker compose build
 docker compose up -d
+
+docker compose restart webapp
 
 docker exec -ti webapp zsh
 ```
