@@ -4,22 +4,22 @@ import { BoardsFn } from '@raspi'
 import joystickHelper from '../helpers/joystick'
 import { JoystickCoords, JoystickDirection } from '../models/motors'
 
-const MOTORS_PINS_NODEMCU = [
-  {
-    pins: {
-      pwm: 4,
-      dir: 12,
-      cdir: 14,
-    },
-  },
-  {
-    pins: {
-      pwm: 5,
-      dir: 13,
-      cdir: 15,
-    },
-  },
-]
+// const MOTORS_PINS_NODEMCU = [
+//   {
+//     pins: {
+//       pwm: 4,
+//       dir: 12,
+//       cdir: 14,
+//     },
+//   },
+//   {
+//     pins: {
+//       pwm: 5,
+//       dir: 13,
+//       cdir: 15,
+//     },
+//   },
+// ]
 
 // const MOTORS_PINS_MEGA = [{
 //   pins: {
@@ -35,22 +35,28 @@ const MOTORS_PINS_NODEMCU = [
 //   }
 // }];
 
-// const MOTORS_PINS_UNO = [
-//   {
-//     pins: {
-//       pwm: 6,
-//       dir: 8,
-//       cdir: 7,
-//     },
-//   },
-//   {
-//     pins: {
-//       pwm: 5,
-//       dir: 9,
-//       cdir: 10,
-//     },
-//   },
-// ]
+const MOTORS_PINS_UNO = [
+  {
+    pins: {
+      pwm: 10,
+      dir: 8,
+      cdir: 9,
+    },
+  },
+  {
+    pins: {
+      pwm: 11,
+      dir: 12,
+      cdir: 13,
+    },
+  },
+]
+
+const DOOR_MOTOR_PINS_UNO = {
+  pwm: 3,
+  dir: 2,
+  cdir: 4,
+}
 
 const MOTORS_AUTO_STOP_TIME = 500
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,8 +64,12 @@ const MOTORS_SPEED = 180
 const MOTORS_TURN_SPEED = 180
 const MOTORS_SWIPE_SPEED = 150
 
+const DOOR_MOTOR_SPEED = 100
+const DOOR_MOTOR_AUTO_STOP_TIME = 3000
+
 export class Motors {
   public motors
+  public doorMotor
   public autoStopTime: number = MOTORS_AUTO_STOP_TIME
   public working = false
 
@@ -69,17 +79,22 @@ export class Motors {
   constructor(boardsFn: BoardsFn) {
     this.motors = new five.Motors([
       {
-        pins: MOTORS_PINS_NODEMCU[0].pins,
-        board: boardsFn.nodemcu,
+        pins: MOTORS_PINS_UNO[0].pins,
+        board: boardsFn.uno,
       },
       {
-        pins: MOTORS_PINS_NODEMCU[1].pins,
-        board: boardsFn.nodemcu,
+        pins: MOTORS_PINS_UNO[1].pins,
+        board: boardsFn.uno,
       },
     ])
 
+    this.doorMotor = new five.Motor({
+      pins: DOOR_MOTOR_PINS_UNO,
+      board: boardsFn.uno,
+    })
+
     this.motors[0].on('start', () => {
-      // console.log('start', Date.now());
+      // console.log('start', Date.now())
 
       boardsFn.boards[0].wait(MOTORS_AUTO_STOP_TIME, () => {
         if (!this.joystickControl) {
@@ -88,7 +103,27 @@ export class Motors {
       })
     })
 
-    // this.motors[0].on('stop', () => console.log('stop', Date.now()));
+    // this.motors[0].on('stop', () => console.log('stop', Date.now()))
+
+    this.doorMotor.on('start', () => {
+      // console.log('start', Date.now())
+
+      boardsFn.boards[0].wait(DOOR_MOTOR_AUTO_STOP_TIME, () => {
+        this.doorMotor.stop()
+      })
+    })
+  }
+
+  public openDoors = (speed?: number): void => {
+    this.doorMotor.forward(speed || DOOR_MOTOR_SPEED)
+  }
+
+  public closeDoors = (speed?: number): void => {
+    this.doorMotor.reverse(speed || DOOR_MOTOR_SPEED)
+  }
+
+  public stopDoors = (): void => {
+    this.doorMotor.stop()
   }
 
   public handleJoystick = (coords: JoystickCoords): void => {

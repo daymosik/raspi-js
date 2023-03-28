@@ -27,15 +27,15 @@ const ports = [
   // mega
   { id: 'A', port: '/dev/ttyUSB0' },
   // uno
-  // { id: 'B', port: '/dev/ttyACM0' },
+  { id: 'B', port: '/dev/ttyACM0' },
   // nodemcu
-  {
-    id: 'C',
-    port: new EtherPortClient({
-      host: '192.168.1.181',
-      port: 3030,
-    }),
-  },
+  // {
+  //   id: 'C',
+  //   port: new EtherPortClient({
+  //     host: '192.168.1.181',
+  //     port: 3030,
+  //   }),
+  // },
 ]
 
 // const ports = ['A', 'B']
@@ -58,8 +58,8 @@ export let app
 
 boardsFn.boards.on('ready', function () {
   boardsFn.mega = this[0]
-  // boardsFn.uno = this[1]
-  boardsFn.nodemcu = this[1]
+  boardsFn.uno = this[1]
+  // boardsFn.nodemcu = this[1]
 
   const raspiComponents: RaspiComponents = {
     motors: new Motors(boardsFn),

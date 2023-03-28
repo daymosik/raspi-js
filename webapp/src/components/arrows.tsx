@@ -63,6 +63,22 @@ export default class Arrows extends React.Component<unknown, unknown> {
             </ArrowButton>
             <div className="w-100" />
             <ArrowButton onClick={(): void => this.toggleExploration()}>Exploration</ArrowButton>
+            <div className="w-100" />
+            <ArrowButton onClick={(): void => this.closeDoors()}>
+              <i className="fa fa-chevron-down" />
+            </ArrowButton>
+            <ArrowButton onClick={(): void => this.closeDoors(50)}>
+              <i className="fa fa-chevron-circle-down" />
+            </ArrowButton>
+            <ArrowButton onClick={(): void => this.stopDoors()}>
+              <i className="fa fa-square-full" />
+            </ArrowButton>
+            <ArrowButton onClick={(): void => this.openDoors(50)}>
+              <i className="fa fa-chevron-circle-up" />
+            </ArrowButton>
+            <ArrowButton onClick={(): void => this.openDoors()}>
+              <i className="fa fa-chevron-up" />
+            </ArrowButton>
           </div>
         </div>
       </div>
@@ -85,6 +101,22 @@ export default class Arrows extends React.Component<unknown, unknown> {
     socket.emit('command.moveServo', {
       command,
     })
+  }
+
+  public openDoors = (speed?: number): void => {
+    socket.emit('command.openDoors', {
+      speed,
+    })
+  }
+
+  public closeDoors = (speed?: number): void => {
+    socket.emit('command.closeDoors', {
+      speed,
+    })
+  }
+
+  public stopDoors = (): void => {
+    socket.emit('command.stopDoors')
   }
 
   public toggleExploration = (): void => {

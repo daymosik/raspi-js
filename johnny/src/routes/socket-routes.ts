@@ -16,6 +16,9 @@ export class SocketRoutes {
     client.on('command.handleJoystick', (data) => raspiComponents.motors.handleJoystick(data))
     client.on('command.stopMotor', () => raspiComponents.motors.stop())
     client.on('command.moveServo', (data) => raspiComponents.servo[data.command](data.speed))
+    client.on('command.openDoors', (data) => raspiComponents.motors.openDoors(data.speed))
+    client.on('command.closeDoors', (data) => raspiComponents.motors.closeDoors(data.speed))
+    client.on('command.stopDoors', () => raspiComponents.motors.stopDoors())
 
     client.on('command.lookLeft', () => raspiComponents.servo.lookLeft())
     client.on('command.lookRight', () => raspiComponents.servo.lookRight())
