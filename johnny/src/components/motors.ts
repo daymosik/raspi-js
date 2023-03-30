@@ -60,12 +60,12 @@ const DOOR_MOTOR_PINS_UNO = {
 
 const MOTORS_AUTO_STOP_TIME = 500
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const MOTORS_SPEED = 180
+const MOTORS_SPEED = 220
 const MOTORS_TURN_SPEED = 180
 const MOTORS_SWIPE_SPEED = 150
 
-const DOOR_MOTOR_SPEED = 100
-const DOOR_MOTOR_AUTO_STOP_TIME = 3000
+const DOOR_MOTOR_SPEED = 150
+const DOOR_MOTOR_AUTO_STOP_TIME = 3500
 
 export class Motors {
   public motors: five.Motors
@@ -160,15 +160,14 @@ export class Motors {
   public swipeRight = (): void => this.swipe('right')
 
   public goForward = (speed: number): void => {
-    console.log(speed)
     this.working = true
-    this.motors.forward(speed)
+    this.motors.forward(typeof speed !== 'undefined' ? speed : MOTORS_SPEED)
     this.unsetWorking()
   }
 
   public goBack = (speed: number): void => {
     this.working = true
-    this.motors.reverse(speed)
+    this.motors.reverse(typeof speed !== 'undefined' ? speed : MOTORS_SPEED)
     this.unsetWorking()
   }
 
@@ -196,11 +195,11 @@ export class Motors {
   private complexMove = (moveType: 'turn' | 'swipe', direction: 'left' | 'right', speed: number): void => {
     this.working = true
     if (moveType === 'turn') {
-      this.motors[direction === 'right' ? 0 : 1].forward(speed)
-      this.motors[direction === 'right' ? 1 : 0].reverse(speed)
+      this.motors[direction === 'right' ? 1 : 0].forward(speed)
+      this.motors[direction === 'right' ? 0 : 1].reverse(speed)
     } else if (moveType === 'swipe') {
-      this.motors[direction === 'right' ? 0 : 1].forward(speed)
-      this.motors[direction === 'right' ? 1 : 0].forward(speed / 2)
+      this.motors[direction === 'right' ? 1 : 0].forward(speed)
+      this.motors[direction === 'right' ? 0 : 1].forward(speed / 2)
     }
     this.unsetWorking()
   }
