@@ -1,4 +1,4 @@
-FROM node:18
+FROM node:lts-buster
 
 MAINTAINER Damian Majsner <d.majsner@gmail.com>
 
@@ -12,4 +12,5 @@ RUN usermod -a -G dialout root
 
 WORKDIR /app
 
-CMD ["make", "run"]
+#CMD ["make", "run"]
+#CMD ["make", "start-dev"]

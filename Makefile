@@ -12,9 +12,9 @@ serve:
 	firebase serve --host 0.0.0.0
 
 build:
-	rm -rf public/*
+	rm -rf webapp/dist/*
 	@cd webapp && make build
 
 build-w:
-	rm -rf public/*
+	rm -rf webapp/dist/*
 	@cd webapp && make build-w

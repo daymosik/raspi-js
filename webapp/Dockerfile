@@ -10,4 +10,5 @@ WORKDIR /app
 
 EXPOSE 9005
 
-CMD ["./run.sh"]
+#CMD ["./run.sh"]
+#CMD ["make", "build"]

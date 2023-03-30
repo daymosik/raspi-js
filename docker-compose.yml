@@ -9,11 +9,12 @@ services:
       - ./nginx:/etc/nginx/conf.d:ro
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+      - ./webapp/dist:/var/www/webapp
     restart: unless-stopped
-#    ports:
-#      - "80:80"
-#      - "443:443"
-#      - "5001:5001"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "5001:5001"
     network_mode: host
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
 
@@ -43,6 +44,8 @@ services:
     privileged: true
     network_mode: host
     tty: true
+    command: make run
+#    command: make start-dev
 
   webapp:
     container_name: webapp
@@ -51,7 +54,13 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./webapp:/app
-    restart: unless-stopped
+#    restart: unless-stopped
+    restart: no
     ports:
       - "5000:5000"
       - "9005:9005"
+#    command: make build
+    entrypoint: make build
+    tty: true
+#    command:
+#      - ./run.sh
