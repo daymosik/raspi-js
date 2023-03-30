@@ -9,7 +9,7 @@ const SEVEN_LED_SEGMENT_PINS = {
 }
 
 export class SevenSegmentLed {
-  private led
+  private led: five.ShiftRegister
   private ledInterval
 
   constructor(boardsFn: BoardsFn) {

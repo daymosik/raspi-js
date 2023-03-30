@@ -24,5 +24,7 @@ export class LcdDisplay {
     this.display.noAutoscroll().print(text)
   }
 
-  public clean = (): void => this.display.clear()
+  public clean = (): void => {
+    this.display.clear()
+  }
 }

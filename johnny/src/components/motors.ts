@@ -68,8 +68,8 @@ const DOOR_MOTOR_SPEED = 100
 const DOOR_MOTOR_AUTO_STOP_TIME = 3000
 
 export class Motors {
-  public motors
-  public doorMotor
+  public motors: five.Motors
+  public doorMotor: five.Motor
   public autoStopTime: number = MOTORS_AUTO_STOP_TIME
   public working = false
 
@@ -105,6 +105,9 @@ export class Motors {
 
     // this.motors[0].on('stop', () => console.log('stop', Date.now()))
 
+    // TODO
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this.doorMotor.on('start', () => {
       // console.log('start', Date.now())
 
@@ -157,6 +160,7 @@ export class Motors {
   public swipeRight = (): void => this.swipe('right')
 
   public goForward = (speed: number): void => {
+    console.log(speed)
     this.working = true
     this.motors.forward(speed)
     this.unsetWorking()

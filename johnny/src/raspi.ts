@@ -1,6 +1,6 @@
 import { LcdDisplay } from '@components/lcd-display'
 import * as five from 'johnny-five'
-import { EtherPortClient } from 'etherport-client'
+// import { EtherPortClient } from 'etherport-client'
 
 import { Buzzer } from '@components/buzzer'
 import { LedRgb } from '@components/led-rgb'
@@ -41,10 +41,10 @@ const ports = [
 // const ports = ['A', 'B']
 
 export interface BoardsFn {
-  boards: five.Board.Collection
-  mega: five.Board
-  uno: five.Board
-  nodemcu: five.Board
+  boards: five.Boards<any, any>
+  mega: five.Board | undefined
+  uno: five.Board | undefined
+  nodemcu: five.Board | undefined
 }
 
 const boardsFn: BoardsFn = {
@@ -75,6 +75,9 @@ boardsFn.boards.on('ready', function () {
   app = new App(raspiComponents)
 
   // allows direct command line access
+  // TODO
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   boardsFn.boards.repl.inject({
     raspiComponents,
   })

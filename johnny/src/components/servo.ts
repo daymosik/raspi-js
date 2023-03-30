@@ -4,7 +4,7 @@ import * as five from 'johnny-five'
 const SERVO_PIN = 2
 
 export class Servo {
-  public servo
+  public servo: five.Servo
 
   public constructor(boardsFn: BoardsFn) {
     this.servo = new five.Servo({
@@ -14,7 +14,7 @@ export class Servo {
       // startAt: 1800,
       board: boardsFn.nodemcu,
       // deviceRange: [0, 3600],
-      debug: true,
+      // debug: true,
     })
   }
 
@@ -32,5 +32,9 @@ export class Servo {
 
   public sweep = (): void => this.servo.sweep()
 
-  public step = (rate: number): void => this.servo.step(rate)
+  public step = (rate: number): void => {
+    // TODO
+    this.servo.to(rate)
+    // this.servo.step(rate)
+  }
 }
