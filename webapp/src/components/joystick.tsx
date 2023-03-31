@@ -1,6 +1,6 @@
 import { RefObject } from 'react'
 import * as React from 'react'
-import * as Hammer from 'hammerjs'
+import Hammer from 'hammerjs'
 import { JoystickCoords } from '../models/motors'
 import * as createjs from 'createjs-module'
 import { Shape, Stage } from 'createjs-module'

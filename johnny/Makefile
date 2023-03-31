@@ -4,10 +4,13 @@ sources := tsconfig.json .eslintrc.json $(shell find ./src -type f)
 npm_dep = package.json
 libs = node_modules/installed_ts
 
-run: build server
+run: build start
 
-server:
-	npm run server
+start:
+	npm run start
+
+start-dev:
+	npm run start:dev
 
 build: VERSION
 VERSION: $(libs) $(sources)

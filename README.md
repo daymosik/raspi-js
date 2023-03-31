@@ -7,7 +7,7 @@ RaspiJS
 ![alt text](https://raw.githubusercontent.com/daymosik/raspi-js/master/app/src/assets/images/logo-vertical.png)
 
 A Raspberry PI and Arduino based smart robot.  
-Built with Johnny-Five, React, Webpack and Typescript.  
+Built with Johnny-Five, React, esbuild and Typescript.  
 Powered with NodeJS, express, socket.io and firebase.  
 
 ## Raspi's actual abilities ##
@@ -125,24 +125,39 @@ FIREBASE_APP_ID=your-app-id
 
 ### Running scripts ###
 
+#### Johnny ####
+
 Run RaspiJS app
-(NodeJS server, socket.io server, Arduino connection, Sharepoint)
+(NodeJS server, socket.io server, Arduino connection)
 ```
 make run
 ```
 
+Build app
+```
+make build
+```
+
 Run app in development mode
-(+ Webpack watch server)
 ```
-make build-w
+make start-dev
 ```
+
+#### Webapp ####
 
 Build GUI
 ```
 make build
 ```
 
-Run this command  to build with firebase config
+Watch GUI
+```
+make watch
+```
+
+#### Github actions ####
+
+Run this command to build with firebase config
 ```
 ./build.sh
 ```
