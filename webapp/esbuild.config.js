@@ -49,7 +49,7 @@ let context = await esbuild
     },
   })
   .then((context) => {
-    fs.copyFile(`src/index.html`, `${DIST_DIR}/index.html`, (err) => {
+    fs.copyFile(`./src/index.html`, `${DIST_DIR}/index.html`, (err) => {
       if (err) throw err
       console.log(`${DIST_DIR}/index.html: copied.`)
     })
