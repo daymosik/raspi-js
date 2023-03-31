@@ -39,13 +39,12 @@ services:
       - /dev/ttyUSB0:/dev/ttyUSB0
       - /dev/ttyACM0:/dev/ttyACM0
     restart: unless-stopped
-#    ports:
-#      - "8090:8090"
+    ports:
+      - "8090:8090"
     privileged: true
     network_mode: host
     tty: true
-    command: make run
-#    command: make start-dev
+    entrypoint: make run
 
   webapp:
     container_name: webapp
@@ -54,13 +53,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./webapp:/app
-#    restart: unless-stopped
     restart: no
-    ports:
-      - "5000:5000"
-      - "9005:9005"
-#    command: make build
     entrypoint: make build
-    tty: true
-#    command:
-#      - ./run.sh

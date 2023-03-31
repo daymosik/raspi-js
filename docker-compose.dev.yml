@@ -1,0 +1,7 @@
+version: '3'
+services:
+  johnny:
+    command: make start-dev
+
+  webapp:
+    entrypoint: make watch

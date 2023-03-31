@@ -11,6 +11,3 @@ RUN usermod -a -G tty root
 RUN usermod -a -G dialout root
 
 WORKDIR /app
-
-#CMD ["make", "run"]
-#CMD ["make", "start-dev"]
