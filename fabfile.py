@@ -63,19 +63,19 @@ def purge(ctx, names='johnny+webapp+nginx+certbot'):
 @task
 def sh(ctx, docker='johnny'):
     """Spawn and join bash shell in specified node ('johnny' by default)"""
-    subprocess.call(['docker compose', 'exec', name, 'env', 'TERM=xterm', '/bin/bash', '-li'])
+    subprocess.call(['docker compose', 'exec', docker, 'env', 'TERM=xterm', '/bin/bash', '-li'])
 
 
 @task
 def zsh(ctx, docker='johnny'):
     """Spawn and join zsh shell in specified node ('johnny' by default)"""
-    subprocess.call(['docker', 'compose', 'exec', name, 'env', 'TERM=xterm', '/bin/zsh', '-li'])
+    subprocess.call(['docker', 'compose', 'exec', docker, 'env', 'TERM=xterm', '/bin/zsh', '-li'])
 
 
 @task
 def log(ctx, docker='johnny'):
     """Show logs from specified node ('johnny' by default)"""
-    subprocess.call(['docker', 'compose', 'logs', '--tail', 'all', '--follow', name])
+    subprocess.call(['docker', 'compose', 'logs', '--tail', 'all', '--follow', docker])
 
 
 @task
