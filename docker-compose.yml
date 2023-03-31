@@ -44,7 +44,7 @@ services:
     privileged: true
     network_mode: host
     tty: true
-    entrypoint: make run
+    command: make run
 
   webapp:
     container_name: webapp
@@ -54,4 +54,4 @@ services:
     volumes:
       - ./webapp:/app
     restart: no
-    entrypoint: make build
+    command: make build

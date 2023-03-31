@@ -4,4 +4,4 @@ services:
     command: make start-dev
 
   webapp:
-    entrypoint: make watch
+    command: make watch
