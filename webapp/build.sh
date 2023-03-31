@@ -21,4 +21,6 @@ else
   export FIREBASE_TOKEN="${FIREBASE_TOKEN}"
 fi
 
+mkdir dist
+
 npm run build:production

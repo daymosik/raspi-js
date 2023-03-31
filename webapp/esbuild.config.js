@@ -13,8 +13,6 @@ const DIST_DIR = './dist'
 let context = await esbuild
   .context({
     entryPoints: ['src/app.tsx'],
-    // watch: args.includes('--watch'),
-    // watch: true,
     bundle: true,
     minify: true,
     sourcemap: true,
