@@ -51,26 +51,112 @@ Powered with NodeJS, express, socket.io and firebase.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **GitHub Actions CI** automated deploys to firebase hosting
-* **Docker**
 * **Typescript**
 * **Bootstrap 5**
 * **Node v18.x**
+* **Fabric** for managing containers 
 * **Makefile** for running scripts
+* **Docker**
 * Raspbian Buster
 
-## Docker ##
+## Fresh start ##
+
+For running scripts you must have a **SSH** connection or direct bash access to Raspberry Pi.
+
+Make sure to have `docker`, `docker compose` and `fabric` installed on your Raspberry Pi.
+
+### Firebase ###
+
+For firebase API and deployment create .env file in root catalog with following
 
 ```
-docker compose build
-docker compose up -d
-
-docker compose restart webapp
-
-docker exec -ti webapp zsh
+FIREBASE_API_KEY=your-api-key
+FIREBASE_AUTH_DOMAIN=your-domain.firebaseapp.com
+FIREBASE_DATABASE_URL=https://your-domain.firebaseio.com
+FIREBASE_PROJECT_ID=your-domain
+FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
+FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+FIREBASE_APP_ID=your-app-id
 ```
 
+### Starting app ###
 
-## Installation ##
+First you have to init certbot to generate new SSL certificates:
+```
+$ ./init-letsencrypt.sh
+```
+
+Build dockerfiles:
+```
+$ fab build
+```
+
+Start all containers:
+```
+$ fab run
+```
+
+To run in development mode:
+```
+$ fab purge --names webapp
+$ fab run-dev --names webapp
+
+$ fab purge --names johnny
+$ fab run-dev --names johnny
+```
+
+Run commands in containers:
+```
+$ fab sh
+$ fab zsh --docker johnny
+```
+
+### Running scripts ###
+
+#### Johnny ####
+
+To be executed on `johnny` container
+
+Run Johhny Five app with NodeJS server, socket.io server and Arduino connection
+```
+make run
+```
+
+Build app
+```
+make build
+```
+
+Run app in development mode
+```
+make start-dev
+```
+
+#### Webapp ####
+
+To be executed on `webapp` container
+
+Build GUI
+```
+make build
+```
+
+Watch GUI
+```
+make watch
+```
+
+#### Github actions ####
+
+This command is executed to build webapp with firebase config on Github Actions, 
+before publishing to firebase hosting. 
+```
+./build.sh
+```
+
+-------
+
+## Useful informations ##
 
 For preparing your Raspberry Pi connection through Node.js with Arduino Uno, You have to upload **StandardFirmataPlus** on Arduino. For more information please refer to [Johnny-Five](http://johnny-five.io)
 
@@ -81,15 +167,6 @@ Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to ardui
 interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
 TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
-
-For running scripts You must have a **SSH** connection or direct bash access to Raspberry Pi  
-
-### Fresh start ###
-
-Install all required node dependencies 
-```
-npm install
-```
 
 For AirPlay install [shairport](https://github.com/abrasive/shairport)
 
@@ -109,55 +186,3 @@ https://raspberry-valley.azurewebsites.net/Streaming-Video-with-Motion/#setup-st
 
 TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite?view=all
 
-### Firebase ###
-
-For firebase API and deployment create .env file in root catalog with following
-
-```
-FIREBASE_API_KEY=your-api-key
-FIREBASE_AUTH_DOMAIN=your-domain.firebaseapp.com
-FIREBASE_DATABASE_URL=https://your-domain.firebaseio.com
-FIREBASE_PROJECT_ID=your-domain
-FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
-FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
-FIREBASE_APP_ID=your-app-id
-```
-
-### Running scripts ###
-
-#### Johnny ####
-
-Run RaspiJS app
-(NodeJS server, socket.io server, Arduino connection)
-```
-make run
-```
-
-Build app
-```
-make build
-```
-
-Run app in development mode
-```
-make start-dev
-```
-
-#### Webapp ####
-
-Build GUI
-```
-make build
-```
-
-Watch GUI
-```
-make watch
-```
-
-#### Github actions ####
-
-Run this command to build with firebase config
-```
-./build.sh
-```

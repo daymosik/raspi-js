@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "jsx": "react",
     "baseUrl": ".",
+    "esModuleInterop": true,
     "paths": {
       "@assets/*": [ "src/assets/*" ],
       "@components/*": [ "src/components/*" ],
