@@ -9,6 +9,7 @@ RaspiJS
 A Raspberry PI and Arduino based smart robot.  
 Built with Johnny-Five, React, esbuild and Typescript.  
 Powered with NodeJS, express, socket.io and firebase.  
+Assembled with LEGO bricks.
 
 ## Raspi's actual abilities ##
 
@@ -34,8 +35,8 @@ Powered with NodeJS, express, socket.io and firebase.
 * Arduino Uno R3
 * NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI )
 * LiPo Battery (2200mAH, 11,1V)
-* L298N H-bridge Dual Motor Controller + 2 x LEGO 88003 SILNIK L
-* L298N H-bridge Dual Motor Controller + 1 x LEGO 88003 SILNIK L
+* L298N H-bridge Dual Motor Controller + 2 x LEGO Technic - Power Functions L-Motor 88003
+* L298N H-bridge Dual Motor Controller + 1 x LEGO Technic - Power Functions L-Motor 88003
 * 5161AS Seven Segment LED Display with 74HC595 Shift Register
 * RGB Common cathode LED
 * Buzzer
@@ -51,12 +52,12 @@ Powered with NodeJS, express, socket.io and firebase.
 * **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
 * **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
 * **GitHub Actions CI** automated deploys to firebase hosting
+* **Docker** with **Docker Compose** for running the environment in containers
+* **Fabric** for managing containers
+* **Makefile** for running scripts
+* **Node v18.x**
 * **Typescript**
 * **Bootstrap 5**
-* **Node v18.x**
-* **Fabric** for managing containers 
-* **Makefile** for running scripts
-* **Docker**
 * Raspbian Buster
 
 ## Fresh start ##
