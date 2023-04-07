@@ -75,6 +75,7 @@ let context = await esbuild
       swDest: 'dist/sw.js',
       ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
     })
+    console.log(`Service Worker: generated.`)
     return context
   })
 
