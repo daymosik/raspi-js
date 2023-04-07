@@ -13,11 +13,11 @@ const DIST_DIR = './dist'
 let context = await esbuild
   .context({
     entryPoints: ['src/app.tsx'],
+    outdir: DIST_DIR,
     bundle: true,
     minify: true,
     sourcemap: true,
     logLevel: 'info',
-    outdir: 'dist',
     format: 'esm',
     loader: {
       '.png': 'file',
@@ -45,27 +45,17 @@ let context = await esbuild
       'process.env.FIREBASE_APP_ID': JSON.stringify(process.env.FIREBASE_APP_ID),
     },
   })
-  .then((context) => {
-    fs.copyFile(`./src/index.html`, `${DIST_DIR}/index.html`, (err) => {
+  .then(async (context) => {
+    const cb = (err) => {
       if (err) throw err
-      console.log(`${DIST_DIR}/index.html: copied.`)
-    })
-    return context
-  })
-  .then((context) => {
-    fs.copyFile(`./src/raspi-js.webmanifest`, `${DIST_DIR}/raspi-js.webmanifest`, (err) => {
-      if (err) throw err
-      console.log(`${DIST_DIR}/raspi-js.webmanifest: copied.`)
-    })
-    return context
-  })
-  .then((context) => {
-    fs.mkdir(`${DIST_DIR}/images`, () => {
-      fs.copyFile(`./src/assets/images/logo-vertical.png`, `${DIST_DIR}/images/logo-vertical.png`, (err) => {
-        if (err) throw err
-        console.log(`${DIST_DIR}/images/logo-vertical.png: copied.`)
-      })
-    })
+    }
+    await fs.mkdir(`${DIST_DIR}/images`, cb)
+    await fs.copyFile(`./src/index.html`, `${DIST_DIR}/index.html`, cb)
+    console.log(`${DIST_DIR}/index.html: copied.`)
+    await fs.copyFile(`./src/raspi-js.webmanifest`, `${DIST_DIR}/raspi-js.webmanifest`, cb)
+    console.log(`${DIST_DIR}/raspi-js.webmanifest: copied.`)
+    await fs.copyFile(`./src/assets/images/logo-vertical.png`, `${DIST_DIR}/images/logo-vertical.png`, cb)
+    console.log(`${DIST_DIR}/images/logo-vertical.png: copied.`)
     return context
   })
   .then(async (context) => {
