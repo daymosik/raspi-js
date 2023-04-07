@@ -3,7 +3,7 @@ import postcss from 'postcss'
 import autoprefixer from 'autoprefixer'
 import esbuild from 'esbuild'
 import * as fs from 'fs'
-// import manifestPlugin from 'esbuild-plugin-manifest'
+import { generateSW } from 'workbox-build'
 
 const args = process.argv.slice(2)
 const watch = args.includes('--watch')
@@ -28,10 +28,9 @@ let context = await esbuild
       '.eot': 'file',
     },
     plugins: [
-      // manifestPlugin(),
       sassPlugin({
         async transform(source) {
-          const { css } = await postcss([autoprefixer]).process(source)
+          const { css } = await postcss([autoprefixer]).process(source, { from: undefined })
           return css
         },
       }),
@@ -53,6 +52,31 @@ let context = await esbuild
     })
     return context
   })
+  .then((context) => {
+    fs.copyFile(`./src/raspi-js.webmanifest`, `${DIST_DIR}/raspi-js.webmanifest`, (err) => {
+      if (err) throw err
+      console.log(`${DIST_DIR}/raspi-js.webmanifest: copied.`)
+    })
+    return context
+  })
+  .then((context) => {
+    fs.mkdir(`${DIST_DIR}/images`, () => {
+      fs.copyFile(`./src/assets/images/logo-vertical.png`, `${DIST_DIR}/images/logo-vertical.png`, (err) => {
+        if (err) throw err
+        console.log(`${DIST_DIR}/images/logo-vertical.png: copied.`)
+      })
+    })
+    return context
+  })
+  .then(async (context) => {
+    await generateSW({
+      globDirectory: 'dist/',
+      globPatterns: ['**/*.{css,woff2,png,svg,jpg,js,html,webmanifest}'],
+      swDest: 'dist/sw.js',
+      ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
+    })
+    return context
+  })
 
 if (watch) {
   await context.watch()
@@ -62,27 +86,3 @@ if (watch) {
   console.log('⚡ Build complete! ⚡')
   context.dispose()
 }
-
-// TODO
-// new WebpackPwaManifest({
-//     name: 'RaspiJS',
-//     short_name: 'RaspiJS',
-//     description: '',
-//     background_color: '#ffffff',
-//     crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
-//     icons: [
-//         {
-//             src: path.resolve('src/assets/images/logo-vertical.png'),
-//             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
-//         },
-//         {
-//             src: path.resolve('src/assets/images/logo-vertical.png'),
-//             size: '1024x1024', // you can also use the specifications pattern
-//         },
-//     ],
-// }),
-//     new WorkboxPlugin.GenerateSW({
-//         swDest: 'sw.js',
-//         clientsClaim: true,
-//         skipWaiting: true,
-//     }),
