@@ -4,7 +4,7 @@
 RaspiJS 
 ====
 
-![alt text](https://raw.githubusercontent.com/daymosik/raspi-js/master/webapp/src/assets/images/logo-vertical.png)
+![alt text](https://raw.githubusercontent.com/daymosik/raspi-js/master/webapp/src/assets/images/raspi-logo-1-200.png)
 
 A Raspberry PI and Arduino based smart robot.  
 Built with Johnny-Five, React, esbuild and Typescript.  

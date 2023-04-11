@@ -49,24 +49,44 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
 
   public render(): JSX.Element {
     return (
-      <div className="container pt-5">
-        <div className="text-center">
-          <img src={require('../../assets/images/logo-vertical.png')} alt="" />
-        </div>
+      <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div
+            className="card bg-dark text-white"
+            //style="border-radius: 1rem;"
+          >
+            <div className="card-body p-5">
+              <div className="text-center">
+                <img src={require('../../assets/images/raspi-logo-1.png')} alt="RaspiJS" style={{ width: '100%' }} />
+              </div>
 
-        <h2>Login</h2>
-        <form onSubmit={this.login}>
-          {/*{props.errorMessage && <p className="error-message">{props.errorMessage}</p>}*/}
-          <FormGroup label={'Email address'}>
-            <FormInputEmail value={this.state.email} handleInputChange={this.handleInputChange} />
-          </FormGroup>
-          <FormGroup label={'Password'}>
-            <FormInputPassword value={this.state.password} handleInputChange={this.handleInputChange} />
-          </FormGroup>
-          <button className="btn btn-primary" type="submit">
-            Zaloguj
-          </button>
-        </form>
+              <hr className="my-4" />
+
+              <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+              <p className="text-white-50 mb-5">Please enter your login and password!</p>
+
+              <form onSubmit={this.login}>
+                {/*TODO*/}
+                {/*{props.errorMessage && <p className="error-message">{props.errorMessage}</p>}*/}
+                <div className="mb-3">
+                  <FormGroup label={'Email address'}>
+                    <FormInputEmail value={this.state.email} handleInputChange={this.handleInputChange} />
+                  </FormGroup>
+                </div>
+                <div className="mb-3">
+                  <FormGroup label={'Password'}>
+                    <FormInputPassword value={this.state.password} handleInputChange={this.handleInputChange} />
+                  </FormGroup>
+                </div>
+                <div className="d-grid gap-2">
+                  <button className="btn btn-primary btn-lg btn-block" type="submit">
+                    Login
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

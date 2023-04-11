@@ -49,30 +49,35 @@ let context = await esbuild
     const cb = (err) => {
       if (err) throw err
     }
-    await fs.mkdir(`${DIST_DIR}/images`, cb)
+    if (!fs.existsSync(`${DIST_DIR}/images`)) {
+      await fs.mkdir(`${DIST_DIR}/images`, cb)
+    }
     await fs.copyFile(`./src/index.html`, `${DIST_DIR}/index.html`, cb)
-    console.log(`${DIST_DIR}/index.html: copied.`)
+    console.log(`✅ HTML: copied.`)
     await fs.copyFile(`./src/raspi-js.webmanifest`, `${DIST_DIR}/raspi-js.webmanifest`, cb)
-    console.log(`${DIST_DIR}/raspi-js.webmanifest: copied.`)
-    await fs.copyFile(`./src/assets/images/logo-vertical.png`, `${DIST_DIR}/images/logo-vertical.png`, cb)
-    console.log(`${DIST_DIR}/images/logo-vertical.png: copied.`)
+    console.log(`✅ Manifest: copied.`)
+    await fs.cp(`./src/assets/images/favicon`, `${DIST_DIR}`, { recursive: true }, cb)
+    console.log(`✅ Favicons: copied.`)
     return context
   })
   .then(async (context) => {
+    console.log(`⏳Service Worker: generating...`)
     await generateSW({
       globDirectory: 'dist/',
       globPatterns: ['**/*.{css,woff2,png,svg,jpg,js,html,webmanifest}'],
       swDest: 'dist/sw.js',
       ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
     })
-    console.log(`Service Worker: generated.`)
+    console.log(`✅ Service Worker: generated.`)
     return context
   })
 
 if (watch) {
+  console.log(`⏳Watching...`)
   await context.watch()
-  console.log('watching')
+  console.log('👀 Watching for changes')
 } else {
+  console.log(`⏳Building...`)
   await context.rebuild()
   console.log('⚡ Build complete! ⚡')
   context.dispose()

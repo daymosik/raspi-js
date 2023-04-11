@@ -36,7 +36,8 @@ export const NavigationButton = (props: NavigationButtonProps): JSX.Element => (
 )
 
 interface NavigationListItemProps {
-  name: string
+  name: JSX.Element | string
+  title?: string
   path?: string
   onClick?: () => void
 }
@@ -44,12 +45,12 @@ interface NavigationListItemProps {
 const NavigationListItem = (props: NavigationListItemProps): JSX.Element => (
   <li className="nav-item">
     {props.path && (
-      <Link className="nav-link" to={props.path}>
+      <Link className="nav-link" to={props.path} title={props.title}>
         {props.name}
       </Link>
     )}
     {props.onClick && (
-      <a className="nav-link" onClick={props.onClick}>
+      <a className="nav-link" onClick={props.onClick} title={props.title}>
         {props.name}
       </a>
     )}
@@ -74,14 +75,32 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
       <NavigationListItem path={NavigationPath.Speech} name={'Speech'} />
       <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} />
     </ul>
-    <ul className="navbar-nav ml-auto">
+    <ul className="navbar-nav ms-auto">
       <li className="nav-item">
-        <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js" rel="noreferrer">
-          Github
+        <a
+          target="_blank"
+          className="nav-link"
+          href="https://github.com/daymosik/raspi-js"
+          rel="noreferrer"
+          title="Github"
+        >
+          <i className="fa-brands fa-github" />
         </a>
       </li>
-      {!props.authorized && <NavigationListItem path={NavigationPath.Login} name={'Login'} />}
-      {props.authorized && <NavigationListItem onClick={AuthService.logout} name={'Logout'} />}
+      {!props.authorized && (
+        <NavigationListItem
+          path={NavigationPath.Login}
+          name={<i className="fa-solid fa-right-to-bracket" />}
+          title={'LogIn'}
+        />
+      )}
+      {props.authorized && (
+        <NavigationListItem
+          onClick={AuthService.logout}
+          name={<i className="fa-solid fa-right-from-bracket" />}
+          title={'Logout'}
+        />
+      )}
     </ul>
   </div>
 )
@@ -102,7 +121,7 @@ export default class NavbarComponent extends React.Component<unknown, NavbarComp
           <NavigationButton onClick={this.toggle} />
 
           <Link className="navbar-brand" to={NavigationPath.Home}>
-            <img src={require('../assets/images/logo-horizontal.png')} height="40px" alt="" />
+            <img src={require('../assets/images/raspi-logo-1.png')} height="40px" alt="" />
           </Link>
 
           <NavigationMenu

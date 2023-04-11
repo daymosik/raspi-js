@@ -2,17 +2,22 @@
 	"name": "RaspiJS",
 	"short_name": "RaspiJS",
 	"description": "",
-	"theme_color": "#ff0000",
-	"background_color": "#ff0000",
+	"theme_color": "#f7df1e",
+	"background_color": "#20304a",
 	"display": "standalone",
 	"orientation": "portrait",
 	"start_url": "/",
 	"scope": ".",
 	"icons":[
 		{
-			"src":"/images/logo-vertical.png",
-			"sizes":"200x200",
-			"type":"image/png"
-		}
+		    "src":"/android-chrome-192x192.png",
+		    "sizes":"192x192",
+		    "type":"image/png"
+		},
+		{
+		    "src":"/android-chrome-512x512.png",
+		    "sizes":"512x512",
+		    "type":"image/png"
+        }
 	]
   }

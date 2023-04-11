@@ -7,7 +7,9 @@ export interface FormGroupProps {
 
 export const FormGroup = (props: PropsWithChildren<FormGroupProps>): JSX.Element => (
   <div className="form-group">
-    <label htmlFor="exampleInputEmail1">{props.label}</label>
+    <label htmlFor="exampleInputEmail1" className="form-label">
+      {props.label}
+    </label>
     {props.children}
   </div>
 )

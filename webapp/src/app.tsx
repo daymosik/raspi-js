@@ -1,6 +1,4 @@
-// styles
 import './assets/styles/main.scss'
-import 'bootstrap/dist/css/bootstrap.css'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
@@ -23,18 +21,18 @@ import { ArrowsView } from '@modules/arrows'
 import { HomeView } from '@modules/home'
 import { SpeechView } from '@modules/speech'
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker
-      .register('/sw.js')
-      .then((registration) => {
-        console.log('SW registered: ', registration)
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError)
-      })
-  })
-}
+// if ('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker
+//       .register('/sw.js')
+//       .then((registration) => {
+//         console.log('SW registered: ', registration)
+//       })
+//       .catch((registrationError) => {
+//         console.log('SW registration failed: ', registrationError)
+//       })
+//   })
+// }
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -72,18 +70,14 @@ class App extends React.Component<unknown, AppState> {
   }
 
   public render(): JSX.Element | null {
-    const styles = {
-      container: {
-        paddingTop: '20px',
-      },
-    }
-
     // TODO: loader insteadof null
     return !this.state.initialized ? null : (
       <HashRouter basename="/">
         <div className="wrapper">
           <NavbarComponent />
-          <div style={styles.container} className="container">
+          <div className="container py-5">
+            {/*TODO*/}
+            {/*<div className="container py-5 gradient-custom">*/}
             <Switch>
               <Route path={NavigationPath.Login} component={LoginView} />
               <Route exact={true} path={NavigationPath.Home} component={HomeView} />
