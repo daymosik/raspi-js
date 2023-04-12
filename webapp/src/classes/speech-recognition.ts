@@ -1,12 +1,10 @@
-// import Cleverbot from '@classes/cleverbot'
 import socket from '@services/socket'
 import annyang, { Annyang } from 'annyang'
+// import cleverbot from '@classes/cleverbot'
 
 export class SpeechRecognition {
   public annyang: Annyang = annyang as Annyang
-
-  // const cleverbot = new Cleverbot()
-  // cleverbot.getResponse('How can You help me?');
+  // public cleverbot = cleverbot
 
   public commands = {
     // talking
@@ -44,6 +42,8 @@ export class SpeechRecognition {
   }
 
   public init = (): void => {
+    // this.cleverbot.getResponse('How can You help me?')
+
     try {
       // TODO
       this.annyang.addCommands(this.commands as never)

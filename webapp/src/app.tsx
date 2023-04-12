@@ -12,7 +12,7 @@ import AuthService from '@services/auth'
 import NavbarComponent, { NavigationPath } from '@components/navbar'
 import PrivateRoute from '@components/private-route'
 
-import speechRecognition from './functions/speech-recognition'
+import speechRecognition from '@classes/speech-recognition'
 
 import RemoteControlView from '@modules/remote-control'
 import LoginView from '@modules/login'

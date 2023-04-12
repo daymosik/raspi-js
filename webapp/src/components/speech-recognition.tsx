@@ -1,5 +1,5 @@
 import * as React from 'react'
-import speechRecognition from '@functions/speech-recognition'
+import speechRecognition from '@classes/speech-recognition'
 
 export default class SpeechRecognitionView extends React.Component<unknown, unknown> {
   public render(): JSX.Element {
