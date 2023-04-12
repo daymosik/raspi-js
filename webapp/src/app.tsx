@@ -11,7 +11,6 @@ import AuthService from '@services/auth'
 
 import NavbarComponent, { NavigationPath } from '@components/navbar'
 import PrivateRoute from '@components/private-route'
-import YamahaRemote from '@components/yamaha-remote'
 
 // import './functions/speech-recognition'
 
@@ -20,6 +19,7 @@ import LoginView from '@modules/login'
 import { ArrowsView } from '@modules/arrows'
 import { HomeView } from '@modules/home'
 import { ComponentsView } from '@modules/components'
+import { RemotesView } from '@modules/remotes'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -75,7 +75,7 @@ class App extends React.Component<unknown, AppState> {
       <HashRouter basename="/">
         <div className="wrapper">
           <NavbarComponent />
-          <div className="container py-5">
+          <div className="container py-4">
             {/*TODO*/}
             {/*<div className="container py-5 gradient-custom">*/}
             <Switch>
@@ -85,7 +85,7 @@ class App extends React.Component<unknown, AppState> {
               <PrivateRoute path={NavigationPath.RemoteControl} component={RemoteControlView} />
               <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView} />
               <PrivateRoute path={NavigationPath.Components} component={ComponentsView} />
-              <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote} />
+              <PrivateRoute path={NavigationPath.Remotes} component={RemotesView} />
             </Switch>
           </div>
         </div>

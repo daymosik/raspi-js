@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Form, FormGroup } from 'reactstrap'
+import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
 
 import socket from '@services/socket'
 
@@ -40,8 +40,8 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
         <div className="col">
           <div className="row">
             <div className="col">
-              <Form action="" onSubmit={this.handleSubmit}>
-                <FormGroup>
+              <form action="" className="" onSubmit={this.handleSubmit}>
+                <div className="mb-3">
                   <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
                     <DropdownToggle caret>Buzzer Songs</DropdownToggle>
                     <DropdownMenu>
@@ -53,16 +53,14 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
                       ))}
                     </DropdownMenu>
                   </Dropdown>
-                </FormGroup>
-                <Button>Play buzzer !</Button>
-              </Form>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Button color="primary" onClick={this.speak}>
-                Play buzzer !
-              </Button>
+                </div>
+                <div className="d-flex gap-2">
+                  <button className="btn btn-secondary">Play buzzer !</button>
+                  <button className="btn btn-primary" onClick={this.speak} type="button">
+                    Play buzzer !
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

@@ -5,6 +5,18 @@ $brand-yellow: #f7df1e;
 $brand-blue: #20304a;
 
 // Bootstrap
-//$primary: $brand-blue;
+
+//$primary:       $blue !default;
+//$secondary:     $gray-600 !default;
+//$success:       $green !default;
+//$info:          $cyan !default;
+//$warning:       $yellow !default;
+//$danger:        $red !default;
+//$light:         $gray-100 !default;
+//$dark:          $gray-900 !default;
+
+$primary: $brand-blue;
+$secondary: $brand-yellow;
 $dark: $brand-blue;
+
 $body-bg: $white;

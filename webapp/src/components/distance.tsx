@@ -50,24 +50,20 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     return (
       <div className="row">
         <div className="col">
-          <div className="row">
-            <div className="col">
-              <Progress
-                style={styles.progressBar}
-                className={this.state.left.style}
-                value={this.state.left.cm}
-                label={this.state.left.label}
-              />
-            </div>
-            <div className="col">
-              <Progress
-                style={styles.progressBar}
-                className={this.state.right.style}
-                value={this.state.right.cm}
-                label={this.state.right.label}
-              />
-            </div>
-          </div>
+          <Progress
+            style={styles.progressBar}
+            className={this.state.left.style}
+            value={this.state.left.cm}
+            label={this.state.left.label}
+          />
+        </div>
+        <div className="col">
+          <Progress
+            style={styles.progressBar}
+            className={this.state.right.style}
+            value={this.state.right.cm}
+            label={this.state.right.label}
+          />
         </div>
       </div>
     )

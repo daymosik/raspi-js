@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Button, Form, FormGroup, Input } from 'reactstrap'
 
 import socket from '@services/socket'
 
@@ -16,27 +15,23 @@ export default class Speech extends React.Component<unknown, SpeechState> {
 
   public render(): JSX.Element {
     return (
-      <div className="row">
-        <div className="col">
-          <div className="row">
-            <div className="col">
-              <Form action="" onSubmit={this.handleSubmit}>
-                <FormGroup>
-                  <Input type="text" name="text" value={this.state.text} onChange={this.handleChange} />
-                </FormGroup>
-                <Button>Speak!</Button>
-              </Form>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <Button color="primary" onClick={this.speak}>
-                Speak fortune!
-              </Button>
-            </div>
-          </div>
+      <form action="" className="" onSubmit={this.handleSubmit}>
+        <div className="mb-3">
+          <input
+            name="text"
+            type="text"
+            className="form-control"
+            value={this.state.text}
+            onChange={this.handleChange}
+          />
         </div>
-      </div>
+        <div className="d-flex gap-2">
+          <button className="btn btn-secondary">Speak!</button>
+          <button className="btn btn-primary" onClick={this.speak} type="button">
+            Speak fortune!
+          </button>
+        </div>
+      </form>
     )
   }
 

@@ -7,15 +7,13 @@ import socket from '@services/socket'
 export default class SevenSegmentLedView extends React.Component<unknown, unknown> {
   public render(): JSX.Element {
     return (
-      <div className="row">
-        <div className="col">
-          <button className="btn btn-primary" onClick={this.start}>
-            Start counting
-          </button>
-          <button className="btn btn-secondary" onClick={this.stop}>
-            Stop counting
-          </button>
-        </div>
+      <div className="d-grid gap-2">
+        <button className="btn btn-primary" onClick={this.start}>
+          Start counting
+        </button>
+        <button className="btn btn-secondary" onClick={this.stop}>
+          Stop counting
+        </button>
       </div>
     )
   }
