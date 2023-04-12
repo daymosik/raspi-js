@@ -7,13 +7,18 @@ $fa-font-path: '../../../node_modules/@fortawesome/fontawesome-free/webfonts';
 @import '../../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
 @import '../../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
 
-.gradient-custom {
+html,
+body {
+  height: 100%;
+}
+
+body {
   /* fallback for old browsers */
-  background: #6a11cb;
+  background: $brand-yellow;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to top, $brand-blue, 10%, $brand-yellow);
+  background: -webkit-linear-gradient(to top, $brand-blue, 10%, $brand-yellow) fixed;
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to top, $brand-blue, 20%, $brand-yellow);
+  background: linear-gradient(to top, $brand-blue, 20%, $brand-yellow) fixed;
 }

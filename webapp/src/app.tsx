@@ -77,7 +77,7 @@ class App extends React.Component<unknown, AppState> {
       <HashRouter basename="/">
         {/*TODO*/}
         {/*<div className="wrapper gradient-custom h-100">*/}
-        <div className="wrapper gradient-custom h-100">
+        <div className="wrapper">
           <NavbarComponent />
           <div className="container py-4 ">
             <Switch>
