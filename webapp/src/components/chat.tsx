@@ -7,7 +7,7 @@ export interface ChatViewState {
 }
 
 export default class ChatView extends React.Component<unknown, ChatViewState> {
-  constructor(props) {
+  constructor(props: unknown) {
     super(props)
 
     this.state = {

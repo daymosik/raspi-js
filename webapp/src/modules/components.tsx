@@ -7,6 +7,7 @@ import * as React from 'react'
 import { ComponentCardView } from '@components/component-card'
 import SpeechRecognitionView from '@components/speech-recognition'
 import ChatView from '@components/chat'
+import LCDView from '@components/lcd'
 
 export const ComponentsView = (): JSX.Element => (
   <div className="row">
@@ -26,6 +27,11 @@ export const ComponentsView = (): JSX.Element => (
     <div className="col-sm-6">
       <ComponentCardView name="LED RGB" icon="fa-regular fa-lightbulb">
         <RGB />
+      </ComponentCardView>
+    </div>
+    <div className="col-sm-6">
+      <ComponentCardView name="LCD" icon="fa-regular fa-lightbulb">
+        <LCDView />
       </ComponentCardView>
     </div>
     <div className="col">

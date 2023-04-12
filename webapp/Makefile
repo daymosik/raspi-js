@@ -18,7 +18,7 @@ VERSION: $(libs) $(sources)
 clean:
 	rm -rf VERSION dist
 
-watch:
+watch: $(libs)
 	npm run watch
 
 lint:
