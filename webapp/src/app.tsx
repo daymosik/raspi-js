@@ -20,6 +20,7 @@ import { ArrowsView } from '@modules/arrows'
 import { HomeView } from '@modules/home'
 import { ComponentsView } from '@modules/components'
 import { RemotesView } from '@modules/remotes'
+import { Tooltip } from 'react-tooltip'
 
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -90,6 +91,8 @@ class App extends React.Component<unknown, AppState> {
               <PrivateRoute path={NavigationPath.Remotes} component={RemotesView} />
             </Switch>
           </div>
+
+          <Tooltip id="my-tooltip" />
         </div>
       </HashRouter>
     )

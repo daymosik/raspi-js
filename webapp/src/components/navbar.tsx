@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 
 import AuthService from '@services/auth'
+import Tooltip from '@components/tooltip'
 
 export enum NavigationPath {
   Home = '/',
@@ -44,16 +45,18 @@ interface NavigationListItemProps {
 
 const NavigationListItem = (props: NavigationListItemProps): JSX.Element => (
   <li className="nav-item">
-    {props.path && (
-      <Link className="nav-link" to={props.path} title={props.title}>
-        {props.name}
-      </Link>
-    )}
-    {props.onClick && (
-      <a className="nav-link" onClick={props.onClick} title={props.title}>
-        {props.name}
-      </a>
-    )}
+    <Tooltip tooltipText={props.title || ''}>
+      {props.path && (
+        <Link className="nav-link" to={props.path}>
+          {props.name}
+        </Link>
+      )}
+      {props.onClick && (
+        <a className="nav-link" onClick={props.onClick}>
+          {props.name}
+        </a>
+      )}
+    </Tooltip>
   </li>
 )
 
@@ -70,22 +73,22 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
     onClick={props.hideMobileMenu}
   >
     <ul className="navbar-nav mr-auto">
-      <NavigationListItem path={NavigationPath.RemoteControl} name={'Remote Control'} />
-      <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'} />
-      <NavigationListItem path={NavigationPath.Components} name={'Components'} />
-      <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} />
+      <NavigationListItem path={NavigationPath.RemoteControl} name={'Remote Control'} title={'Remote Control'} />
+      <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'} title={'Arrows'} />
+      <NavigationListItem
+        path={NavigationPath.Components}
+        name={<i className="fa-solid fa-puzzle-piece fa-2xl"></i>}
+        title="Components"
+      />
+      <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} title={'Remotes'} />
     </ul>
     <ul className="navbar-nav ms-auto">
       <li className="nav-item">
-        <a
-          target="_blank"
-          className="nav-link"
-          href="https://github.com/daymosik/raspi-js"
-          rel="noreferrer"
-          title="Github"
-        >
-          <i className="fa-brands fa-github fa-lg" />
-        </a>
+        <Tooltip tooltipText={'Github'}>
+          <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js" rel="noreferrer">
+            <i className="fa-brands fa-github fa-lg" />
+          </a>
+        </Tooltip>
       </li>
       {!props.authorized && (
         <NavigationListItem
