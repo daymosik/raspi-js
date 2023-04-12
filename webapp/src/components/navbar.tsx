@@ -8,7 +8,7 @@ export enum NavigationPath {
   RemoteControl = '/remote-control',
   Login = '/login',
   Arrows = '/arrows',
-  Speech = '/speech',
+  Components = '/components',
   Remotes = '/remotes',
 }
 
@@ -72,7 +72,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
     <ul className="navbar-nav mr-auto">
       <NavigationListItem path={NavigationPath.RemoteControl} name={'Remote Control'} />
       <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'} />
-      <NavigationListItem path={NavigationPath.Speech} name={'Speech'} />
+      <NavigationListItem path={NavigationPath.Components} name={'Components'} />
       <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} />
     </ul>
     <ul className="navbar-nav ms-auto">
@@ -84,20 +84,20 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
           rel="noreferrer"
           title="Github"
         >
-          <i className="fa-brands fa-github" />
+          <i className="fa-brands fa-github fa-lg" />
         </a>
       </li>
       {!props.authorized && (
         <NavigationListItem
           path={NavigationPath.Login}
-          name={<i className="fa-solid fa-right-to-bracket" />}
+          name={<i className="fa-solid fa-right-to-bracket fa-lg" />}
           title={'LogIn'}
         />
       )}
       {props.authorized && (
         <NavigationListItem
           onClick={AuthService.logout}
-          name={<i className="fa-solid fa-right-from-bracket" />}
+          name={<i className="fa-solid fa-right-from-bracket fa-lg" />}
           title={'Logout'}
         />
       )}

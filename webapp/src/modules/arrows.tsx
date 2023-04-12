@@ -5,10 +5,10 @@ import Joystick from '@components/joystick'
 import * as React from 'react'
 
 export const ArrowsView = (): JSX.Element => (
-  <div className="container pt-5">
+  <>
     <Distance />
     <Arrows />
     <Joystick />
     <Camera />
-  </div>
+  </>
 )

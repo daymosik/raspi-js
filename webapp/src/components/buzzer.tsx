@@ -5,6 +5,7 @@ import socket from '@services/socket'
 
 export interface BuzzerState {
   text: string
+  dropdownOpen: boolean
 }
 
 const buzzerSongs = [
@@ -30,7 +31,7 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
   constructor(props: unknown) {
     super(props)
 
-    this.state = { text: '' }
+    this.state = { text: '', dropdownOpen: false }
   }
 
   public render(): JSX.Element {
@@ -41,7 +42,7 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
             <div className="col">
               <Form action="" onSubmit={this.handleSubmit}>
                 <FormGroup>
-                  <Dropdown>
+                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
                     <DropdownToggle caret>Buzzer Songs</DropdownToggle>
                     <DropdownMenu>
                       {buzzerSongs.map((song) => (
@@ -67,6 +68,10 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
         </div>
       </div>
     )
+  }
+
+  public toggleDropdown = (): void => {
+    this.setState({ dropdownOpen: !this.state.dropdownOpen })
   }
 
   public speakDropdown = (song?: string): void => {

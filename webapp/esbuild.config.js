@@ -49,6 +49,7 @@ let context = await esbuild
     const cb = (err) => {
       if (err) throw err
     }
+    console.log(`⏳Copying files...`)
     if (!fs.existsSync(`${DIST_DIR}/images`)) {
       await fs.mkdir(`${DIST_DIR}/images`, cb)
     }

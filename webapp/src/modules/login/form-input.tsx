@@ -1,4 +1,4 @@
-import { LoginViewStateKeys } from '@modules/login/login'
+import { LoginViewStateKeys } from '@modules/login'
 import * as React from 'react'
 
 export interface FormInputProps {

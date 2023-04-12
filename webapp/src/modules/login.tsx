@@ -51,13 +51,10 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
     return (
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div
-            className="card bg-dark text-white"
-            //style="border-radius: 1rem;"
-          >
+          <div className="card bg-dark text-white" style={{ borderRadius: '1rem' }}>
             <div className="card-body p-5">
               <div className="text-center">
-                <img src={require('../../assets/images/raspi-logo-1.png')} alt="RaspiJS" style={{ width: '100%' }} />
+                <img src={require('@assets/images/raspi-logo-1.png')} alt="RaspiJS" style={{ width: '100%' }} />
               </div>
 
               <hr className="my-4" />

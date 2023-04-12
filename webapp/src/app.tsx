@@ -16,23 +16,23 @@ import YamahaRemote from '@components/yamaha-remote'
 // import './functions/speech-recognition'
 
 import RemoteControlView from '@modules/remote-control'
-import LoginView from '@modules/login/login'
+import LoginView from '@modules/login'
 import { ArrowsView } from '@modules/arrows'
 import { HomeView } from '@modules/home'
-import { SpeechView } from '@modules/speech'
+import { ComponentsView } from '@modules/components'
 
-// if ('serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker
-//       .register('/sw.js')
-//       .then((registration) => {
-//         console.log('SW registered: ', registration)
-//       })
-//       .catch((registrationError) => {
-//         console.log('SW registration failed: ', registrationError)
-//       })
-//   })
-// }
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
+        console.log('SW registered: ', registration)
+      })
+      .catch((registrationError) => {
+        console.log('SW registration failed: ', registrationError)
+      })
+  })
+}
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -84,7 +84,7 @@ class App extends React.Component<unknown, AppState> {
 
               <PrivateRoute path={NavigationPath.RemoteControl} component={RemoteControlView} />
               <PrivateRoute path={NavigationPath.Arrows} component={ArrowsView} />
-              <PrivateRoute path={NavigationPath.Speech} component={SpeechView} />
+              <PrivateRoute path={NavigationPath.Components} component={ComponentsView} />
               <PrivateRoute path={NavigationPath.Remotes} component={YamahaRemote} />
             </Switch>
           </div>
