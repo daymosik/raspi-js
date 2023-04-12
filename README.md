@@ -17,7 +17,6 @@ Assembled with LEGO bricks.
 * Exploration mode
 * Play songs on buzzer :)
 * It speaks!
-* AirPlay server
 * View from USB Camera through GUI
 * Yamaha AV receiver control from GUI
 
@@ -80,6 +79,12 @@ FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
 FIREBASE_APP_ID=your-app-id
 ```
 
+(optional) For openai add this line to .env file
+
+```
+OPENAI_API_KEY=your-openai-api-key
+```
+
 ### Starting app ###
 
 First you have to init certbot to generate new SSL certificates:
@@ -118,7 +123,7 @@ $ fab zsh --docker johnny
 
 To be executed on `johnny` container
 
-Run Johhny Five app with NodeJS server, socket.io server and Arduino connection
+Run Johnny Five app with NodeJS server, socket.io server and Arduino connection
 ```
 make run
 ```
