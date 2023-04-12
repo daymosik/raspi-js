@@ -1,5 +1,6 @@
 import socket from '@services/socket'
 import annyang, { Annyang } from 'annyang'
+// import openAI from '@classes/openai'
 // import cleverbot from '@classes/cleverbot'
 
 export class SpeechRecognition {
@@ -43,6 +44,9 @@ export class SpeechRecognition {
 
   public init = (): void => {
     // this.cleverbot.getResponse('How can You help me?')
+
+    // const answer = await this.ask('which day of year is it today ?')
+    // console.log(answer)
 
     try {
       // TODO

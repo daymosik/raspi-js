@@ -6,22 +6,26 @@ import Speech from '@components/speech'
 import * as React from 'react'
 import { ComponentCardView } from '@components/component-card'
 import SpeechRecognitionView from '@components/speech-recognition'
+import ChatView from '@components/chat'
 
 export const ComponentsView = (): JSX.Element => (
   <div className="row">
     <div className="col-sm-6">
-      <ComponentCardView name="LED RGB" icon="fa-regular fa-lightbulb">
-        <RGB />
+      <ComponentCardView name="Chat" icon="fa-regular fa-lightbulb">
+        <ChatView />
       </ComponentCardView>
     </div>
     <div className="col-sm-6">
       <ComponentCardView name="Speech" icon="fa-solid fa-play">
         <Speech />
       </ComponentCardView>
-    </div>
-    <div className="col-sm-6">
       <ComponentCardView name="Speech recognition" icon="fa-solid fa-play">
         <SpeechRecognitionView />
+      </ComponentCardView>
+    </div>
+    <div className="col-sm-6">
+      <ComponentCardView name="LED RGB" icon="fa-regular fa-lightbulb">
+        <RGB />
       </ComponentCardView>
     </div>
     <div className="col">

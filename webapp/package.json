@@ -23,6 +23,7 @@
     "firebase": "9.19.1",
     "hammerjs": "2.0.8",
     "jsonp": "0.2.1",
+    "openai": "^3.2.1",
     "react": "18.2.0",
     "react-color": "2.19.3",
     "react-dom": "18.2.0",
