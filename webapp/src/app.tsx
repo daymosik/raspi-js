@@ -12,7 +12,7 @@ import AuthService from '@services/auth'
 import NavbarComponent, { NavigationPath } from '@components/navbar'
 import PrivateRoute from '@components/private-route'
 
-// import './functions/speech-recognition'
+import speechRecognition from './functions/speech-recognition'
 
 import RemoteControlView from '@modules/remote-control'
 import LoginView from '@modules/login'
@@ -67,17 +67,19 @@ class App extends React.Component<unknown, AppState> {
       }
       this.setState({ initialized: true })
     })
+
+    speechRecognition.init()
   }
 
   public render(): JSX.Element | null {
     // TODO: loader insteadof null
     return !this.state.initialized ? null : (
       <HashRouter basename="/">
-        <div className="wrapper">
+        {/*TODO*/}
+        {/*<div className="wrapper gradient-custom h-100">*/}
+        <div className="wrapper gradient-custom h-100">
           <NavbarComponent />
-          <div className="container py-4">
-            {/*TODO*/}
-            {/*<div className="container py-5 gradient-custom">*/}
+          <div className="container py-4 ">
             <Switch>
               <Route path={NavigationPath.Login} component={LoginView} />
               <Route exact={true} path={NavigationPath.Home} component={HomeView} />

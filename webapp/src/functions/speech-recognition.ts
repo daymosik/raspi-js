@@ -1,16 +1,17 @@
-import * as annyang from 'annyang'
-
 // import Cleverbot from '@classes/cleverbot'
 import socket from '@services/socket'
+import annyang, { Annyang } from 'annyang'
 
-function SpeechRecognition(): void {
+export class SpeechRecognition {
+  public annyang: Annyang = annyang as Annyang
+
   // const cleverbot = new Cleverbot()
   // cleverbot.getResponse('How can You help me?');
 
-  const commands = {
+  public commands = {
     // talking
-    cześć: (): void => speak('Hello Damian!'),
-    'jak się masz': (): void => speak('Good, thanks. And how are You?'),
+    cześć: (): void => this.speak('Hello Damian!'),
+    'jak się masz': (): void => this.speak('Good, thanks. And how are You?'),
     'powiedz coś': (): void => {
       socket.emit('command.playRandomSound')
     },
@@ -38,21 +39,33 @@ function SpeechRecognition(): void {
     },
   }
 
-  function speak(text: string): void {
+  public speak = (text: string): void => {
     socket.emit('command.speak', { text })
   }
 
-  try {
-    // Add our commands to annyang
-    annyang.addCommands(commands)
-    annyang.setLanguage('pl')
+  public init = (): void => {
+    try {
+      // TODO
+      this.annyang.addCommands(this.commands as any)
+      this.annyang.setLanguage('pl')
+    } catch (e) {
+      console.log('annyang not supported')
+    }
+  }
 
-    // Start listening.
-    annyang.start()
+  public start = (): void => {
+    try {
+      if (!this.annyang.isListening()) {
+        this.annyang.start()
+        this.annyang.debug()
+      }
+    } catch (e) {
+      console.log('annyyang not supported')
+    }
+  }
 
-    annyang.debug()
-  } catch (e) {
-    console.log('annyyang not supported')
+  public stop = (): void => {
+    this.annyang.abort()
   }
 }
 

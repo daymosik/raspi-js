@@ -12,8 +12,8 @@ $fa-font-path: '../../../node_modules/@fortawesome/fontawesome-free/webfonts';
   background: #6a11cb;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  background: -webkit-linear-gradient(to top, $brand-blue, 10%, $brand-yellow);
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  background: linear-gradient(to top, $brand-blue, 20%, $brand-yellow);
 }

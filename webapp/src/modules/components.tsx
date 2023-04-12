@@ -5,6 +5,7 @@ import SevenSegmentLedView from '@components/seven-segment-led'
 import Speech from '@components/speech'
 import * as React from 'react'
 import { ComponentCardView } from '@components/component-card'
+import SpeechRecognitionView from '@components/speech-recognition'
 
 export const ComponentsView = (): JSX.Element => (
   <div className="row">
@@ -16,6 +17,11 @@ export const ComponentsView = (): JSX.Element => (
     <div className="col-sm-6">
       <ComponentCardView name="Speech" icon="fa-solid fa-play">
         <Speech />
+      </ComponentCardView>
+    </div>
+    <div className="col-sm-6">
+      <ComponentCardView name="Speech recognition" icon="fa-solid fa-play">
+        <SpeechRecognitionView />
       </ComponentCardView>
     </div>
     <div className="col">
