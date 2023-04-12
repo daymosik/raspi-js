@@ -19,7 +19,7 @@ export interface JoystickState {
 }
 
 export default class Joystick extends React.Component<JoystickProps, JoystickState> {
-  private readonly myRef: RefObject<HTMLCanvasElement>
+  private readonly myRef: RefObject<HTMLDivElement>
   private hammerManager: HammerManager
 
   private stage: Stage
@@ -52,9 +52,9 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
 
   public render(): JSX.Element {
     return (
-      <div className="container noselect">
-        <div className="center-align">
-          <canvas style={styles.joystick} ref={this.myRef} id="joystick" height="300" width="300" />
+      <div className="noselect">
+        <div className="center-align" ref={this.myRef}>
+          <canvas style={styles.joystick} id="joystick" height="300" width="300" />
         </div>
       </div>
     )
@@ -64,14 +64,14 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
     this.stage = new createjs.Stage('joystick')
     this.shape = new createjs.Shape()
 
-    this.shape.graphics.beginFill('#333333').drawCircle(this.state.xCenter, this.state.yCenter, 50)
+    this.shape.graphics.beginFill('#20304a').drawCircle(this.state.xCenter, this.state.yCenter, 50)
 
     this.shape.alpha = 0.25
 
     const vertical = new createjs.Shape()
     const horizontal = new createjs.Shape()
-    vertical.graphics.beginFill('#ff4d4d').drawRect(150, 0, 2, 300)
-    horizontal.graphics.beginFill('#ff4d4d').drawRect(0, 150, 300, 2)
+    vertical.graphics.beginFill('#000000').drawRect(150, 0, 2, 300)
+    horizontal.graphics.beginFill('#000000').drawRect(0, 150, 300, 2)
 
     this.stage.addChild(this.shape)
     this.stage.addChild(vertical)
@@ -165,7 +165,7 @@ const styles = {
     width: '300px',
     borderRadius: '300px',
     textAlign: 'center' as const,
-    backgroundColor: '#80d5ff',
+    backgroundColor: '#f7df1e',
     cursor: 'all-scroll',
     userSelect: 'none' as const,
     zIndex: '-100',
@@ -173,6 +173,7 @@ const styles = {
   },
 
   noselect: {
+    // TODO
     // -webkit-touch-callout: none;
     // -webkit-user-select: none;
     // -khtml-user-select: none;

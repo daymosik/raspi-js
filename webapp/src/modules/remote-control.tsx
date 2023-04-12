@@ -20,13 +20,17 @@ const RemoteControlView = (): JSX.Element => {
   }
 
   return (
-    <div className="row">
-      <div className="col">
-        <div style={{ position: 'relative', minHeight: '300px' }}>
-          <div style={{ position: 'absolute', bottom: 0, right: 0 }}>
+    <div className="d-flex flex-wrap gap-1">
+      <div className="" style={{ flexGrow: 1 }}>
+        <Camera />
+      </div>
+      <div className="" style={{ flexBasis: '300px' }}>
+        <div className="card bg-dark mb-4" style={{ borderRadius: '1rem' }}>
+          <div className="card-body p-3">
+            {/*<div style={{ position: 'relative', minHeight: '300px' }}>*/}
+            {/*  <div style={{ position: 'absolute', bottom: 0, right: 0 }}>*/}
             <Joystick onMove={onMove} onStart={onStart} onEnd={onEnd} />
           </div>
-          <Camera />
         </div>
       </div>
     </div>

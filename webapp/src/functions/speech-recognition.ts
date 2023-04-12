@@ -16,7 +16,7 @@ export class SpeechRecognition {
       socket.emit('command.playRandomSound')
     },
     // rgb
-    'światło :name': (name): void => {
+    'światło :name': (name: string): void => {
       socket.emit('command.changeRGBColor', {
         color: name === 'czerwone' ? 'red' : name,
       })
@@ -46,7 +46,7 @@ export class SpeechRecognition {
   public init = (): void => {
     try {
       // TODO
-      this.annyang.addCommands(this.commands as any)
+      this.annyang.addCommands(this.commands as never)
       this.annyang.setLanguage('pl')
     } catch (e) {
       console.log('annyang not supported')
