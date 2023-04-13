@@ -68,21 +68,33 @@ export interface NavigationMenuProps {
 
 export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
   <div
-    className={`collapse navbar-collapse pull-right ${props.mobileMenuOpen ? 'show' : ''}`}
+    className={`collapse navbar-collapse ${props.mobileMenuOpen ? 'show' : ''}`}
     id="navbarSupportedContent"
     onClick={props.hideMobileMenu}
   >
-    <ul className="navbar-nav mr-auto">
-      <NavigationListItem path={NavigationPath.RemoteControl} name={'Remote Control'} title={'Remote Control'} />
-      <NavigationListItem path={NavigationPath.Arrows} name={'Arrows'} title={'Arrows'} />
+    <ul className="navbar-nav ms-auto me-auto">
+      <NavigationListItem
+        path={NavigationPath.RemoteControl}
+        name={<i className="fa-solid fa-gauge fa-xl"></i>}
+        title={'Remote Control'}
+      />
+      <NavigationListItem
+        path={NavigationPath.Arrows}
+        name={<i className="fa-solid fa-arrows-up-down-left-right fa-xl"></i>}
+        title={'Arrows'}
+      />
       <NavigationListItem
         path={NavigationPath.Components}
-        name={<i className="fa-solid fa-puzzle-piece fa-2xl"></i>}
+        name={<i className="fa-solid fa-puzzle-piece fa-xl"></i>}
         title="Components"
       />
-      <NavigationListItem path={NavigationPath.Remotes} name={'Remotes'} title={'Remotes'} />
+      <NavigationListItem
+        path={NavigationPath.Remotes}
+        name={<i className="fa-solid fa-hand-pointer fa-xl"></i>}
+        title={'Remotes'}
+      />
     </ul>
-    <ul className="navbar-nav ms-auto">
+    <ul className="navbar-nav">
       <li className="nav-item">
         <Tooltip tooltipText={'Github'}>
           <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js" rel="noreferrer">
@@ -119,13 +131,13 @@ export default class NavbarComponent extends React.Component<unknown, NavbarComp
 
   public render(): JSX.Element {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
-          <NavigationButton onClick={this.toggle} />
-
           <Link className="navbar-brand" to={NavigationPath.Home}>
             <img src={require('../assets/images/raspi-logo-1.png')} height="40px" alt="" />
           </Link>
+
+          <NavigationButton onClick={this.toggle} />
 
           <NavigationMenu
             authorized={AuthService.isAuthenticated}
