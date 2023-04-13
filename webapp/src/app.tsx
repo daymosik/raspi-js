@@ -76,8 +76,6 @@ class App extends React.Component<unknown, AppState> {
     // TODO: loader insteadof null
     return !this.state.initialized ? null : (
       <HashRouter basename="/">
-        {/*TODO*/}
-        {/*<div className="wrapper gradient-custom h-100">*/}
         <div className="wrapper">
           <NavbarComponent />
           <div className="container py-4 ">

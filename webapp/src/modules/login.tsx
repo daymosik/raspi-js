@@ -76,7 +76,7 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
                   </FormGroup>
                 </div>
                 <div className="d-grid gap-2">
-                  <button className="btn btn-primary btn-lg btn-block" type="submit">
+                  <button className="btn btn-secondary btn-lg btn-block" type="submit">
                     Login
                   </button>
                 </div>
