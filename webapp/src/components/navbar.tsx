@@ -72,7 +72,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
     id="navbarSupportedContent"
     onClick={props.hideMobileMenu}
   >
-    <ul className="navbar-nav ms-auto me-auto">
+    <ul className="navbar-nav ms-auto me-auto gap-2 flex-row">
       <NavigationListItem
         path={NavigationPath.RemoteControl}
         name={<i className="fa-solid fa-gauge fa-xl"></i>}
@@ -94,7 +94,7 @@ export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
         title={'Remotes'}
       />
     </ul>
-    <ul className="navbar-nav">
+    <ul className="navbar-nav flex-row">
       <li className="nav-item">
         <Tooltip tooltipText={'Github'}>
           <a target="_blank" className="nav-link" href="https://github.com/daymosik/raspi-js" rel="noreferrer">
