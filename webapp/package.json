@@ -9,6 +9,7 @@
     "build:production": "NODE_ENV=production node esbuild.config.js",
     "build": "node esbuild.config.js",
     "watch": "node esbuild.config.js --watch",
+    "serve": "node esbuild.config.js --serve",
     "lint": "eslint \"{src,test}/**/*.{ts,tsx}\"",
     "prettier": "prettier \"./src/**/*.{ts,tsx,scss}\" --check",
     "fix:prettier": "prettier \"./src/**/*.{ts,tsx,scss}\" --write",

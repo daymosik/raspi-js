@@ -21,6 +21,9 @@ clean:
 watch: $(libs)
 	npm run watch
 
+serve: $(libs)
+	npm run serve
+
 lint:
 	npm run lint
 	npm run prettier

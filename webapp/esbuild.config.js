@@ -7,6 +7,7 @@ import { generateSW } from 'workbox-build'
 
 const args = process.argv.slice(2)
 const watch = args.includes('--watch')
+const serve = args.includes('--serve')
 
 const DIST_DIR = './dist'
 
@@ -77,7 +78,10 @@ let context = await esbuild
     return context
   })
 
-if (watch) {
+if (serve) {
+  console.log(`⏳Serving...`)
+  context.serve({ servedir: DIST_DIR })
+} else if (watch) {
   console.log(`⏳Watching...`)
   await context.watch()
   console.log('👀 Watching for changes')
