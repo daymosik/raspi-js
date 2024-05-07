@@ -1,7 +1,7 @@
 import './assets/styles/main.scss'
 
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { HashRouter, Route, Switch } from 'react-router-dom'
 
 import { FirebaseOptions, initializeApp } from 'firebase/app'
@@ -97,4 +97,6 @@ class App extends React.Component<unknown, AppState> {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const container = document.getElementById('root')
+const root = createRoot(container!)
+root.render(<App />)
