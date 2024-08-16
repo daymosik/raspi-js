@@ -82,7 +82,7 @@ FIREBASE_APP_ID=your-app-id
 (optional) For openai add this line to .env file
 
 ```
-OPENAI_API_KEY=your-openai-api-key
+OPENAI_API_KEY=your-api-key
 ```
 
 ### Starting app ###
