@@ -4,7 +4,7 @@ const Camera = (): JSX.Element => {
   return (
     <div className="row">
       <div className="col text-center">
-        <img src="https://raspi-js.ddns.net:8082/" id="stream" style={styles.img} alt="" />
+        <img src="https://daymosik.freemyip.com:8082/" id="stream" style={styles.img} alt="" />
       </div>
     </div>
   )

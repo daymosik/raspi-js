@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(raspi-js.ddns.net)
+domains=(daymosik.freemyip.com)
 rsa_key_size=4096
 data_path="./certbot"
 email="daymosik@o2.pl" # Adding a valid address is strongly recommended
