@@ -1,9 +1,7 @@
-FROM node:18-alpine
+FROM node:24-alpine
 
-MAINTAINER Damian Majsner <d.majsner@gmail.com>
+LABEL org.opencontainers.image.authors="Damian Majsner <d.majsner@gmail.com>"
 
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apk add make python3 zsh vim
+RUN apk add --no-cache make python3 zsh vim
 
 WORKDIR /app
