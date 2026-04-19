@@ -79,12 +79,6 @@ FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
 FIREBASE_APP_ID=your-app-id
 ```
 
-(optional) For openai add this line to .env file
-
-```
-OPENAI_API_KEY=your-api-key
-```
-
 ### Starting app ###
 
 First you have to init certbot to generate new SSL certificates:
