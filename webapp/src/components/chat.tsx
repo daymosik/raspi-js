@@ -1,5 +1,5 @@
 import * as React from 'react'
-import openAI from '@classes/openai'
+import localAIProvider from '../providers/local-ai-provider'
 
 export interface ChatViewState {
   question: string
@@ -46,18 +46,23 @@ export default class ChatView extends React.Component<unknown, ChatViewState> {
       return
     }
 
+    const question = this.state.question
+
     const now = (): string => {
       const d = new Date()
       return '[' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() + ']'
     }
 
-    await this.setState({
-      conversation: now() + ' Me: ' + this.state.question + '\n' + this.state.conversation,
+    this.setState({
+      conversation: now() + ' Me: ' + question + '\n' + this.state.conversation,
       question: '',
     })
 
-    const answer = await openAI.ask(this.state.question)
-
-    this.setState({ conversation: now() + ' Chat: ' + answer + '\n' + this.state.conversation })
+    try {
+      const answer = await localAIProvider.ask(question)
+      this.setState({ conversation: now() + ' Chat: ' + answer + '\n' + this.state.conversation })
+    } catch {
+      this.setState({ conversation: now() + ' Chat: Error while contacting Local AI.\n' + this.state.conversation })
+    }
   }
 }
