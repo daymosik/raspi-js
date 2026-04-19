@@ -3,7 +3,7 @@ export PATH := node_modules/.bin:$(PATH)
 include .env
 export $(shell sed 's/=.*//' .env)
 
-sources := tsconfig.json .eslintrc.json esbuild.config.js $(shell find ./src -type f)
+sources := tsconfig.json eslint.config.js esbuild.config.js $(shell find ./src -type f)
 npm_dep = package.json
 libs = node_modules/installed_ts
 

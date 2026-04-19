@@ -71,7 +71,6 @@ boardsFn.boards.on('ready', function () {
     // sensor: new Sensor(boardsFn),
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   app = new App(raspiComponents)
 
   // allows direct command line access

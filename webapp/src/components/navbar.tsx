@@ -134,6 +134,7 @@ export default class NavbarComponent extends React.Component<unknown, NavbarComp
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">
           <Link className="navbar-brand" to={NavigationPath.Home}>
+            {/* eslint-disable-next-line @typescript-eslint/no-require-imports */}
             <img src={require('../assets/images/raspi-logo-1.png')} height="40px" alt="" />
           </Link>
 

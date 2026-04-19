@@ -1,5 +1,3 @@
-// import * as R from 'ramda'
-//
 // import boardsFn from '../components/board'
 // import motorsFn from '../components/motors'
 // import sensorFn from '../components/sensor'

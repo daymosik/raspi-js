@@ -52,7 +52,7 @@ export class SpeechRecognition {
       // TODO
       this.annyang.addCommands(this.commands as never)
       this.annyang.setLanguage('pl')
-    } catch (e) {
+    } catch {
       console.log('annyang not supported')
     }
   }
@@ -63,7 +63,7 @@ export class SpeechRecognition {
         this.annyang.start()
         this.annyang.debug()
       }
-    } catch (e) {
+    } catch {
       console.log('annyyang not supported')
     }
   }

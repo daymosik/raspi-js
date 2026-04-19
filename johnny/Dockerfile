@@ -1,14 +1,23 @@
-FROM node:18-bookworm
+FROM node:24-bookworm
 
-MAINTAINER Damian Majsner <d.majsner@gmail.com>
+LABEL org.opencontainers.image.authors="Damian Majsner <d.majsner@gmail.com>"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -yq update && \
-    apt-get -yq install --no-install-recommends make build-essential zsh vim mpg123 festival flite fortune && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get -yq install --no-install-recommends \
+        make \
+        build-essential \
+        zsh \
+        vim \
+        mpg123 \
+        festival \
+        flite \
+        fortune && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN usermod -a -G tty root
-RUN usermod -a -G dialout root
+RUN usermod -a -G tty node && \
+    usermod -a -G dialout node
 
 WORKDIR /app

@@ -59,7 +59,6 @@ const DOOR_MOTOR_PINS_UNO = {
 }
 
 const MOTORS_AUTO_STOP_TIME = 500
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MOTORS_SPEED = 220
 const MOTORS_TURN_SPEED = 180
 const MOTORS_SWIPE_SPEED = 150

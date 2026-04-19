@@ -46,7 +46,6 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
                     <DropdownToggle caret>Buzzer Songs</DropdownToggle>
                     <DropdownMenu>
                       {buzzerSongs.map((song) => (
-                        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
                         <DropdownItem onClick={() => this.speakDropdown(song)} key={song}>
                           {song}
                         </DropdownItem>

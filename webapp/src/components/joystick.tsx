@@ -103,7 +103,9 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
 
       this.stage.update()
 
-      this.props.onStart && this.props.onStart()
+      if (this.props.onStart) {
+        this.props.onStart()
+      }
     })
 
     this.hammerManager.on('panmove', (ev) => {
@@ -129,14 +131,18 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
 
       this.stage.update()
 
-      this.props.onMove && this.props.onMove(coords)
+      if (this.props.onMove) {
+        this.props.onMove(coords)
+      }
     })
 
     this.hammerManager.on('panend', () => {
       this.shape.alpha = 0.25
       createjs.Tween.get(this.shape).to({ x: this.state.xCenter, y: this.state.yCenter }, 750, createjs.Ease.elasticOut)
 
-      this.props.onEnd && this.props.onEnd()
+      if (this.props.onEnd) {
+        this.props.onEnd()
+      }
     })
   }
 

@@ -4,7 +4,7 @@ export class Speech {
   private cmd
 
   constructor() {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     this.exec = require('child_process').exec
     this.voice = '-voice rms'
     // kal awb_time kal16 awb rms slt

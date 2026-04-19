@@ -1,6 +1,6 @@
 export PATH := node_modules/.bin:$(PATH)
 
-sources := tsconfig.json .eslintrc.json $(shell find ./src -type f)
+sources := tsconfig.json eslint.config.js $(shell find ./src -type f)
 npm_dep = package.json
 libs = node_modules/installed_ts
 

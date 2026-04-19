@@ -54,6 +54,7 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
           <div className="card bg-dark text-white" style={{ borderRadius: '1rem' }}>
             <div className="card-body p-5">
               <div className="text-center">
+                {/* eslint-disable-next-line @typescript-eslint/no-require-imports */}
                 <img src={require('@assets/images/raspi-logo-1.png')} alt="RaspiJS" style={{ width: '100%' }} />
               </div>
 

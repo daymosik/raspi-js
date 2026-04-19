@@ -25,5 +25,5 @@ export class Buzzer {
     }
   }
 
-  public stop = (): void => this.buzzer.off()
+  public stop = (): five.Piezo => this.buzzer.off()
 }
