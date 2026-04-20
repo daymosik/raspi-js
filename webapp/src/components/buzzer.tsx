@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
 
 import socket from '@services/socket'
 
@@ -42,16 +41,25 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
             <div className="col">
               <form action="" className="" onSubmit={this.handleSubmit}>
                 <div className="mb-3">
-                  <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
-                    <DropdownToggle caret>Buzzer Songs</DropdownToggle>
-                    <DropdownMenu>
+                  <div className={`dropdown ${this.state.dropdownOpen ? 'show' : ''}`}>
+                    <button
+                      className="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      onClick={this.toggleDropdown}
+                      aria-expanded={this.state.dropdownOpen}
+                    >
+                      Buzzer Songs
+                    </button>
+                    <ul className={`dropdown-menu ${this.state.dropdownOpen ? 'show' : ''}`}>
                       {buzzerSongs.map((song) => (
-                        <DropdownItem onClick={() => this.speakDropdown(song)} key={song}>
-                          {song}
-                        </DropdownItem>
+                        <li key={song}>
+                          <button className="dropdown-item" type="button" onClick={() => this.speakDropdown(song)}>
+                            {song}
+                          </button>
+                        </li>
                       ))}
-                    </DropdownMenu>
-                  </Dropdown>
+                    </ul>
+                  </div>
                 </div>
                 <div className="d-flex gap-2">
                   <button className="btn btn-secondary">Play buzzer !</button>

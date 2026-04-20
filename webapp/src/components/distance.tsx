@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Progress } from 'reactstrap'
 
 import socket from '@services/socket'
 
@@ -50,20 +49,32 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     return (
       <div className="row">
         <div className="col">
-          <Progress
-            style={styles.progressBar}
-            className={this.state.left.style}
-            value={this.state.left.cm}
-            label={this.state.left.label}
-          />
+          <div className="progress" style={styles.progressBar}>
+            <div
+              className={`progress-bar bg-${this.state.left.style}`}
+              role="progressbar"
+              style={{ width: `${this.state.left.cm}%` }}
+              aria-valuenow={this.state.left.cm}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              {this.state.left.label}
+            </div>
+          </div>
         </div>
         <div className="col">
-          <Progress
-            style={styles.progressBar}
-            className={this.state.right.style}
-            value={this.state.right.cm}
-            label={this.state.right.label}
-          />
+          <div className="progress" style={styles.progressBar}>
+            <div
+              className={`progress-bar bg-${this.state.right.style}`}
+              role="progressbar"
+              style={{ width: `${this.state.right.cm}%` }}
+              aria-valuenow={this.state.right.cm}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              {this.state.right.label}
+            </div>
+          </div>
         </div>
       </div>
     )
