@@ -9,7 +9,7 @@ import soundPlayer from '@services/sound-player'
 import { ApiRoutes } from './routes/api-routes'
 import { SocketRoutes } from './routes/socket-routes'
 
-const serverPort = 8090
+const SERVER_PORT = 8090
 
 export class App {
   public app: express.Application
@@ -26,14 +26,8 @@ export class App {
 
     this.app = express()
     this.server = http.createServer(this.app)
-    this.io = new io.Server(this.server, {
-      path: '/chat/socket.io',
-      // TODO
-      cors: {
-        origin: '*',
-      },
-    })
-    this.server.listen(serverPort)
+    this.io = new io.Server(this.server, { path: '/chat/socket.io' })
+    this.server.listen(SERVER_PORT)
 
     this.apiRoutes.routes(this.app)
 

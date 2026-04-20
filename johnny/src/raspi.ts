@@ -54,7 +54,7 @@ const boardsFn: BoardsFn = {
   nodemcu: undefined,
 }
 
-export let app
+export let app: App
 
 boardsFn.boards.on('ready', function () {
   boardsFn.mega = this[0]
