@@ -1,7 +1,7 @@
 import * as React from 'react'
 import YamahaRemote from '@components/yamaha-remote'
 
-export const RemotesView = (): JSX.Element => (
+export const RemotesView = (): React.ReactElement => (
   <div className="row">
     <div className="col-md-6">
       <div className="card bg-light mb-4" style={{ borderRadius: '1rem' }}>

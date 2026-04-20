@@ -9,7 +9,7 @@ import SpeechRecognitionView from '@components/speech-recognition'
 import ChatView from '@components/chat'
 import LCDView from '@components/lcd'
 
-export const ComponentsView = (): JSX.Element => (
+export const ComponentsView = (): React.ReactElement => (
   <div className="row">
     <div className="col-sm-6">
       <ComponentCardView name="Chat" icon="fa-regular fa-lightbulb">

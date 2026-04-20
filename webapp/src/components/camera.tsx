@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const Camera = (): JSX.Element => {
+const Camera = (): React.ReactElement => {
   return (
     <div className="row">
       <div className="col text-center">

@@ -3,7 +3,7 @@ import * as React from 'react'
 import socket from '@services/socket'
 
 export default class YamahaRemote extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     const styles = {
       btn: {
         height: '100px',

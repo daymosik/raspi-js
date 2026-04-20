@@ -24,7 +24,7 @@ const colors = [
 ]
 
 export default class RGB extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <Circle colors={colors} onChange={this.handleChangeComplete} pointProps={{ style: { width: 40, height: 40 } }} />
     )

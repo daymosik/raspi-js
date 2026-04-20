@@ -50,7 +50,7 @@ export default class Joystick extends React.Component<JoystickProps, JoystickSta
     }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <div className="noselect">
         <div className="center-align" ref={this.myRef}>

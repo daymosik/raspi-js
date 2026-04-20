@@ -8,7 +8,7 @@ export interface ComponentCardViewComponentProps {
 
 export type ComponentCardViewProps = PropsWithChildren<ComponentCardViewComponentProps>
 
-export const ComponentCardView = (props: ComponentCardViewProps): JSX.Element => (
+export const ComponentCardView = (props: ComponentCardViewProps): React.ReactElement => (
   <div className="card bg-light mb-4 border-0" style={{ borderRadius: '1rem' }}>
     <div className="card-header bg-dark text-light" style={{ borderRadius: '1rem 1rem 0 0' }}>
       <i className={props.icon}></i> {props.name}

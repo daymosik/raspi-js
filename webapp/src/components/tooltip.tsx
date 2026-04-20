@@ -6,7 +6,7 @@ interface TooltipProps {
   additionalClassName?: string
 }
 
-const Tooltip = (props: PropsWithChildren<TooltipProps>): JSX.Element => {
+const Tooltip = (props: PropsWithChildren<TooltipProps>): React.ReactElement => {
   return (
     <div
       data-tooltip-id="my-tooltip"

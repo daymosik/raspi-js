@@ -33,7 +33,7 @@ export default class Buzzer extends React.Component<unknown, BuzzerState> {
     this.state = { text: '', dropdownOpen: false }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <div className="row">
         <div className="col">

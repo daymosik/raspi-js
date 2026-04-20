@@ -5,11 +5,11 @@ import { NavigationPath } from '@components/navbar'
 import AuthService from '@services/auth'
 
 // TODO
-// eslint-disable-next-line react/prop-types,@typescript-eslint/explicit-module-boundary-types
-const PrivateRoute = ({ component: Component, ...rest }): JSX.Element => (
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+const PrivateRoute = ({ component: Component, ...rest }: any): React.ReactElement => (
   <Route
     {...rest}
-    render={(props): JSX.Element =>
+    render={(props): React.ReactElement =>
       AuthService.isAuthenticated ? <Component {...props} /> : <Redirect to={NavigationPath.Login} />
     }
   />

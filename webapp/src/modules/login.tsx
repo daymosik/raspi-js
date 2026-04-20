@@ -11,7 +11,7 @@ export interface FormInputPasswordProps {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const FormInputPassword = (props: FormInputPasswordProps): JSX.Element => (
+export const FormInputPassword = (props: FormInputPasswordProps): React.ReactElement => (
   <FormInput name={'password'} type={'password'} value={props.value} handleInputChange={props.handleInputChange} />
 )
 
@@ -20,7 +20,7 @@ export interface FormInputEmailProps {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const FormInputEmail = (props: FormInputEmailProps): JSX.Element => (
+export const FormInputEmail = (props: FormInputEmailProps): React.ReactElement => (
   <FormInput name={'email'} type={'text'} value={props.value} handleInputChange={props.handleInputChange} />
 )
 
@@ -47,7 +47,7 @@ export default class LoginView extends React.Component<LoginViewProps, LoginView
     console.log(AuthService.isAuthenticated)
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col-12 col-md-8 col-lg-6 col-xl-5">

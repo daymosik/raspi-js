@@ -17,9 +17,9 @@
     "fix": "yarn fix:ts && yarn fix:prettier"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "6.5.2",
+    "@fortawesome/fontawesome-free": "7.2.0",
     "@uiw/react-color-circle": "^2.10.1",
-    "annyang": "2.6.1",
+    "annyang": "3.0.0",
     "bootstrap": "5.3.8",
     "createjs-module": "0.8.3",
     "firebase": "12.12.0",
@@ -32,7 +32,7 @@
     "socket.io-client": "4.8.3"
   },
   "devDependencies": {
-    "@types/annyang": "^2.6.5",
+    "@eslint/js": "10.0.1",
     "@types/hammerjs": "2.0.46",
     "@types/node": "24.12.2",
     "@types/react": "19.2.14",
@@ -41,10 +41,9 @@
     "autoprefixer": "10.5.0",
     "esbuild": "0.28.0",
     "esbuild-sass-plugin": "3.3.1",
-    "eslint": "9.39.4",
-    "eslint-config-prettier": "9.1.2",
+    "eslint": "10.2.1",
+    "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
-    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "firebase-tools": "15.15.0",
     "globals": "^17.5.0",

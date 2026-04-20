@@ -16,7 +16,7 @@ export default class ChatView extends React.Component<unknown, ChatViewState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <form onSubmit={this.askQuestion}>
         <div className="d-grid gap-2">

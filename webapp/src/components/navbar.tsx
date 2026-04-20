@@ -21,7 +21,7 @@ export interface NavigationButtonProps {
   onClick: () => void
 }
 
-export const NavigationButton = (props: NavigationButtonProps): JSX.Element => (
+export const NavigationButton = (props: NavigationButtonProps): React.ReactElement => (
   <button
     className="navbar-toggler"
     type="button"
@@ -37,13 +37,13 @@ export const NavigationButton = (props: NavigationButtonProps): JSX.Element => (
 )
 
 interface NavigationListItemProps {
-  name: JSX.Element | string
+  name: React.ReactElement | string
   title?: string
   path?: string
   onClick?: () => void
 }
 
-const NavigationListItem = (props: NavigationListItemProps): JSX.Element => (
+const NavigationListItem = (props: NavigationListItemProps): React.ReactElement => (
   <li className="nav-item">
     <Tooltip tooltipText={props.title || ''}>
       {props.path && (
@@ -66,7 +66,7 @@ export interface NavigationMenuProps {
   hideMobileMenu: () => void
 }
 
-export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => (
+export const NavigationMenu = (props: NavigationMenuProps): React.ReactElement => (
   <div
     className={`collapse navbar-collapse ${props.mobileMenuOpen ? 'show' : ''}`}
     id="navbarSupportedContent"
@@ -129,7 +129,7 @@ export default class NavbarComponent extends React.Component<unknown, NavbarComp
     }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container">

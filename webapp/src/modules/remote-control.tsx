@@ -4,7 +4,7 @@ import socket from '@services/socket'
 import * as React from 'react'
 import { JoystickCoords } from '../models/motors'
 
-const RemoteControlView = (): JSX.Element => {
+const RemoteControlView = (): React.ReactElement => {
   const onMove = (coords: JoystickCoords): void => {
     console.log(coords)
     socket.emit('command.handleJoystick', coords)

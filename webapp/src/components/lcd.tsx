@@ -14,7 +14,7 @@ export default class LCDView extends React.Component<unknown, LCDViewState> {
     }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <form onSubmit={this.setText}>
         <div className="d-grid gap-2">

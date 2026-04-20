@@ -13,7 +13,7 @@ export default class Speech extends React.Component<unknown, SpeechState> {
     this.state = { text: '' }
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <form action="" className="" onSubmit={this.handleSubmit}>
         <div className="mb-3">

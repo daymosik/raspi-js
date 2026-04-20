@@ -20,14 +20,14 @@ export interface ArrowButtonProps {
   btnClassName?: string
 }
 
-export const ArrowButton = (props: PropsWithChildren<ArrowButtonProps>): JSX.Element => (
+export const ArrowButton = (props: PropsWithChildren<ArrowButtonProps>): React.ReactElement => (
   <button onClick={props.onClick} style={styles.btn} className={`btn ${props.btnClassName || 'btn-secondary'}`}>
     {props.children}
   </button>
 )
 
 export default class Arrows extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <div className="d-flex flex-wrap gap-1">
         <ArrowButton onClick={(): void => this.moveMotor('turnLeft', 140)}>

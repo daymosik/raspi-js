@@ -8,7 +8,7 @@ export interface FormInputProps {
   handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export const FormInput = (props: FormInputProps): JSX.Element => (
+export const FormInput = (props: FormInputProps): React.ReactElement => (
   <input
     className="form-control"
     type={props.type}

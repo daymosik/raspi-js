@@ -45,7 +45,7 @@ export default class Distance extends React.Component<unknown, DistanceState> {
     socket.on('rightSensor.data', (data) => this.setRightDistance(data.cm))
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <div className="row">
         <div className="col">

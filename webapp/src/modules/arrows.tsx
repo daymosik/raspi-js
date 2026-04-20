@@ -2,7 +2,7 @@ import Arrows from '@components/arrows'
 import Distance from '@components/distance'
 import * as React from 'react'
 
-export const ArrowsView = (): JSX.Element => (
+export const ArrowsView = (): React.ReactElement => (
   <div className="row">
     <div className="col-md-6">
       <div className="card bg-dark mb-4" style={{ borderRadius: '1rem' }}>

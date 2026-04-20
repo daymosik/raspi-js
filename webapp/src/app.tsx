@@ -72,7 +72,7 @@ class App extends React.Component<unknown, AppState> {
     speechRecognition.init()
   }
 
-  public render(): JSX.Element | null {
+  public render(): React.ReactElement | null {
     // TODO: loader insteadof null
     return !this.state.initialized ? null : (
       <HashRouter basename="/">

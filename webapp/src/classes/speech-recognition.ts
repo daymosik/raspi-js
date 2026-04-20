@@ -1,10 +1,10 @@
 import socket from '@services/socket'
-import annyang, { Annyang } from 'annyang'
+import annyang from 'annyang'
 // import openAI from '@classes/openai'
 // import cleverbot from '@classes/cleverbot'
 
 export class SpeechRecognition {
-  public annyang: Annyang = annyang as Annyang
+  public annyang = annyang
   // public cleverbot = cleverbot
 
   public commands = {

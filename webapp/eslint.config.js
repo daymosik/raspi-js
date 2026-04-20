@@ -1,6 +1,5 @@
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettier from 'eslint-plugin-prettier';
 import prettierConfig from 'eslint-config-prettier';
@@ -24,10 +23,12 @@ export default [
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parser: tseslint.parser,
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
         },
+        project: './tsconfig.json',
       },
       globals: {
         ...globals.node,
@@ -36,7 +37,7 @@ export default [
       },
     },
     plugins: {
-      'react': react,
+      '@typescript-eslint': tseslint.plugin,
       'react-hooks': reactHooks,
       'prettier': prettier,
     },
@@ -45,19 +46,20 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'warn',
       '@typescript-eslint/explicit-module-boundary-types': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error', {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_'
+      }],
 
-      // React rules
-      ...react.configs.recommended.rules,
-      'react/react-in-jsx-scope': 'off', // Not needed in React 17+
+      // React 19+ doesn't need React in scope
+      'no-undef': 'off', // TypeScript handles this
 
       // React Hooks rules
-      ...reactHooks.configs.recommended.rules,
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
 
       // Prettier rules
       'prettier/prettier': 'error',
-
-      // Disable rules that conflict with Prettier
-      ...prettierConfig.rules,
     },
     settings: {
       react: {
@@ -65,5 +67,8 @@ export default [
       },
     },
   },
+
+  // Prettier config (must be last to override other configs)
+  prettierConfig,
 ];
 

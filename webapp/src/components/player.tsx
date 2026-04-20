@@ -3,7 +3,7 @@ import * as React from 'react'
 import socket from '@services/socket'
 
 export default class Player extends React.Component<unknown, unknown> {
-  public render(): JSX.Element {
+  public render(): React.ReactElement {
     return (
       <button className="btn btn-primary" onClick={this.playRandomSound}>
         Play random!
