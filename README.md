@@ -14,11 +14,44 @@ Assembled with LEGO bricks.
 ## Raspi's actual abilities ##
 
 * Remote control from GUI (arrows + joystick)
-* Exploration mode
+* Speech recognition commands in the browser (Polish, via annyang)
 * Play songs on buzzer :)
-* It speaks!
-* View from USB Camera through GUI
+* Play random WAV clips from `data/wav`
+* It speaks! (text-to-speech with `festival`)
+* Print text on the LCD display, drive the RGB LED and seven segment display
+* View from USB Camera through GUI (`motion` stream)
 * Yamaha AV receiver control from GUI
+* Chat with a local LLM (Ollama, `llama3`) through GUI
+* ~~Exploration mode~~ (code kept in `johnny/src/services/exploration*.ts`, currently commented out)
+
+## Project structure ##
+
+| Path | Description |
+|---|---|
+| `johnny/` | Node.js server running on the Raspberry Pi: Johnny-Five boards, express (`/api/yamaha/*`) and socket.io on port `8090` (path `/chat/socket.io`) |
+| `webapp/` | React GUI bundled with esbuild into `webapp/dist` (PWA with a Workbox service worker) |
+| `nginx/` | nginx config for the Raspberry Pi (`:443` proxies `/chat/` to johnny, `:5001` serves `webapp/dist`) |
+| `data/wav/` | Sound clips mounted into johnny as `/wav` |
+| `fritzing/` | Wiring diagrams (`.fzz` + `.png`) |
+| `test/` | Legacy mocha/chai specs (not wired to any npm script) |
+| `docker-compose.yml`, `fabfile.py` | Containers `johnny`, `webapp`, `nginx`, `certbot` and Fabric tasks to manage them |
+| `init-letsencrypt.sh` | One-time Let's Encrypt bootstrap for nginx |
+
+## How it is deployed ##
+
+```
+browser ──> https://daymosik.freemyip.com:5000   (home server, "terminal" repo)
+              ├─ /          -> webapp/dist (built by the raspi-js container)
+              ├─ /chat/     -> 192.168.1.180:8090 (johnny on the Raspberry Pi, socket.io)
+              └─ /ollama/   -> 192.168.1.100:8001 (local-ai on the Mac)
+         ──> https://daymosik.freemyip.com:5001   (Raspberry Pi nginx, webapp/dist)
+         ──> Firebase Hosting (project raspi-js)  (deployed by GitHub Actions)
+```
+
+* The socket.io and local AI addresses are hard-coded in `webapp/src/services/socket.ts` and `webapp/src/providers/local-ai-provider.ts`.
+* The camera stream is expected at `https://daymosik.freemyip.com:8082/` (`webapp/src/components/camera.tsx`).
+* The Yamaha receiver IP (`192.168.1.140`) is set in `johnny/src/services/yamaha.ts`.
+* Login uses Firebase Authentication (email + password). All views except Home and Login are private.
 
 ## Hardware specification ##
 
@@ -30,9 +63,9 @@ Assembled with LEGO bricks.
 
 ### Arduino ###
 
-* Arduino Mega 2560 + Sensor Shield V2.0
-* Arduino Uno R3
-* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI )
+* Arduino Mega 2560 + Sensor Shield V2.0 (`/dev/ttyUSB0`)
+* Arduino Uno R3 (`/dev/ttyACM0`)
+* NodeMcu Lua Wifi ESP8266 + NodeMcu Base ver 1.0 (NodeMcu v3 CH340 Lua WIFI ), currently disabled in `johnny/src/raspi.ts`
 * LiPo Battery (2200mAH, 11,1V)
 * L298N H-bridge Dual Motor Controller + 2 x LEGO Technic - Power Functions L-Motor 88003
 * L298N H-bridge Dual Motor Controller + 1 x LEGO Technic - Power Functions L-Motor 88003
@@ -46,16 +79,15 @@ Assembled with LEGO bricks.
 
 ## Software specification ##
 
-### Raspberry Pi ###
-
-* **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling ardunino via **socket.io** from node server
-* **ReactJS** GUI hosted on firebase hosting with **socket.io** communication to RaspiJS 
-* **GitHub Actions CI** automated deploys to firebase hosting
-* **Docker** with **Docker Compose** for running the environment in containers
+* **Johnny-Five** - javascript robotic platform with great [API](http://johnny-five.io/api/) for controlling Arduino, driven via **socket.io** from the node server
+* **React 19** GUI with **socket.io** communication to RaspiJS, hosted on Firebase Hosting and on nginx
+* **esbuild** + Sass + PostCSS, **Workbox** service worker
+* **GitHub Actions CI** - lint, build and automated deploys to Firebase Hosting
+* **Docker** with **Docker Compose** for running the environment in containers (`node:24-bookworm` for johnny, `node:24-alpine` for webapp)
 * **Fabric** for managing containers
 * **Makefile** for running scripts
-* **Node v18.x**
-* **Typescript**
+* **Node v24.x**
+* **Typescript 5**, ESLint 10 + Prettier
 * **Bootstrap 5**
 * Raspbian Buster
 
@@ -67,7 +99,7 @@ Make sure to have `docker`, `docker compose` and `fabric` installed on your Rasp
 
 ### Firebase ###
 
-For firebase API and deployment create .env file in root catalog with following
+For firebase API and deployment create `webapp/.env` (see `webapp/.env.example`) with the following:
 
 ```
 FIREBASE_API_KEY=your-api-key
@@ -78,6 +110,8 @@ FIREBASE_STORAGE_BUCKET=your-domain.appspot.com
 FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
 FIREBASE_APP_ID=your-app-id
 ```
+
+The values are injected into the bundle at build time by `webapp/esbuild.config.js`. `webapp/Makefile` requires this file to exist.
 
 ### Starting app ###
 
@@ -91,24 +125,28 @@ Build dockerfiles:
 $ fab build
 ```
 
-Start all containers:
+Start all containers (`johnny`, `webapp`, `nginx`, `certbot`):
 ```
 $ fab run
 ```
 
-To run in development mode:
-```
-$ fab purge --names webapp
-$ fab run-dev --names webapp
+`webapp` is a one-shot container: it runs `make build`, writes `webapp/dist` and exits.
 
-$ fab purge --names johnny
-$ fab run-dev --names johnny
+To run in development mode (`docker-compose.dev.yml`: johnny runs `make start-dev`, webapp runs `make watch`):
+```
+$ fab purge --names=webapp
+$ fab run-dev --docker=webapp
+
+$ fab purge --names=johnny
+$ fab run-dev --docker=johnny
 ```
 
-Run commands in containers:
+Other tasks:
 ```
-$ fab sh
-$ fab zsh --docker johnny
+$ fab stop / fab restart / fab purge [--names=johnny+nginx]
+$ fab log --docker=johnny
+$ fab logs
+$ fab zsh --docker=johnny
 ```
 
 ### Running scripts ###
@@ -122,21 +160,26 @@ Run Johnny Five app with NodeJS server, socket.io server and Arduino connection
 make run
 ```
 
-Build app
+Build app (npm install if needed, lint, prettier check, `tsc` into `dist/`)
 ```
 make build
 ```
 
-Run app in development mode
+Run app in development mode (nodemon)
 ```
 make start-dev
+```
+
+Lint only
+```
+make lint
 ```
 
 #### Webapp ####
 
 To be executed on `webapp` container
 
-Build GUI
+Build GUI (lint, prettier check, production build into `dist/`)
 ```
 make build
 ```
@@ -146,10 +189,14 @@ Watch GUI
 make watch
 ```
 
+Serve `dist/` with esbuild
+```
+make serve
+```
+
 #### Github actions ####
 
-This command is executed to build webapp with firebase config on Github Actions, 
-before publishing to firebase hosting. 
+On every push to `master` the `build` workflow installs dependencies, lints, builds the webapp with firebase config from repository secrets and deploys it to Firebase Hosting (`raspi-js` project). The build uses:
 ```
 ./build.sh
 ```
@@ -162,13 +209,12 @@ For preparing your Raspberry Pi connection through Node.js with Arduino Uno, You
 
 Install nodebots-interchange for HCSR04 sensor (change **/dev/ttyACM0** to arduino correct interface)
 
-20.03.2023: Removed from package.json "nodebots-interchange": "^2.1.3",
 ```
 interchange install hc-sr04 -a uno -p /dev/ttyACM0 --firmata
 ```
 TODO: find a way to install nodebots-hcsr04 on Arduino Mega 2560
 
-For AirPlay install [shairport](https://github.com/abrasive/shairport)
+For AirPlay install [shairport](https://github.com/abrasive/shairport) and run `make airplay` in johnny.
 
 Install motion for USB webcamera:
 ```
@@ -184,5 +230,4 @@ sudo service motion start
 
 https://raspberry-valley.azurewebsites.net/Streaming-Video-with-Motion/#setup-streaming
 
-TODO: write about flite: https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite?view=all
-
+Text-to-speech uses `festival` (`flite` is also installed in the johnny image): https://learn.adafruit.com/speech-synthesis-on-the-raspberry-pi/speak-easier-flite?view=all
